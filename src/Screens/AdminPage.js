@@ -7,7 +7,7 @@ export class AdminPage extends Component {
         customerList: [],
         customerListSingle: [],
         name: 0,
-        class1: "",
+        class1: "admin-page",
         class2: "customer-cont customer"
     }
     customerPage = (e) => {
@@ -15,11 +15,11 @@ export class AdminPage extends Component {
         this.props.seeCustomerStep()
     }
     add = (e) => {
-        this.setState({class1: "customer"})
+        this.setState({class1: "admin-page customer"})
         this.setState({class2: "customer-cont"})
     }
     delete = (e) => {
-        this.setState({class1: ""})
+        this.setState({class1: "admin-page"})
         this.setState({class2: "customer-cont customer"})
     }
     // getVal = (e) => {
@@ -37,7 +37,7 @@ export class AdminPage extends Component {
         const {organization,firstName,lastName,telephoneNumber,email,upholsteryType,color,description,streetAddress,streetAddress2, city,state,postal,scheduleDate,upholsteryType1, color1} = this.state.customerListSingle
         return (
             <div>
-                <div className={`admin-page ${this.state.class1}`} >
+                <div className={this.state.class1} >
                     <h1 className="admin-head">Admin Page</h1>
                     {this.state.customerList.map((val, key)=>{
                         return (
