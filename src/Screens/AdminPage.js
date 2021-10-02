@@ -8,7 +8,7 @@ export class AdminPage extends Component {
         customerListSingle: [],
         name: 0,
         class1: "",
-        class2: "customer"
+        class2: "customer-cont customer"
     }
     customerPage = (e) => {
         e.preventDefault()
@@ -16,11 +16,11 @@ export class AdminPage extends Component {
     }
     add = (e) => {
         this.setState({class1: "customer"})
-        this.setState({class2: ""})
+        this.setState({class2: "customer-cont"})
     }
     delete = (e) => {
         this.setState({class1: ""})
-        this.setState({class2: "customer"})
+        this.setState({class2: "customer-cont customer"})
     }
     // getVal = (e) => {
     //     this.setState({customerListSingle: this.state.customerList[0]})
@@ -64,7 +64,7 @@ export class AdminPage extends Component {
                     })}
 
                 </div>
-                <div className={`customer-cont ${this.state.class2}`}>
+                <div className={this.state.class2}>
                     <ul className="date">
                         <li><h1>Date: </h1><h2>{scheduleDate}</h2></li>
                     </ul>
