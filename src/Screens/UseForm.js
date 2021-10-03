@@ -12,6 +12,7 @@ export class useForm extends Component {
     state = {
         step: 1,
         value: 0,
+        id: null,
         organization:"",
         firstName:"",
         lastName:"",
@@ -31,6 +32,31 @@ export class useForm extends Component {
         color1: "",
     }
 
+    componentDidMount(){
+        Axios.get("https://dtd-carpets.herokuapp.com/getreviewid").then((response)=>{
+            function extractValue(arr, prop) {
+
+                let extractedValue = [];
+            
+                for (let i=0; i < arr.length ; ++i) {
+            
+                    // extract value from property
+                    extractedValue.push(arr[i][prop]);
+                }
+                return extractedValue;
+            }
+            this.setState({id: response.data})
+            const result = extractValue(this.state.id, 'MAX(id)');
+            this.setState({id: parseInt(result)})
+            if(isNaN(this.state.id)){
+                this.setState({id: 1})
+            }else{
+                this.setState({id: parseInt(result) + 1})
+            }
+            console.log(parseInt(result))
+        })
+    }
+
     sendEmail = () => {
         emailjs.send('asfsquidy', 'template_c0xqflt', this.state,"user_PXn2f8Pt6N57O4XbQ4alf")
         .then(function(response) {
@@ -44,6 +70,7 @@ export class useForm extends Component {
     ///create
     addCustomer  = (e) => {
         Axios.post("https://dtd-carpets.herokuapp.com/create", {
+            id: this.state.id,
             organization: this.state.organization,
             firstName: this.state.firstName,
             lastName: this.state.lastName,

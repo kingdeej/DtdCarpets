@@ -3,15 +3,16 @@ import moment from "moment";
 
 export default class AddressScreen extends Component {
     state ={
-        dat1: moment().format("DD"),
+        dat1: moment().format("D"),
         dat2: "",
         date_create: moment().format("YYYY-MM-")
     }
 
     componentDidMount() {
-        this.setState({dat1: (parseInt(this.state.dat1) + 1).toString()})
-        this.setState({dat2: this.state.dat1.toString()})
-
+        const tostr = parseInt(this.state.dat1) + 1
+        if(this.state.dat1.length === 1){
+           this.setState({dat2: "0" + tostr})
+        }
     }
 
     continue = e => {
@@ -71,7 +72,7 @@ export default class AddressScreen extends Component {
                             <li>
                                 <label htmlFor="scheduleDate">Schedule Appointment</label>
                                 <div>
-                                    <input type="date" name="scheduleDate" min={this.state.date_create + this.state.dat1} defaultValue={scheduleDate} onChange={handleChange()} required></input>
+                                    <input type="date" name="scheduleDate" min={this.state.date_create + this.state.dat2} defaultValue={scheduleDate} onChange={handleChange()} required></input>
                                 </div>
                             </li>
                         </ul>           

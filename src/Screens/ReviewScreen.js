@@ -60,7 +60,7 @@ export class ReviewScreen extends Component {
                                         })}</p>
                                     </li>
                                     <li>
-                                        <Image cloudName="asfsquidy" style={{width: 100}} publicId={val.imageId} 
+                                        <Image cloudName="asfsquidy" style={{width: 100}} publicId={val.imageId} className="image"
                                         id={val.id} onClick={()=>{ 
                                             const reviewObj = document.getElementById(val.id)
                                             const reviewId = reviewObj.id

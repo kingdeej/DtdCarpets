@@ -12,6 +12,31 @@ export class Reviews extends Component {
         upholstery: "",
         imageSelected: "",
         imageId:"",
+        id: null,
+    }
+    componentDidMount(){
+        Axios.get("https://dtd-carpets.herokuapp.com/getCustomerid").then((response)=>{
+            function extractValue(arr, prop) {
+
+                let extractedValue = [];
+            
+                for (let i=0; i < arr.length ; ++i) {
+            
+                    // extract value from property
+                    extractedValue.push(arr[i][prop]);
+                }
+                return extractedValue;
+            }
+            this.setState({id: response.data})
+            const result = extractValue(this.state.id, 'MAX(id)');
+            this.setState({id: parseInt(result)})
+            if(isNaN(this.state.id)){
+                this.setState({id: 1})
+            }else{
+                this.setState({id: parseInt(result) + 1})
+            }
+            console.log(parseInt(result))
+        })
     }
 
 
@@ -34,6 +59,7 @@ export class Reviews extends Component {
                 this.setState({imageId: response.data.public_id})
 
                 Axios.post("https://dtd-carpets.herokuapp.com/review", {
+                    id: this.state.id,
                     name: this.state.name,
                     upholsteryType: this.state.upholsteryType,
                     rating: this.state.rating,

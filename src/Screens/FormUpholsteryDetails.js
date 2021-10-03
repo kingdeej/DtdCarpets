@@ -25,7 +25,11 @@ export default class UpholsteryScreen extends Component {
     }
     delete  = (e) => {
         const less1 = this.state.upholstery - 1
-        this.setState({upholstery : less1})
+        if(this.state.upholstery < 1){
+            alert("please Add Upholstery")
+        }else{
+            this.setState({upholstery : less1})
+        }
     }
     
     
