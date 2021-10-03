@@ -53,7 +53,6 @@ export class useForm extends Component {
             }else{
                 this.setState({id: parseInt(result) + 1})
             }
-            console.log(parseInt(result))
         })
     }
 

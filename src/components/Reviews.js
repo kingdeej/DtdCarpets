@@ -35,7 +35,6 @@ export class Reviews extends Component {
             }else{
                 this.setState({id: parseInt(result) + 1})
             }
-            console.log(parseInt(result))
         })
     }
 
