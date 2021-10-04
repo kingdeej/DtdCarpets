@@ -33,7 +33,7 @@ export class useForm extends Component {
     }
 
     componentDidMount(){
-        Axios.get("https://dtd-carpets.herokuapp.com/getreviewid").then((response)=>{
+        Axios.get("https://dtd-carpets.herokuapp.com/getCustomerid").then((response)=>{
             function extractValue(arr, prop) {
 
                 let extractedValue = [];

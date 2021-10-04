@@ -15,7 +15,7 @@ export class Reviews extends Component {
         id: null,
     }
     componentDidMount(){
-        Axios.get("https://dtd-carpets.herokuapp.com/getCustomerid").then((response)=>{
+        Axios.get("https://dtd-carpets.herokuapp.com/getReviewid").then((response)=>{
             function extractValue(arr, prop) {
 
                 let extractedValue = [];
