@@ -48,7 +48,6 @@ export default class FormPersonalDetails extends Component {
             const {handleChange, onCreditCardChange } = this.props
             const { values: {organization, firstName, lastName, email, password} } = this.props    
         return (
-            <div>
                 <div className="pi-container">
                     <form action="" id="form-sub" onSubmit={this.continue}>
                     <div className="pi-spacing">
@@ -112,7 +111,6 @@ export default class FormPersonalDetails extends Component {
                     <button type="submit" className="next-btn" onClick={this.adminGet}>Next</button>
                     </form>
                 </div>
-            </div>
         );
     }
 }
