@@ -21,7 +21,7 @@ export class ReviewScreen extends Component {
     }
     
     componentDidMount(){
-        Axios.get('https://dtd-carpets.herokuapp.com/reviews').then((response)=>{
+        Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
         })
     }

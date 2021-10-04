@@ -29,7 +29,7 @@ export class AdminPage extends Component {
     
 
     componentDidMount(){
-        Axios.get("https://dtd-carpets.herokuapp.com/customers").then((response)=>{
+        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
             this.setState({customerList: response.data})
         })
     }

@@ -33,7 +33,7 @@ export class useForm extends Component {
     }
 
     componentDidMount(){
-        Axios.get("https://dtd-carpets.herokuapp.com/getCustomerid").then((response)=>{
+        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
             function extractValue(arr, prop) {
 
                 let extractedValue = [];
@@ -68,7 +68,7 @@ export class useForm extends Component {
 
     ///create
     addCustomer  = (e) => {
-        Axios.post("https://dtd-carpets.herokuapp.com/create", {
+        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/create", {
             id: this.state.id,
             organization: this.state.organization,
             firstName: this.state.firstName,

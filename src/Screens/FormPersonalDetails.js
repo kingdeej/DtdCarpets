@@ -34,7 +34,7 @@ export default class FormPersonalDetails extends Component {
         }
     }
     adminGet = (e) => {
-        Axios.get("https://dtd-carpets.herokuapp.com/admin").then((response)=>{
+        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/admin").then((response)=>{
             this.setState({admin: response.data[0]})
             const {adminEmail, adminPassword, adminTelephoneNumber} = this.state.admin
             const {values: {telephoneNumber, email, password}}= this.props

@@ -15,7 +15,7 @@ export class Reviews extends Component {
         id: null,
     }
     componentDidMount(){
-        Axios.get("https://dtd-carpets.herokuapp.com/getReviewid").then((response)=>{
+        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
             function extractValue(arr, prop) {
 
                 let extractedValue = [];
@@ -57,7 +57,7 @@ export class Reviews extends Component {
                 console.log(response)
                 this.setState({imageId: response.data.public_id})
 
-                Axios.post("https://dtd-carpets.herokuapp.com/review", {
+                Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
                     id: this.state.id,
                     name: this.state.name,
                     upholsteryType: this.state.upholsteryType,
