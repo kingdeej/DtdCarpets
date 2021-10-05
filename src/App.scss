@@ -15,6 +15,14 @@ html {
         width: 300px;
     }
 }
+select{
+    overflow: hidden;
+    color: black;
+}
+input{
+    overflow: hidden;
+    color: black;
+}
 a{
     text-decoration: none;
     color: black;
@@ -403,11 +411,11 @@ button{
                     input{
                         height: 25px;
                         width: 200px;
-                        color: white;
-                        background-color: #323232;
                         margin-top: 3px;
                         border-radius: 3px;
-                        border: #585858 1px solid;}   
+                        border: #585858 1px solid;
+                        font-weight: bold;
+                    } 
                     label{
                         font-weight: bold;
                         color: white;
@@ -457,8 +465,8 @@ img{
             margin-bottom: 10px;
         }
         textarea{
-            background-color: #323232;
-            color: white;
+            overflow: hidden;
+            font-weight: bold;
             resize: none;
             width: 50vw;
             height: 200px;
@@ -473,12 +481,10 @@ img{
     select{
         height: 25px;
         width: 200px;
-        color: white;
         margin-top: 3px;
         border-radius: 3px;
         border: #585858 1px solid;
         margin-bottom: 20px;
-        background-color: #323232;
 
         
         option{
@@ -515,11 +521,9 @@ img{
     input{
         height: 25px;
         width: 200px;
-        color: white;
         margin-top: 3px;
         border-radius: 3px;
         border: #585858 1px solid;
-        background-color: #323232;
     }
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
