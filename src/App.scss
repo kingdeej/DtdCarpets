@@ -572,6 +572,13 @@ img{
     }
 }
 @media screen and (max-width: 667px){
+    .name{
+        ul{
+            li{
+                margin-bottom: 5px !important;
+            }
+        }
+    }
     .next-btn{
         bottom: 30px !important;
     }
