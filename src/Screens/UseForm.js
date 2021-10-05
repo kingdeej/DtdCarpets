@@ -6,6 +6,7 @@ import FormPersonalDetails from './FormPersonalDetails'
 import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
+import SetAppointmentScreen from './SetAppointmentScreen'
 
 
 export class useForm extends Component {
@@ -137,6 +138,12 @@ export class useForm extends Component {
         switch(step){
             case 1:
                 return(
+                    <SetAppointmentScreen 
+                    nextStep={this.nextStep}
+                    />
+                )
+            case 2:
+                return(
                     <FormPersonalDetails 
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
@@ -145,7 +152,7 @@ export class useForm extends Component {
                     onCreditCardChange ={this.onCreditCardChange}
                     />
                 )
-            case 2:
+            case 3:
                 return(
                     <FormUpholsteryDetails 
                     nextStep={this.nextStep}
@@ -154,7 +161,7 @@ export class useForm extends Component {
                     values={values}
                     />
                 )
-            case 3:
+            case 4:
                 return(
                     <FormAddressDetails 
                     nextStep = {this.nextStep}
@@ -165,11 +172,11 @@ export class useForm extends Component {
                     sendEmail= {this.sendEmail}
                     />
                 )
-            case 4:
+            case 5:
                 return(
                     <ThankYou />
                 )
-            case 5:
+            case 6:
                 return(
                     <AdminPage
                     seeCustomerStep={this.seeCustomerStep}

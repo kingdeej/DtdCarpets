@@ -1061,4 +1061,48 @@ span{
     cursor: pointer;
 }
 
+//set appointment
+
+.set-appointment{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        color: white;
+        margin-bottom: 20px;
+    }
+    button{
+        color: black;
+        background-color: white;
+        .arrow-right{
+            margin-bottom: -3px;
+            margin-left: 10px;
+        }        
+    }
+    .button-go{
+        transform: translateX(-20);
+        animation: float 2.5s infinite;
+        @keyframes float{
+            0%{
+                transform: translateX(-20%);
+            }
+            50%{
+                transform: translateX(10%);
+            }
+            100%{
+                transform: translateX(-20%);
+            }
+        }
+        :hover{
+            border-radius: 5px;
+            color: black;
+            background-color: #AACDE0;
+            transition: color .5s, background-color .5s, border-radius .5s;
+        }
+    }
+
+}
 
