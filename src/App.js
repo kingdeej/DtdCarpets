@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-        <div className="app">
+        <div>
           <Route path="/useform" component={useForm}></Route>
           <Route path="/reviews" component={ReviewScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
