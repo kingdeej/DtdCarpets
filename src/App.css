@@ -1263,6 +1263,40 @@ span {
 .set-appointment .button-go {
   -webkit-transform: translateX(-20);
           transform: translateX(-20);
+  -webkit-animation: float 2.5s infinite;
+          animation: float 2.5s infinite;
+  -webkit-animation-name: go;
+          animation-name: go;
+}
+
+@-webkit-keyframes go {
+  0% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
+  50% {
+    -webkit-transform: translateX(10%);
+            transform: translateX(10%);
+  }
+  100% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
+}
+
+@keyframes go {
+  0% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
+  50% {
+    -webkit-transform: translateX(10%);
+            transform: translateX(10%);
+  }
+  100% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
 }
 
 .set-appointment .button-go :hover {

@@ -1084,18 +1084,19 @@ span{
     }
     .button-go{
         transform: translateX(-20);
-        // animation: float 2.5s infinite;
-        // @keyframes float{
-        //     0%{
-        //         transform: translateX(-20%);
-        //     }
-        //     50%{
-        //         transform: translateX(10%);
-        //     }
-        //     100%{
-        //         transform: translateX(-20%);
-        //     }
-        // }
+        animation: float 2.5s infinite;
+        animation-name: go;
+        @keyframes go{
+            0%{
+                transform: translateX(-20%);
+            }
+            50%{
+                transform: translateX(10%);
+            }
+            100%{
+                transform: translateX(-20%);
+            }
+        }
         :hover{
             border-radius: 5px;
             color: black;
