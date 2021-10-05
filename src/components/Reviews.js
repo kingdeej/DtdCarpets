@@ -9,9 +9,11 @@ export class Reviews extends Component {
         hover: null,
         review: "",
         name: "",
-        upholstery: "",
+        upholsteryType: "",
         imageSelected: "",
+        imageSelected1: "",
         imageId:"",
+        imageId1:"",
         id: null,
     }
     componentDidMount(){
@@ -52,25 +54,33 @@ export class Reviews extends Component {
             const formData = new FormData();
             formData.append("file", this.state.imageSelected);
             formData.append("upload_preset", "mxkyqztd");
+
+            const formData1 = new FormData()
+            formData1.append("file", this.state.imageSelected1);
+            formData1.append("upload_preset", "mxkyqztd");
     
             Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
                 console.log(response)
                 this.setState({imageId: response.data.public_id})
 
-                Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                    id: this.state.id,
-                    name: this.state.name,
-                    upholsteryType: this.state.upholsteryType,
-                    rating: this.state.rating,
-                    review: this.state.review,
-                    imageId: this.state.imageId 
-                }).then(()=>{
-                    console.log("success")
-                    window.location.reload(false);
+                Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                    console.log(response)
+                    this.setState({imageId1: response.data.public_id})
 
+                    Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                        id: this.state.id,
+                        name: this.state.name,
+                        upholsteryType: this.state.upholsteryType,
+                        rating: this.state.rating,
+                        review: this.state.review,
+                        imageId: this.state.imageId,
+                        imageId1: this.state.imageId1
+                    }).then(()=>{
+                        console.log("success")
+                        window.location.reload(false);   
+                    })
                 })
             })
-
         }
     }
       
@@ -130,12 +140,21 @@ export class Reviews extends Component {
                         </li>
 
                         <li>
-                            <label htmlFor="">Add image: </label>
+                            <label htmlFor="">Add 2 images: </label>
                         </li>
+                        <li>
+                            <label htmlFor="">Before </label>
+                        </li>
+                        
                         <li>
                             <input type="file" name="image" onChange={(e)=>{this.setState({imageSelected: e.target.files[0]})}} accept="image/png, image/jpeg"/>
                         </li>
-                        
+                        <li>
+                            <label htmlFor="">After </label>
+                        </li>
+                        <li>
+                            <input type="file" name="image" onChange={(e)=>{this.setState({imageSelected1: e.target.files[0]})}} accept="image/png, image/jpeg"/>
+                        </li>
                         <li>
                         <textarea 
                             name="review" 

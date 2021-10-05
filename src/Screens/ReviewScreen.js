@@ -9,7 +9,7 @@ export class ReviewScreen extends Component {
         reviews: [],
         revImageCont: "show",
         revList:"",
-        revListId: []
+        revListId: ""
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -27,7 +27,6 @@ export class ReviewScreen extends Component {
     }
     
     render() {
-        const {imageId} = this.state.revListId
         return (
             <div >
                 <div className="review-page-cont">
@@ -59,15 +58,23 @@ export class ReviewScreen extends Component {
                                             />
                                         })}</p>
                                     </li>
-                                    <li>
+                                    <li className="review-img-container">
                                         <Image cloudName="asfsquidy" style={{width: 100}} publicId={val.imageId} className="image"
-                                        id={val.id} onClick={()=>{ 
-                                            const reviewObj = document.getElementById(val.id)
+                                        id={val.imageId} onClick={()=>{ 
+                                            const reviewObj = document.getElementById(val.imageId)
                                             const reviewId = reviewObj.id
-                                            this.setState({revListId: this.state.reviews[reviewId -1]})
+                                            this.setState({revListId: reviewId})
+                                            this.toggleRevImg()}}
+                                        />
+                                        <Image cloudName="asfsquidy" style={{width: 100, height: 100}} publicId={val.imageId1} className="image"
+                                        id={val.imageId1} onClick={()=>{ 
+                                            const reviewObj = document.getElementById(val.imageId1)
+                                            const reviewId = reviewObj.id
+                                            this.setState({revListId: reviewId})
                                             this.toggleRevImg()}}
                                         />
                                     </li>
+
                                     <li>
                                         <h2>Review: </h2>
                                         <p>{val.review}</p>
@@ -82,7 +89,12 @@ export class ReviewScreen extends Component {
                 </div>
                 <div className={`rev-img-parent ${this.state.revImageCont}`}>
                     <div className="review-img-cont">
-                        <Image cloudName="asfsquidy"  publicId={imageId} className="rev-img" />
+                        <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
+                    </div>
+                </div>
+                <div className={`rev-img-parent show ${this.state.revImageCont}`}>
+                    <div className="review-img-cont">
+                        <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
                     </div>
                 </div>
             </div>

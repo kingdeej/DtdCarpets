@@ -7,7 +7,7 @@ export class SetAppointmentScreen extends Component {
         return (
             <div className="pi-container">
                 <div className="set-appointment">
-                    <h1>Set Appointement</h1> 
+                    <h1>Set Appointment</h1> 
                     <div className="button-go">
                         <button onClick={this.props.nextStep}>
                             Go

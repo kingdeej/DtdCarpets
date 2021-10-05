@@ -1070,8 +1070,15 @@ span{
 .rev-page{
     background-color: #F8F2F9;
 }
+.review-image-container{
+    display: flex;
+
+}
 .image{
     cursor: pointer;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    max-height: 100px;
 }
 
 //set appointment
