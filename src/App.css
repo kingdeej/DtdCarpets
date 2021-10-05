@@ -664,6 +664,9 @@ img {
   .name ul li {
     margin-bottom: 5px !important;
   }
+  .pi-container {
+    padding-top: 2em !important;
+  }
   .next-btn {
     bottom: 30px !important;
   }
