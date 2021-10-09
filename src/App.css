@@ -573,6 +573,7 @@ button {
   }
   .show-nav ul {
     margin-top: 100px;
+    padding-left: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -583,9 +584,13 @@ button {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
   }
   .show-nav ul li {
-    margin: auto 2px auto 10px;
+    width: 100%;
   }
   .show-nav ul li button {
     font-size: 15px;
