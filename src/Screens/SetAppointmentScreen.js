@@ -5,7 +5,7 @@ export class SetAppointmentScreen extends Component {
     
     render() {
         return (
-            <div className="pi-container">
+            <div className="go">
                 <div className="set-appointment">
                     <h1>Set Appointment</h1> 
                     <div className="button-go">

@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React, { Component } from 'react'
-import { FaEye } from 'react-icons/fa'
+import { FaEye, FaTimes } from 'react-icons/fa'
 import Cleave from 'cleave.js/react';
 require('cleave.js/dist/addons/cleave-phone.ca')
 
@@ -10,8 +10,8 @@ export default class FormPersonalDetails extends Component {
         count: 0,
         show: "password",
         admin:[],
+        showAlert: "show "
     }
-
 
     showPassword = () =>{
         if (this.state.count === 0) {
@@ -31,6 +31,8 @@ export default class FormPersonalDetails extends Component {
         const {values: {organization, firstName, lastName}}= this.props
         if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
             this.props.nextStep()
+        }else{
+            this.setState({showAlert: "alert"})
         }
     }
     adminGet = (e) => {
@@ -40,19 +42,22 @@ export default class FormPersonalDetails extends Component {
             const {values: {telephoneNumber, email, password}}= this.props
             if(email === adminEmail && telephoneNumber === adminTelephoneNumber && password === adminPassword){
                 this.props.adminStep()
+            }else{
+                this.setState({showAlert: "alert"})
             }
         })
     }
 
         render() {
             const {handleChange, onCreditCardChange } = this.props
-            const { values: {organization, firstName, lastName, email, password} } = this.props    
+            const { values: {organization, firstName, lastName, email, password} } = this.props  
+  
         return (
-                <div className="pi-container">
-                    <form action="" id="form-sub" onSubmit={this.continue}>
-                    <div className="pi-spacing">
+                <div className="form-cont">
+                    <form className="form" id="form-sub" onSubmit={this.continue}>
+                    <div>
                         <div className="name">
-                            <ul>
+                            <ul className="ul">
                                 <li>
                                     <div>
                                         <label htmlFor="">Organization's Name:</label>
@@ -64,16 +69,15 @@ export default class FormPersonalDetails extends Component {
                                 <li className="or"><h2>Or</h2></li>
                                 <li className="name-cont org-name">
                                     <div className="left-side">
-                                        <label htmlFor="name">Name:</label> 
+                                        <label htmlFor="name">First Name:</label> 
                                         <div className="sub-txt">
                                             <input type="text" name ="firstName"  defaultValue={firstName} onChange={handleChange()}/>
-                                            <br /><label htmlFor="sub-txt">First Name</label>
                                         </div>
                                     </div>
                                     <div className="right-side">
+                                    <label htmlFor="name">Last Name:</label> 
                                         <div className="sub-txt">
                                             <input type="text"  name ="lastName" defaultValue={lastName} onChange={handleChange()}/>
-                                            <br /><label htmlFor="sub-txt">Last Name</label>
                                         </div>
                                     </div>
                                 </li>
@@ -101,7 +105,7 @@ export default class FormPersonalDetails extends Component {
                                         <label htmlFor="email">Password:</label>
                                         <div className="peak-cont">
                                             <input type={this.state.show} defaultValue={password} required onChange={handleChange()}  name ="password"/>
-                                            <FaEye className="peak" color="white" onClick={this.showPassword}/>
+                                            <FaEye className="peak" color="black" onClick={this.showPassword}/>
                                         </div>
                                     </div>
                                 </li>                          
@@ -110,6 +114,7 @@ export default class FormPersonalDetails extends Component {
                     </div>
                     <button type="submit" className="next-btn" onClick={this.adminGet}>Next</button>
                     </form>
+                    <div className={`${this.state.showAlert}`}><h5>Please fill out form</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
                 </div>
         );
     }

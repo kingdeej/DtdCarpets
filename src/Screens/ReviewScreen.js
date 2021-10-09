@@ -9,7 +9,8 @@ export class ReviewScreen extends Component {
         reviews: [],
         revImageCont: "show",
         revList:"",
-        revListId: ""
+        revListId: "",
+        showImg: ""
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -24,16 +25,30 @@ export class ReviewScreen extends Component {
         Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
         })
+       
     }
     
     render() {
+        const ReviewNon = (params) => {
+            if (this.state.reviews.length === 0) {
+                return <h1>No Reviews Yet</h1>
+            }else{
+                return <h1>Reviews</h1>
+            }
+        } 
         return (
-            <div >
+            <div>
                 <div className="review-page-cont">
-                    <h1 className="show">Reviews</h1>
+                    <ReviewNon />
                     {this.state.reviews.map((val, key)=>{
                         if(val.review === ""){
                             val.review = "No Review"
+                        }
+                        if (val.imageId1 === null) {
+                            val.imageId1 = "show"
+                        }
+                        if (val.imageId === null) {
+                            val.imageId = "show"
                         }
                         return (
                             <div key={key} className="rev-page">
@@ -59,14 +74,14 @@ export class ReviewScreen extends Component {
                                         })}</p>
                                     </li>
                                     <li className="review-img-container">
-                                        <Image cloudName="asfsquidy" style={{width: 100}} publicId={val.imageId} className="image"
+                                        <Image cloudName="asfsquidy" style={{width: 100}} publicId={val.imageId} className={`image ${val.imageId} `}
                                         id={val.imageId} onClick={()=>{ 
                                             const reviewObj = document.getElementById(val.imageId)
                                             const reviewId = reviewObj.id
                                             this.setState({revListId: reviewId})
                                             this.toggleRevImg()}}
                                         />
-                                        <Image cloudName="asfsquidy" style={{width: 100, height: 100}} publicId={val.imageId1} className="image"
+                                        <Image cloudName="asfsquidy" style={{width: 100, height: 100}} publicId={val.imageId1} className={`image ${val.imageId1} `}
                                         id={val.imageId1} onClick={()=>{ 
                                             const reviewObj = document.getElementById(val.imageId1)
                                             const reviewId = reviewObj.id

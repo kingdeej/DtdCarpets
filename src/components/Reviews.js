@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaStar} from 'react-icons/fa'
+import { FaStar, FaTimes} from 'react-icons/fa'
 import Axios from 'axios'
 
 export class Reviews extends Component {
@@ -9,12 +9,17 @@ export class Reviews extends Component {
         hover: null,
         review: "",
         name: "",
+        email: "",
+        emailConfirm:"",
+        customerInfo: [],
         upholsteryType: "",
         imageSelected: "",
         imageSelected1: "",
         imageId:"",
         imageId1:"",
         id: null,
+        showAlert: "show",
+        showAlert1: "show",
     }
     componentDidMount(){
         Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
@@ -37,7 +42,11 @@ export class Reviews extends Component {
             }else{
                 this.setState({id: parseInt(result) + 1})
             }
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
+                this.setState({customerInfo: response.data})
+            })
         })
+
     }
 
 
@@ -48,39 +57,104 @@ export class Reviews extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault() 
+        const result = this.state.customerInfo.find( ({email}) => email === this.state.email )
         if(this.state.rating < 1 ){
-            alert("Please place a rating")   
+            this.setState({showAlert1: "alert"}) 
         }else{
-            const formData = new FormData();
-            formData.append("file", this.state.imageSelected);
-            formData.append("upload_preset", "mxkyqztd");
-
-            const formData1 = new FormData()
-            formData1.append("file", this.state.imageSelected1);
-            formData1.append("upload_preset", "mxkyqztd");
-    
-            Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
-                console.log(response)
-                this.setState({imageId: response.data.public_id})
-
-                Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
-                    console.log(response)
-                    this.setState({imageId1: response.data.public_id})
-
+            if (result === undefined) {
+                this.setState({showAlert: "alert"})
+            }else{
+                if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
                     Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                        id: this.state.id,
-                        name: this.state.name,
-                        upholsteryType: this.state.upholsteryType,
-                        rating: this.state.rating,
-                        review: this.state.review,
-                        imageId: this.state.imageId,
-                        imageId1: this.state.imageId1
-                    }).then(()=>{
-                        console.log("success")
-                        window.location.reload(false);   
+                            id: this.state.id,
+                            name: this.state.name,
+                            upholsteryType: this.state.upholsteryType,
+                            rating: this.state.rating,
+                            review: this.state.review,
+                        }).then(()=>{
+                            console.log("success")
+                            window.location.reload(false);   
                     })
-                })
-            })
+                }
+                else if (this.state.imageSelected === undefined || this.state.imageSelected.length === 0) {
+
+                    const formData1 = new FormData()
+                    formData1.append("file", this.state.imageSelected1);
+                    formData1.append("upload_preset", "mxkyqztd");
+
+                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                        console.log(response)
+                        this.setState({imageId1: response.data.public_id})
+
+                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                            id: this.state.id,
+                            name: this.state.name,
+                            upholsteryType: this.state.upholsteryType,
+                            rating: this.state.rating,
+                            review: this.state.review,
+                            imageId1: this.state.imageId1
+                        }).then(()=>{
+                            console.log("success")
+                            window.location.reload(false);   
+                        })
+                    })
+                }
+                else if (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0) {
+                    const formData = new FormData();
+                    formData.append("file", this.state.imageSelected);
+                    formData.append("upload_preset", "mxkyqztd");
+
+                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                    console.log(response)
+                    this.setState({imageId: response.data.public_id})
+
+                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                            id: this.state.id,
+                            name: this.state.name,
+                            upholsteryType: this.state.upholsteryType,
+                            rating: this.state.rating,
+                            review: this.state.review,
+                            imageId: this.state.imageId,
+                            }).then(()=>{
+                                console.log("success")
+                                window.location.reload(false);   
+                            })
+                        })
+                }
+                else if(this.state.imageSelected.name.length > 0 && this.state.imageSelected1.name.length) {
+                    
+                    const formData = new FormData();
+                    formData.append("file", this.state.imageSelected);
+                    formData.append("upload_preset", "mxkyqztd");
+
+                    const formData1 = new FormData()
+                    formData1.append("file", this.state.imageSelected1);
+                    formData1.append("upload_preset", "mxkyqztd");
+            
+                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                        console.log(response)
+                        this.setState({imageId: response.data.public_id})
+
+                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                            console.log(response)
+                            this.setState({imageId1: response.data.public_id})
+
+                            Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                id: this.state.id,
+                                name: this.state.name,
+                                upholsteryType: this.state.upholsteryType,
+                                rating: this.state.rating,
+                                review: this.state.review,
+                                imageId: this.state.imageId,
+                                imageId1: this.state.imageId1
+                            }).then(()=>{
+                                console.log("success")
+                                window.location.reload(false);   
+                            })
+                        })
+                    })
+                }
+            }
         }
     }
       
@@ -118,13 +192,19 @@ export class Reviews extends Component {
                         <li>
                             <input type="text" name="name" onChange={this.handleChange} required/>
                         </li>
+                        <li>                      
+                            <label htmlFor="">Write email address: </label>
+                        </li>
+                        <li>
+                            <input type="email" name="email" onChange={this.handleChange} required/>
+                        </li>
 
                         <li>
                             <label htmlFor="">Write upholsteryType: </label>
                         </li>
                         <li>
-                        <select name="upholsteryType" defaultValue={"DEFAULT"} required onChange={this.handleChange} >
-                                    <option value="DEFAULT" disabled >Upholstery Type</option>
+                        <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
+                                    <option value="" disabled >Upholstery Type</option>
                                     <option value="Carpet">Carpet</option>
                                     <option value="Rug">Rug</option>
                                     <option value="Large sofa">Large Sofa</option>
@@ -140,17 +220,17 @@ export class Reviews extends Component {
                         </li>
 
                         <li>
-                            <label htmlFor="">Add 2 images: </label>
+                            <label className="add-images" htmlFor="">Add 2 images: </label>
                         </li>
                         <li>
-                            <label htmlFor="">Before </label>
+                            <label htmlFor="">Before: </label>
                         </li>
                         
                         <li>
-                            <input type="file" name="image" onChange={(e)=>{this.setState({imageSelected: e.target.files[0]})}} accept="image/png, image/jpeg"/>
+                            <input type="file"  name="image" onChange={(e)=>{this.setState({imageSelected: e.target.files[0]})}} accept="image/png, image/jpeg"/>
                         </li>
                         <li>
-                            <label htmlFor="">After </label>
+                            <label htmlFor="">After: </label>
                         </li>
                         <li>
                             <input type="file" name="image" onChange={(e)=>{this.setState({imageSelected1: e.target.files[0]})}} accept="image/png, image/jpeg"/>
@@ -167,6 +247,8 @@ export class Reviews extends Component {
                         </li>
                     </ul>
                 </form>
+                <div className={`${this.state.showAlert}`}><h5>Email does not match</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
+                <div className={`${this.state.showAlert1}`}><h5>Please Enter a Rating</h5> <span className="times" onClick={()=>{this.setState({showAlert1: "show"})}}><FaTimes /></span></div>
             </div>
         )
     }

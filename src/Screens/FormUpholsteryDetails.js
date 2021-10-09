@@ -1,11 +1,13 @@
 import {React, Component} from "react";
-import { FaPlus, FaMinus } from 'react-icons/fa'
+import { FaPlus, FaMinus, FaTimes } from 'react-icons/fa'
 
 
 
 export default class UpholsteryScreen extends Component {
     state ={
-        upholstery : 0
+        upholstery : 0,
+        showAlert: "show",
+        showAlert1: "show",
     }
     continue = e => {
         e.preventDefault()
@@ -18,7 +20,7 @@ export default class UpholsteryScreen extends Component {
      add = (e) => {
         const plus1 = this.state.upholstery + 1
         if (this.state.upholstery === 1) {
-            alert("CANNOT ADD ANYMORE UPHOLSTERY")
+            this.setState({showAlert: "alert"})
         }else{
             this.setState({upholstery : plus1})
         }
@@ -26,7 +28,7 @@ export default class UpholsteryScreen extends Component {
     delete  = (e) => {
         const less1 = this.state.upholstery - 1
         if(this.state.upholstery < 1){
-            alert("please Add Upholstery")
+            this.setState({showAlert1: "alert"})
         }else{
             this.setState({upholstery : less1})
         }
@@ -37,8 +39,8 @@ export default class UpholsteryScreen extends Component {
         const {handleChange} = this.props
         const { values: {upholsteryType, upholsteryType1, color, color1, description,} } = this.props
         return (
-            <div className="pi-container bod">
-                <form action="" onSubmit={this.continue}>
+            <div className="form-cont bod">
+                <form className="form" onSubmit={this.continue}>
             <div className="pi-spacing">
                 <ul>
                     <li className="upholstery">
@@ -69,7 +71,6 @@ export default class UpholsteryScreen extends Component {
                                     <option value="Dark">Dark</option>
                                 </select>
                             </div>
-                            <hr />
                             </div>
                             
                             {[...Array(this.state.upholstery)].map((i, key) => {
@@ -100,7 +101,6 @@ export default class UpholsteryScreen extends Component {
                                         <option value="Dark">Dark</option>
                                     </select>
                                 </div>
-                                <hr />
                                 </div>
                             )
                         })}
@@ -116,9 +116,11 @@ export default class UpholsteryScreen extends Component {
                     
                 </ul>
             </div>
-            <button type="submit" className="next-btn">Next</button>
+                <button type="submit" className="next-btn">Next</button>
+                <button onClick={this.back} className="prev-btn">Prev</button>
             </form>
-            <button onClick={this.back} className="prev-btn">Prev</button>
+            <div className={`${this.state.showAlert}`}><h5>Cannot Add More Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
+            <div className={`${this.state.showAlert1}`}><h5>Please Add Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert1: "show"})}}><FaTimes /></span></div>
         </div>
         )
     }

@@ -33,8 +33,8 @@ export default class AddressScreen extends Component {
         const { values: {streetAddress, streetAddress2, city, postal, state, scheduleDate} } = this.props
         return (
             <div>
-                <div className="pi-container">
-                    <form action="" onSubmit={this.continue}>
+                <div className="form-cont">
+                    <form className="form" onSubmit={this.continue}>
                     <div className="pi-spacing">
                         <ul className="address">
                             <li className="street-address" >
@@ -66,7 +66,7 @@ export default class AddressScreen extends Component {
                             <li className="Postal / Zip Code">
                                 <label htmlFor="postal">Postal / Zip Code</label>
                                 <div>
-                                    <input defaultValue={postal} required onChange={handleChange()} type="number" placeholder="Enter Zip Code"  min="1" name="postal" />\
+                                    <input defaultValue={postal} required onChange={handleChange()} type="number" placeholder="Enter Zip Code"  min="1" name="postal" />
                                 </div>
                             </li>
                             <li>
@@ -77,9 +77,9 @@ export default class AddressScreen extends Component {
                             </li>
                         </ul>           
                     </div>
-                    <button type="submit" className="next-btn">Confirm</button>                
+                    <button type="submit" className="next-btn">Confirm</button>
+                    <button onClick={this.back} className="prev-btn">Prev</button>                
                 </form>
-                <button onClick={this.back} className="prev-btn">Prev</button>
             </div>
             </div>
         )

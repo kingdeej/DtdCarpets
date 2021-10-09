@@ -4,12 +4,6 @@ const InfoPage = () => {
     return (
     <div className="info-page cont-spacing">
         <div className="info-page-container">
-            <div className="tile-cont" id="tile-3">
-                <div className="tile-img"><div className="img"><img src="./images/info-other.jpg" alt=""></img></div></div>     
-                <div className="img-title">SPECIAL DEMANDS<br/> 
-                    <span>FABRIC BASED MATERIALS ONLY!!</span>
-                </div>
-            </div>
             <div className="info-header">
                 <div className="info-page-header">
                     <h1>
@@ -34,6 +28,15 @@ const InfoPage = () => {
                                 <div className="img-title">SOFAS AND CHAIRS</div>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <div className="tile-cont">
+                            <div className="tile-img">
+                                <img src="./images/info-other.jpg" alt=""></img>
+                                <div className="img-title">SPECIAL DEMANDS</div> 
+                            </div>
+                            <div className="tile-info">FABRIC BASED MATERIALS ONLY!!</div>
+                         </div>
                     </li>
                 </ul>
             </div>

@@ -34,11 +34,18 @@ export class AdminPage extends Component {
         })
     }
     render() {
+        const AdminNon = (params) => {
+            if (this.state.customerList.length === 0) {
+                return <h1 className="admin-head">No Customers Yet</h1>
+            }else{
+                return <h1 className="admin-head">Admin Page</h1>
+            }
+        } 
         const {organization,firstName,lastName,telephoneNumber,email,upholsteryType,color,description,streetAddress,streetAddress2, city,state,postal,scheduleDate,upholsteryType1, color1} = this.state.customerListSingle
         return (
             <div>
                 <div className={this.state.class1} >
-                    <h1 className="admin-head">Admin Page</h1>
+                    <AdminNon />
                     {this.state.customerList.map((val, key)=>{
                         return (
                         <ul id={val.id} key={key} onClick={()=>{const name = document.getElementById(val.id) 
