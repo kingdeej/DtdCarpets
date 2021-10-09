@@ -1006,13 +1006,16 @@ span{
     align-items: center;
     justify-content: center;
     display: flex;
+    .head-info{
+        text-align: center;
+    }
     .ul{
         padding:20px;
     }    
     .form{
         background: #cfe3fc;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 2em 20px 10px 0;
+        padding: 2em 0 6px 0;
         max-width: 700px;
         width: 700px;
         object-fit: contain;

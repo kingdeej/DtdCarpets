@@ -57,6 +57,7 @@ export default class FormPersonalDetails extends Component {
                     <form className="form" id="form-sub" onSubmit={this.continue}>
                     <div>
                         <div className="name">
+                            <div className="head-info"><h1>Enter Personal Info</h1></div>
                             <ul className="ul">
                                 <li>
                                     <div>
