@@ -82,7 +82,6 @@ button{
     width: 100%;
     height: 80px;
     background-color: white;
-    position: absolute;
     display: flex;
     justify-content: space-between;
     .logo{
@@ -150,7 +149,7 @@ button{
 // Hero
 
 .hero{
-    height: 100vh;
+    height: 90vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
@@ -940,7 +939,7 @@ span{
 
 //set appointment
 .go{
-    height: 100vh;
+    height: 90vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -995,13 +994,12 @@ span{
     
 }
 .app{
-    height: 100vh;
+    height: 90vh;
 }
 
 .form-cont{
-    height: 100vh;
+    height: 90vh;
     margin: 0em 10vw;
-    padding: 10em 0;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -1009,7 +1007,6 @@ span{
         padding:20px;
     }    
     .form{
-        margin-top: 40px;
         background: #cfe3fc;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 2em 20px 10px 0;
