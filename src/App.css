@@ -1214,6 +1214,7 @@ span {
 
 .app {
   height: 90vh;
+  z-index: -1;
 }
 
 .form-cont {
