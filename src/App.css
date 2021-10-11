@@ -92,6 +92,10 @@ a {
   color: black;
 }
 
+ul {
+  padding: 0;
+}
+
 .show {
   display: none;
 }
@@ -192,7 +196,7 @@ button {
 }
 
 .hero {
-  height: 90vh;
+  height: 89.5vh !important;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -805,6 +809,17 @@ button {
   margin-bottom: 20px;
 }
 
+.review-btn {
+  position: absolute;
+  color: white;
+  background: black;
+  height: 35px;
+  width: 80px;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 5px;
+}
+
 .review {
   width: 50vw;
   height: 150px;
@@ -1067,7 +1082,7 @@ span {
 }
 
 .review-page-cont {
-  padding: 9em 10vw;
+  padding: 4em 10vw;
 }
 
 .review-page-cont h1 {
@@ -1121,7 +1136,7 @@ span {
 }
 
 .go {
-  height: 90vh;
+  height: 89.5vh !important;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("./images/Background-photo/background.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/Background-photo/background.jpg");
   background-size: cover;
@@ -1213,7 +1228,7 @@ span {
 }
 
 .app {
-  height: 90vh;
+  height: 89.5vh !important;
 }
 
 .form-cont {

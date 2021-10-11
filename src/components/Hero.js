@@ -10,7 +10,9 @@ const Hero = () => {
                 <li>
                     <div className="hero-head"><h6>Carpet and Upholstery Cleaning Never Seen Before.</h6></div> 
                 </li>
-                <li><Link className="btn-1" to="/useform"><button id="get-started-btn">Get Started</button></Link></li>
+                <li>
+                    <Link className="btn-1" to="/useform"><button id="get-started-btn">Get Started</button></Link>
+                </li>
             </ul>
         </div>
         <div className="hero-right">

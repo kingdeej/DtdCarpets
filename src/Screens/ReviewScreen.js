@@ -95,10 +95,7 @@ export class ReviewScreen extends Component {
                                         <p>{val.review}</p>
                                     </li>
                                 </ul>
-                                
-                                <div className={this.state.revImageCont}><button className="review-btn" onClick={this.toggleRevList}>Back</button></div>
-                            </div>
-                                
+                            </div>                                
                         )
                     })}
                 </div>
@@ -106,11 +103,13 @@ export class ReviewScreen extends Component {
                     <div className="review-img-cont">
                         <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
                     </div>
+                    <div className={this.state.revImageCont}><button className="review-btn" onClick={this.toggleRevList}>Back</button></div>
                 </div>
                 <div className={`rev-img-parent show ${this.state.revImageCont}`}>
                     <div className="review-img-cont">
                         <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
                     </div>
+                    <div className={this.state.revImageCont}><button className="review-btn" onClick={this.toggleRevList}>Back</button></div>
                 </div>
             </div>
         )

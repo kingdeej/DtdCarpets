@@ -1,10 +1,11 @@
 html {
     scroll-behavior: smooth;
-  }
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;    
     .cont-spacing{
         padding: 5em 5em;
     }
@@ -61,6 +62,9 @@ input{
 a{
     text-decoration: none;
     color: black;
+}
+ul{
+    padding: 0;
 }
 
 .show{
@@ -149,7 +153,7 @@ button{
 // Hero
 
 .hero{
-    height: 90vh;
+    height: 89.5vh !important;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
@@ -693,6 +697,16 @@ button{
     }
     
 }
+.review-btn{
+    position: absolute;
+    color: white;
+    background: black;
+    height: 35px;
+    width: 80px;
+    bottom: 50px;
+    right: 50px;
+    border-radius: 5px;
+}
 .review{
     width: 50vw;
     height: 150px;
@@ -890,7 +904,7 @@ span{
 // Review Page
 
 .review-page-cont{
-    padding: 9em 10vw;
+    padding: 4em 10vw;
     h1{
         text-align: center;
         margin-bottom: 10px;
@@ -939,7 +953,7 @@ span{
 
 //set appointment
 .go{
-    height: 90vh;
+    height: 89.5vh !important;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -994,7 +1008,7 @@ span{
     
 }
 .app{
-    height: 90vh;
+    height: 89.5vh !important;
 }
 
 .form-cont{
