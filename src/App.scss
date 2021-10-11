@@ -41,6 +41,37 @@ html {
         }
     }
 }
+.fabric-alert{
+    display: flex;
+    position: absolute;
+    width: 300px;
+    color: white;
+    height: 50px;
+    background: #5794da;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    align-items: center;
+    animation-duration: 5s;
+    animation-name: fabricAlert;
+    @keyframes fabricAlert {
+        0%{
+            top: -50px;
+        }
+        50%{
+            top: 80px;
+        }
+        70%{
+            top: 80px;
+        }
+        100%{
+            top: -50px;
+        }
+
+    }
+
+}
 .times{
     margin-left: 10px;
     cursor: pointer;
@@ -167,6 +198,7 @@ button{
                 .hero-head{
                     h6{
                         color: white;
+                        text-shadow: 2px 2px 8px rgb(70, 70, 70);
                     }
                 }
                 a{
@@ -499,7 +531,7 @@ button{
                 .get-started-btn{
                     background-color: black;
                     border-radius: 5px;
-                    width: 100px;
+                    width: 120px;
                     height: 40px;
                     margin-top: 35px;
                 }
@@ -1027,7 +1059,7 @@ span{
     .form{
         background: #cfe3fc;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 2em 0 6px 0;
+        padding: 2em 10px 6px 10px;
         max-width: 700px;
         width: 700px;
         object-fit: contain;
@@ -1058,11 +1090,35 @@ span{
             height: 35px;
             width: 100px;
             float: right;
-            margin-top: -30px;
+            margin-top: -50px;
             margin-right: 10px;
             justify-content: center;
             align-items: center;
             border-radius: 7px;
+            
+        }
+        .next-btn:hover{
+            font-weight: bold;
+            width: 101px;
+            height: 36px;
+            transition: width .4s, height .4s;
+        }
+        .prev-btn{
+            background: none;
+            border-radius: 0px;
+            border-bottom:  3px solid white;
+            color: black;
+            font-weight: bold;
+        }
+        .prev-btn:hover{
+            border-radius: 5px;
+            // border: 3px solid white;
+            background-color: white;
+            font-weight: bold;
+            width: 101px;
+            height: 36px;
+            transition: width .4s, height .4s, background-color .5s;    
+
         }
 
 

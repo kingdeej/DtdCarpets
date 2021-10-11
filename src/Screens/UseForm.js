@@ -11,7 +11,7 @@ import SetAppointmentScreen from './SetAppointmentScreen'
 
 export class useForm extends Component {
     state = {
-        step: 1,
+        step: 3,
         value: 0,
         id: null,
         organization:"",

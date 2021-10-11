@@ -8,6 +8,7 @@ export default class UpholsteryScreen extends Component {
         upholstery : 0,
         showAlert: "show",
         showAlert1: "show",
+        fabricAlert: "fabric-alert"
     }
     continue = e => {
         e.preventDefault()
@@ -121,6 +122,7 @@ export default class UpholsteryScreen extends Component {
             </form>
             <div className={`${this.state.showAlert}`}><h5>Cannot Add More Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
             <div className={`${this.state.showAlert1}`}><h5>Please Add Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert1: "show"})}}><FaTimes /></span></div>
+            <div className={`${this.state.fabricAlert}`}><h5>Fabric based material only</h5></div>
         </div>
         )
     }
