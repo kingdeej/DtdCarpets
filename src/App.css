@@ -329,9 +329,9 @@ button {
           transform: translateY(0px);
   -webkit-animation: float 2s ease-in-out infinite;
           animation: float 2s ease-in-out infinite;
-  left: 48.5%;
-  -webkit-transform: translateX(-49%);
-          transform: translateX(-49%);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .hero .pointer-icon img {
@@ -581,9 +581,6 @@ button {
   .hero .hero-head h6 {
     font-size: 2em;
   }
-  .pointer-icon {
-    left: 48.5% !important;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -596,9 +593,6 @@ button {
   .tile-cont img {
     height: 30vw !important;
     width: 50vw !important;
-  }
-  .pointer-icon {
-    left: 46.5% !important;
   }
 }
 
