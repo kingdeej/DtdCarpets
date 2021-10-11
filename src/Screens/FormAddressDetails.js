@@ -36,6 +36,7 @@ export default class AddressScreen extends Component {
                 <div className="form-cont">
                     <form className="form" onSubmit={this.continue}>
                     <div className="pi-spacing">
+                    <div className="head-info"><h1>Enter Address Info</h1></div>
                         <ul className="address">
                             <li className="street-address" >
                                 <label htmlFor="text">Street Address</label>

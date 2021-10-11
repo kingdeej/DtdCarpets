@@ -25,6 +25,7 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-radius: 2px;
   width: 220px;
   height: 50px;
   background: #5794da;
@@ -67,6 +68,7 @@ html {
 }
 
 .fabric-alert {
+  border-radius: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -130,6 +132,8 @@ html {
 select {
   overflow: hidden;
   color: black;
+  height: 25px;
+  width: 200px;
 }
 
 input {
@@ -1381,6 +1385,7 @@ span {
 }
 
 .form-cont .form .prev-btn {
+  margin-right: 120px;
   background: none;
   border-radius: 0px;
   border-bottom: 3px solid white;

@@ -43,6 +43,7 @@ export default class UpholsteryScreen extends Component {
             <div className="form-cont bod">
                 <form className="form" onSubmit={this.continue}>
             <div className="pi-spacing">
+            <div className="head-info"><h1>Enter Upholstery Info</h1></div>
                 <ul>
                     <li className="upholstery">
                         <div className="up">
