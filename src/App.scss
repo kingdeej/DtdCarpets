@@ -253,6 +253,7 @@ button{
         overflow: hidden;
         transform: translateY(0px);
         animation: float 2s ease-in-out infinite;
+        margin-left: -20px;
         left: 50%;
         transform: translateX(-50%);
         img{

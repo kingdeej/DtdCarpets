@@ -329,6 +329,7 @@ button {
           transform: translateY(0px);
   -webkit-animation: float 2s ease-in-out infinite;
           animation: float 2s ease-in-out infinite;
+  margin-left: -20px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
