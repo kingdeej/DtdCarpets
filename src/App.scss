@@ -197,8 +197,19 @@ button{
     padding: 0 10%;
     .hero-left{
         margin: auto 0;
-        ul{
+        ul{          
             li{
+                .see-our-work{
+                    margin-left: 20px;
+                    color:white;
+                    border-bottom: white 3px solid;
+                    width: 110px;
+                }
+                .see-our-work:hover{
+                    font-weight: bold;
+                    color: rgb(197, 197, 197);
+                    border-bottom: none;
+                }
                 .hero-head{
                     h6{
                         color: white;
@@ -471,8 +482,32 @@ button{
         left: 46.5% !important;
     }
 }
-@media screen and (max-width: 667px){
+@media screen and (max-width: 765px) {
+    .hero-btn-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        .see-our-work{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 !important;
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            
+        }
+    }
 
+}
+@media screen and (max-width: 667px){
+    .hero-btn-cont{
+        display: block !important;
+    }
     .rev-cont{
         width: 90vw !important;
     }
@@ -560,6 +595,7 @@ button{
             li{
                 text-align: center;
             }
+
         }
         .hero-right{
             img{
@@ -652,6 +688,13 @@ button{
         height: 100px !important;
     }
 }
+@media screen and (max-width: 369px) {
+    .hero-btn-cont{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+}
 
 /*thank you*/
 
@@ -716,6 +759,7 @@ button{
     display: flex;
     justify-content: center;
     position: relative;
+    padding-top: 50px;
     form{
         position: absolute;
         left: 50%;

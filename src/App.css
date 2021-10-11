@@ -271,6 +271,19 @@ button {
   margin: auto 0;
 }
 
+.hero .hero-left ul li .see-our-work {
+  margin-left: 20px;
+  color: white;
+  border-bottom: white 3px solid;
+  width: 110px;
+}
+
+.hero .hero-left ul li .see-our-work:hover {
+  font-weight: bold;
+  color: #c5c5c5;
+  border-bottom: none;
+}
+
 .hero .hero-left ul li .hero-head h6 {
   color: white;
   text-shadow: 2px 2px 8px #464646;
@@ -589,7 +602,45 @@ button {
   }
 }
 
+@media screen and (max-width: 765px) {
+  .hero-btn-cont {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .hero-btn-cont .see-our-work {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0 !important;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
 @media screen and (max-width: 667px) {
+  .hero-btn-cont {
+    display: block !important;
+  }
   .rev-cont {
     width: 90vw !important;
   }
@@ -779,6 +830,18 @@ button {
   }
 }
 
+@media screen and (max-width: 369px) {
+  .hero-btn-cont {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+}
+
 /*thank you*/
 .dtd-carpets {
   position: absolute;
@@ -852,6 +915,7 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  padding-top: 50px;
 }
 
 .rev-container form {

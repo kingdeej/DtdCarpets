@@ -10,9 +10,11 @@ const Hero = () => {
                 <li>
                     <div className="hero-head"><h6>Carpet and Upholstery Cleaning Never Seen Before.</h6></div> 
                 </li>
-                <li>
+                <li className="hero-btn-cont">
                     <Link className="btn-1" to="/useform"><button id="get-started-btn">Get Started</button></Link>
+                    <a className="see-our-work" href="https://www.facebook.com/100058473835975">See our work</a>
                 </li>
+
             </ul>
         </div>
         <div className="hero-right">
