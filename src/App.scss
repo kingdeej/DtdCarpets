@@ -505,6 +505,9 @@ button{
 
 }
 @media screen and (max-width: 667px){
+    .form-cont{
+        margin: 40px 20px !important;
+    }
     .hero-btn-cont{
         display: block !important;
     }
@@ -755,7 +758,7 @@ button{
 // Review Page
 
 .rev-container{
-    height: 100vh;
+    height: 110vh;
     display: flex;
     justify-content: center;
     position: relative;

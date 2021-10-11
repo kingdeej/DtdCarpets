@@ -638,6 +638,9 @@ button {
 }
 
 @media screen and (max-width: 667px) {
+  .form-cont {
+    margin: 40px 20px !important;
+  }
   .hero-btn-cont {
     display: block !important;
   }
@@ -907,7 +910,7 @@ button {
 }
 
 .rev-container {
-  height: 100vh;
+  height: 110vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
