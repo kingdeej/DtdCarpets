@@ -27,7 +27,7 @@ html {
     align-items: center;
     bottom: 20px;
     //position
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     animation-name: slidein;

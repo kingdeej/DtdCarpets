@@ -37,7 +37,7 @@ html {
       -ms-flex-align: center;
           align-items: center;
   bottom: 20px;
-  position: absolute;
+  position: fixed;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
