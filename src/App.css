@@ -586,6 +586,9 @@ button {
 }
 
 @media screen and (max-width: 667px) {
+  .rev-cont {
+    width: 90vw !important;
+  }
   .text-area {
     height: 110px !important;
   }
@@ -672,7 +675,7 @@ button {
   }
   .hero .hero-left .hero-head {
     text-align: center;
-    padding-top: 60%;
+    padding-top: 45%;
   }
   .hero .hero-left ul {
     padding: 0;
@@ -837,7 +840,7 @@ button {
 }
 
 .rev-container {
-  padding: 50px;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -845,6 +848,13 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+}
+
+.rev-container form {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .rev-container .btn-1 {
@@ -916,7 +926,6 @@ button {
           flex-direction: column;
   border-radius: 10px;
   width: 70vw;
-  padding: 10px 20px;
 }
 
 .rev-cont input[type=text], .rev-cont [type=email] {
