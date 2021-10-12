@@ -282,6 +282,7 @@ button{
         font-size: 1.2em;
         text-align: center;
         color: #FF67CB;
+        text-shadow: 2px 2px 8px rgb(124, 124, 124);
     }
     ul{
         li{
@@ -319,7 +320,8 @@ button{
                     margin-left: auto;
                     margin-right: auto;
                     top: 50%;
-                    transform: translateY(-50%);        
+                    transform: translateY(-50%);       
+                    text-shadow: 2px 2px 8px rgb(70, 70, 70); 
 
                     span{
                         font-weight: normal;
@@ -327,6 +329,7 @@ button{
                     }
                 }
                 .tile-info{
+                    text-shadow: 2px 2px 8px rgb(185, 185, 185);
                     padding: 10px;
                     color: white;
                     font-size: 30px;

@@ -380,6 +380,7 @@ button {
   font-size: 1.2em;
   text-align: center;
   color: #FF67CB;
+  text-shadow: 2px 2px 8px #7c7c7c;
 }
 
 .info-page ul li {
@@ -432,6 +433,7 @@ button {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  text-shadow: 2px 2px 8px #464646;
 }
 
 .info-page ul li .tile-cont .img-title span {
@@ -440,6 +442,7 @@ button {
 }
 
 .info-page ul li .tile-cont .tile-info {
+  text-shadow: 2px 2px 8px #b9b9b9;
   padding: 10px;
   color: white;
   font-size: 30px;
