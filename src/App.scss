@@ -481,6 +481,14 @@ button{
     }
 
 }
+@media screen and (min-width: 667px) and (max-width: 764px) {
+    .hero{
+        .hero-btn-cont{
+            margin-left: -60px;
+        }
+    }
+    
+}
 @media screen and (max-width: 765px) {
     .hero-btn-cont{
         display: flex;
