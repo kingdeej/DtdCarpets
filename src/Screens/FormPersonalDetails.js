@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React, { Component } from 'react'
-import { FaEye, FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 import Cleave from 'cleave.js/react';
 require('cleave.js/dist/addons/cleave-phone.ca')
 
@@ -8,40 +8,22 @@ export default class FormPersonalDetails extends Component {
 
     state = {
         count: 0,
-        show: "password",
         admin:[],
         showAlert: "show "
     }
 
-    showPassword = () =>{
-        if (this.state.count === 0) {
-            const countPlus = this.state.count +1
-            this.setState({count: countPlus})
-            this.setState({show: "text"})
-        }else if (this.state.count === 1){
-            const countMinus = this.state.count -1
-            this.setState({count: countMinus})
-            this.setState({show: "password"})            
-        }
-
-    }
-
     continue = e => {
         e.preventDefault()
-        const {values: {organization, firstName, lastName}}= this.props
-        if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
-            this.props.nextStep()
-        }else{
-            this.setState({showAlert: "alert"})
-        }
-    }
-    adminGet = (e) => {
         Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/admin").then((response)=>{
             this.setState({admin: response.data[0]})
-            const {adminEmail, adminPassword, adminTelephoneNumber} = this.state.admin
-            const {values: {telephoneNumber, email, password}}= this.props
-            if(email === adminEmail && telephoneNumber === adminTelephoneNumber && password === adminPassword){
+            const {adminEmail, adminTelephoneNumber, adminName} = this.state.admin
+            const {values: {telephoneNumber, email}}= this.props
+
+            const {values: {organization, firstName, lastName}}= this.props
+            if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization === adminName){
                 this.props.adminStep()
+            }else if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
+                this.props.nextStep()
             }else{
                 this.setState({showAlert: "alert"})
             }
@@ -50,7 +32,7 @@ export default class FormPersonalDetails extends Component {
 
         render() {
             const {handleChange, onCreditCardChange } = this.props
-            const { values: {organization, firstName, lastName, email, password} } = this.props  
+            const { values: {organization, firstName, lastName, email} } = this.props  
   
         return (
                 <div className="form-cont">
@@ -100,20 +82,11 @@ export default class FormPersonalDetails extends Component {
                                             <input type="email" defaultValue={email} required onChange={handleChange()} placeholder="example@gmail.com"  name ="email" />
                                         </div>
                                     </div>
-                                </li>                          
-                                <li>
-                                    <div className="password">
-                                        <label htmlFor="email">Password:</label>
-                                        <div className="peak-cont">
-                                            <input type={this.state.show} defaultValue={password} required onChange={handleChange()}  name ="password"/>
-                                            <FaEye className="peak" color="black" onClick={this.showPassword}/>
-                                        </div>
-                                    </div>
-                                </li>                          
+                                </li>                                                   
                             </ul>  
                         </div>
                     </div>
-                    <button type="submit" className="next-btn" onClick={this.adminGet}>Next</button>
+                    <button type="submit" className="next-btn">Next</button>
                     </form>
                     <div className={`${this.state.showAlert}`}><h5>Please fill out form</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
                 </div>

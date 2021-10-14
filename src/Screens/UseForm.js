@@ -19,7 +19,6 @@ export class useForm extends Component {
         lastName:"",
         telephoneNumber:"",
         email:"",
-        password:"",
         upholsteryType:"",
         color:"",
         description:"",
@@ -133,8 +132,8 @@ export class useForm extends Component {
 
     render() {
         const { step } = this.state
-        const {value, organization, color1, password, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate } = this.state
-        const values = { value, color1, organization, password, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
+        const {value, organization, color1, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate } = this.state
+        const values = { value, color1, organization, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
         switch(step){
             case 1:
                 return(

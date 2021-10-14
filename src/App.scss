@@ -503,6 +503,11 @@ button{
     }
 
 }
+@media screen and (min-width: 667px){
+    .form-cont{
+       margin-top: 15px !important;
+    }
+}
 @media screen and (max-width: 667px){
     .form-cont{
         margin: 40px 15px !important;
@@ -526,6 +531,7 @@ button{
         }
 
     }
+
     .right-nav{
         display: none;
     }
