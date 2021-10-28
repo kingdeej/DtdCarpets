@@ -5,7 +5,8 @@ export default class AddressScreen extends Component {
     state ={
         dat1: moment().format("D"),
         dat2: "",
-        date_create: moment().format("YYYY-MM-")
+        date_create: moment().format("YYYY-MM-"),
+        alert: "fabric-alert"
     }
 
     componentDidMount() {
@@ -81,6 +82,7 @@ export default class AddressScreen extends Component {
                     <button type="submit" className="next-btn">Confirm</button>
                     <button onClick={this.back} className="prev-btn">Prev</button>                
                 </form>
+                <div className={`${this.state.alert}`}>Only in The Emerald Coast</div>
             </div>
             </div>
         )

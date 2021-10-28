@@ -1,8 +1,16 @@
-import React from 'react'
+import Aos from 'aos';
+import React, { useEffect } from 'react'
 
 const AboutUs = () => {
+    useEffect(() => {
+        Aos.init({
+            offset:200,
+            duration:1000
+        });
+        Aos.refresh();
+      });
     return (
-    <div className="about-us cont-spacing" id="about-us">
+    <div className="about-us cont-spacing" id="about-us" data-aos="fade-up">
         <div className="about-us-h">
             <h1> ABOUT US </h1> 
         </div>

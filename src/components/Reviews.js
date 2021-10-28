@@ -1,9 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import { FaStar, FaTimes} from 'react-icons/fa'
 import Axios from 'axios'
+import AOS from 'aos';
 
 export class Reviews extends Component {
-
+    useEffect(){
+        AOS.init({
+            offset: 300,
+            duration: 3000
+        });
+        AOS.refresh();
+    }
     state = {
         rating: null,
         hover: null,
@@ -161,7 +168,7 @@ export class Reviews extends Component {
     render(){
         
         return (
-            <div className="rev-container">
+            <div className="rev-container" data-aos="flip-up">
                 <form action="" onSubmit={this.handleSubmit}>
                     <h1 className="reviews-head">Wanna write a review?</h1>
                     <ul className="rev-cont">

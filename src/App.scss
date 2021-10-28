@@ -15,6 +15,24 @@ html {
     img{
         width: 300px;
     }
+    max-width: 100vw;
+}
+.nav-active{
+    position: fixed !important;
+    z-index: 1;
+    transition: ease-out;
+}
+.nav-spacer{
+    width: 5px;
+    border-radius: 10px;
+    background: #FF67CB;
+    margin-right: 50px;
+    height: 46px;
+    margin-top: 20px !important;
+    margin-right: 20px !important;
+}
+.not-nav{
+    display: none;
 }
 .alert{
     display: flex;    
@@ -101,6 +119,17 @@ a{
 ul{
     padding: 0;
 }
+.see-our-work{
+    margin-left: 20px;
+    color:white;
+    border-bottom: white 3px solid;
+    width: 110px;
+}
+.see-our-work:hover{
+    font-weight: bold;
+    color: rgb(197, 197, 197);
+    border-bottom: none;
+}
 
 .show{
     display: none;
@@ -123,6 +152,7 @@ button{
     background-color: white;
     display: flex;
     justify-content: space-between;
+
     .logo{
         margin-left: 5%;
         margin-top: 5px;
@@ -167,6 +197,9 @@ button{
                 color: white; 
 
             }
+            .see-our-work{
+                display: none;
+            }
             button{
                 font-size: 15px;
                 width: 120px;
@@ -195,21 +228,11 @@ button{
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0 10%;
+    position: relative;
     .hero-left{
         margin: auto 0;
         ul{          
             li{
-                .see-our-work{
-                    margin-left: 20px;
-                    color:white;
-                    border-bottom: white 3px solid;
-                    width: 110px;
-                }
-                .see-our-work:hover{
-                    font-weight: bold;
-                    color: rgb(197, 197, 197);
-                    border-bottom: none;
-                }
                 .hero-head{
                     h6{
                         color: white;
@@ -517,6 +540,9 @@ button{
     }
 }
 @media screen and (max-width: 667px){
+    .nav-spacer{
+        display: none !important;
+    }
     .form-cont{
         margin: 40px 15px !important;
     }
@@ -561,6 +587,7 @@ button{
         top: 30px;
     }
     .show-nav{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         width: 45vw;
         height: 100vh;
         background-color: #AACDE0;
@@ -575,6 +602,13 @@ button{
             align-items: center;
             justify-content: center;
             text-align: center;
+
+            :nth-child(5){
+                margin-top: 20px;
+                :hover{
+                    color: white !important;
+                }
+            }
             li{
                 width: 100%;
                 button{
@@ -592,8 +626,21 @@ button{
                     height: 40px;
                     margin-top: 35px;
                 }
+                .see-our-work{
+                    margin-left: 0;
+                    display: initial !important;
+                }
+                
             }
         }
+    }
+    .not-nav{
+        display: block !important;
+        position: fixed !important;
+        top: 0;
+        width: 55vw;
+        height: 100vh;
+        z-index: 1;
     }
 
     // Hero

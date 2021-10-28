@@ -8,7 +8,9 @@ export class Navbar extends Component {
         navClass : "",
         burgerMenu: "menu",
         rightNav:"right-nav",
-        counter: 0
+        counter: 0,
+        seeOurWork: "",
+        navActive: ""
     }
     show = (e) => {
         this.setState({navClass: "show-nav"})
@@ -24,10 +26,22 @@ export class Navbar extends Component {
             this.setState({counter: 0})
         }
     }
+
+    componentDidMount(){
+        const changeNav = () => {
+            if (window.scrollY >= 80) {
+                this.setState({navActive: "nav-active"})
+            }else{
+                this.setState({navActive: ""})
+            }
+        }
+        window.addEventListener("scroll", changeNav)
+    }
+      
     render() {
         return (
             <div className="navbar">
-            <div className="nav margin-container">
+            <div className={`${this.state.navActive} nav margin-container`}>
                 <div className="logo">
                     <Link to="/"><img src="./images/icons/dico and tanny's logo.svg" alt=""></img></Link>
                 </div>
@@ -41,7 +55,9 @@ export class Navbar extends Component {
                     <ul>
                         <li><Link to="/reviews" className="btn-2"><button>Reviews</button></Link></li>
                         <li><a className="btn-2" id="btn-2" href="/#about-us"><button>About us</button></a></li>
+                        <li className="nav-spacer"></li>
                         <li><Link className="btn-1" to="/useform"><button className="get-started-btn">Get Started</button></Link></li> 
+                        <li><a className="see-our-work" href="https://www.facebook.com/100058473835975">See our work</a></li>
                     </ul>
                 </div>
                 <div className={`${this.state.burgerMenu}`}>                   
@@ -51,6 +67,7 @@ export class Navbar extends Component {
                     />
                 </div>
             </div>
+            <div className="not-nav" onClick={this.remove}></div>
         </div>
         )
     }
