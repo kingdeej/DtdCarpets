@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 const Footer = () => {
     useEffect(() => {
         Aos.init({
-            offset:0,
+            offset:1,
             duration:1000
         });
         Aos.refresh();
