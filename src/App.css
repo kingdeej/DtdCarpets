@@ -33,10 +33,10 @@ html {
   width: 5px;
   border-radius: 10px;
   background: #FF67CB;
-  margin-right: 50px;
+  margin-right: 20px;
   height: 46px;
   margin-top: 20px !important;
-  margin-right: 20px !important;
+  margin-right: 15px !important;
 }
 
 .not-nav {
@@ -217,6 +217,8 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .nav .logo {
@@ -240,9 +242,18 @@ button {
   right: 10%;
 }
 
+.nav .right-nav ul :nth-child(3) button {
+  width: 90px !important;
+  margin-right: 10px;
+}
+
+.nav .right-nav ul :nth-child(5) button {
+  width: 120px !important;
+}
+
 .nav .right-nav ul li {
-  margin-left: -10px;
-  margin-right: -10px;
+  margin-left: -5px;
+  margin-right: -5px;
   margin-top: 30px;
 }
 
@@ -278,8 +289,9 @@ button {
 }
 
 .nav .right-nav ul li button {
+  padding: 0;
   font-size: 15px;
-  width: 120px;
+  width: 90px;
   height: 50px;
   background: none;
   margin-top: -15px;
@@ -500,6 +512,11 @@ button {
 }
 
 /*FOOTER*/
+.footer-cont .header {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -507,7 +524,10 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 100px;
+  height: 200px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 40px 3em;
 }
 
@@ -674,30 +694,9 @@ button {
   }
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 743px) {
   .nav-spacer {
     display: none !important;
-  }
-  .form-cont {
-    margin: 40px 15px !important;
-  }
-  .hero-btn-cont {
-    display: block !important;
-  }
-  .rev-cont {
-    width: 90vw !important;
-  }
-  .text-area {
-    height: 110px !important;
-  }
-  #tile-3 {
-    bottom: 80px !important;
-  }
-  #tile-3 .img-title {
-    font-size: 25px !important;
-  }
-  #tile-3 .img-title span {
-    font-size: 15px !important;
   }
   .right-nav {
     display: none;
@@ -752,7 +751,8 @@ button {
     text-align: center;
   }
   .show-nav ul :nth-child(5) {
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
   }
   .show-nav ul :nth-child(5) :hover {
     color: white !important;
@@ -786,6 +786,30 @@ button {
     width: 55vw;
     height: 100vh;
     z-index: 1;
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .form-cont {
+    margin: 40px 15px !important;
+  }
+  .hero-btn-cont {
+    display: block !important;
+  }
+  .rev-cont {
+    width: 90vw !important;
+  }
+  .text-area {
+    height: 110px !important;
+  }
+  #tile-3 {
+    bottom: 80px !important;
+  }
+  #tile-3 .img-title {
+    font-size: 25px !important;
+  }
+  #tile-3 .img-title span {
+    font-size: 15px !important;
   }
   .hero {
     height: 100vh;
@@ -970,7 +994,7 @@ button {
 }
 
 .rev-container {
-  height: 110vh;
+  height: 120vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

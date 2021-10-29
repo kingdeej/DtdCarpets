@@ -10,15 +10,18 @@ export class Navbar extends Component {
         rightNav:"right-nav",
         counter: 0,
         seeOurWork: "",
-        navActive: ""
+        navActive: "",
+        notNav: "show"
     }
     show = (e) => {
+        this.setState({notNav:"not-nav"})
         this.setState({navClass: "show-nav"})
         this.setState({burgerMenu: "show"})
         this.setState({rightNav: "show-nav"})
         this.setState({counter: 1})
     }
     remove = (e) => {
+        this.setState({notNav:"show"})
         if(this.state.counter === 1){
             this.setState({navClass: ""})
             this.setState({rightNav: "right-nav"})
@@ -55,6 +58,7 @@ export class Navbar extends Component {
                     <ul>
                         <li><Link to="/reviews" className="btn-2"><button>Reviews</button></Link></li>
                         <li><a className="btn-2" id="btn-2" href="/#about-us"><button>About us</button></a></li>
+                        <li><a className="btn-2" id="btn-2" href="/#footer"><button>Contact us</button></a></li>
                         <li className="nav-spacer"></li>
                         <li><Link className="btn-1" to="/useform"><button className="get-started-btn">Get Started</button></Link></li> 
                         <li><a className="see-our-work" href="https://www.facebook.com/100058473835975">See our work</a></li>
@@ -67,7 +71,7 @@ export class Navbar extends Component {
                     />
                 </div>
             </div>
-            <div className="not-nav" onClick={this.remove}></div>
+            <div className={this.state.notNav} onClick={this.remove}></div>
         </div>
         )
     }

@@ -17,6 +17,8 @@ html {
     }
     max-width: 100vw;
 }
+
+
 .nav-active{
     position: fixed !important;
     z-index: 1;
@@ -26,10 +28,10 @@ html {
     width: 5px;
     border-radius: 10px;
     background: #FF67CB;
-    margin-right: 50px;
+    margin-right: 20px;
     height: 46px;
     margin-top: 20px !important;
-    margin-right: 20px !important;
+    margin-right: 15px !important;
 }
 .not-nav{
     display: none;
@@ -152,6 +154,7 @@ button{
     background-color: white;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     .logo{
         margin-left: 5%;
@@ -166,9 +169,20 @@ button{
         justify-content: space-between;
         position: absolute;
         right: 10%;
+        :nth-child(3){
+            button{
+                width: 90px !important;
+                margin-right: 10px;
+            }
+        }
+        :nth-child(5){
+            button{
+                width: 120px !important;
+            }
+        }
         li{        
-            margin-left: -10px;
-            margin-right: -10px;
+            margin-left: -5px;
+            margin-right: -5px;
             margin-top: 30px;
 
             .btn-1{
@@ -201,8 +215,9 @@ button{
                 display: none;
             }
             button{
+                padding: 0;
                 font-size: 15px;
-                width: 120px;
+                width: 90px;
                 height: 50px;
                 background: none;
                 margin-top: -15px;
@@ -310,7 +325,7 @@ button{
     ul{
         li{
             margin-top: 50px;
-            .tile-cont{
+            .tile-cont{             
                 position: relative;
                 height: 50vh;
                 display: flex;
@@ -386,11 +401,17 @@ button{
 }
 
 /*FOOTER*/
-
+.footer-cont{
+    .header{
+        text-align: center;
+        margin-top: 2rem;
+    }
+}
 .footer{
     display: flex;
     justify-content: space-between;
-    height: 100px;
+    height: 200px;
+    align-items: center;
     padding: 40px 3em;
     
     .left-foot{
@@ -539,33 +560,10 @@ button{
        margin-top: 15px !important;
     }
 }
-@media screen and (max-width: 667px){
+@media screen and (max-width: 743px){
     .nav-spacer{
         display: none !important;
     }
-    .form-cont{
-        margin: 40px 15px !important;
-    }
-    .hero-btn-cont{
-        display: block !important;
-    }
-    .rev-cont{
-        width: 90vw !important;
-    }
-    .text-area{
-        height: 110px !important;
-    }
-    #tile-3{
-        bottom: 80px !important;
-        .img-title{
-            font-size: 25px !important;
-            span{
-                font-size: 15px !important;
-            }
-        }
-
-    }
-
     .right-nav{
         display: none;
     }
@@ -604,7 +602,8 @@ button{
             text-align: center;
 
             :nth-child(5){
-                margin-top: 20px;
+                margin-top: 0px;
+                margin-bottom: 20px;
                 :hover{
                     color: white !important;
                 }
@@ -641,6 +640,32 @@ button{
         width: 55vw;
         height: 100vh;
         z-index: 1;
+    }
+
+
+}
+@media screen and (max-width: 667px){
+    .form-cont{
+        margin: 40px 15px !important;
+    }
+    .hero-btn-cont{
+        display: block !important;
+    }
+    .rev-cont{
+        width: 90vw !important;
+    }
+    .text-area{
+        height: 110px !important;
+    }
+    #tile-3{
+        bottom: 80px !important;
+        .img-title{
+            font-size: 25px !important;
+            span{
+                font-size: 15px !important;
+            }
+        }
+
     }
 
     // Hero
@@ -818,7 +843,7 @@ button{
 // Review Page
 
 .rev-container{
-    height: 110vh;
+    height: 120vh;
     display: flex;
     justify-content: center;
     position: relative;
@@ -905,6 +930,12 @@ button{
         display: flex;
         justify-content: center;
         margin-bottom: 3px;
+
+        // .input-label{
+        //     width: 200px;
+        //     height: 30px;
+        //     background: #FF67CB;
+        // }
     }
 }
 span{
