@@ -1,5 +1,5 @@
 import {React, Component} from "react";
-import { FaPlus, FaMinus, FaTimes } from 'react-icons/fa'
+import { FaPlus, FaMinus, FaTimes, FaSortDown } from 'react-icons/fa'
 
 
 
@@ -50,7 +50,7 @@ export default class UpholsteryScreen extends Component {
                         <div className="uphold">
                             <label htmlFor="type">Upholstery Type</label>
                             <div className="upholstery-type">
-                                <select name="upholsteryType" id="upholstery-type" defaultValue={upholsteryType} required onChange={handleChange()} >
+                                <select className="yes" name="upholsteryType" id="upholstery-type" defaultValue={upholsteryType} required onChange={handleChange()} >
                                     <option value="" disabled >Upholstery Type</option>
                                     <option value="Carpet">Carpet</option>
                                     <option value="Rug">Rug</option>
@@ -64,6 +64,8 @@ export default class UpholsteryScreen extends Component {
                                     <option value="Accent Chairs">Accent Chairs</option>
                                     <option value="Other">Other</option>
                                 </select>
+                                <FaSortDown className="sort-down"/>
+
                             </div>
                             <label htmlFor="color">Color</label>
                             <div className="color">
@@ -72,6 +74,7 @@ export default class UpholsteryScreen extends Component {
                                     <option value="Light">Light</option>
                                     <option value="Dark">Dark</option>
                                 </select>
+                                <FaSortDown className="sort-down"/>
                             </div>
                             </div>
                             
@@ -94,6 +97,7 @@ export default class UpholsteryScreen extends Component {
                                         <option value="Accent Chairs">Accent Chairs</option>
                                         <option value="Other">Other</option>
                                     </select>
+                                    <FaSortDown className="sort-down"/>
                                 </div>
                                 <label htmlFor="color">Color</label>
                                 <div className="color">
@@ -102,6 +106,7 @@ export default class UpholsteryScreen extends Component {
                                         <option value="Light">Light</option>
                                         <option value="Dark">Dark</option>
                                     </select>
+                                    <FaSortDown className="sort-down"/>
                                 </div>
                                 </div>
                             )
@@ -119,7 +124,6 @@ export default class UpholsteryScreen extends Component {
                 </ul>
             </div>
                 <button type="submit" className="next-btn">Next</button>
-                <button onClick={this.back} className="prev-btn">Prev</button>
             </form>
             <div className={`${this.state.showAlert}`}><h5>Cannot Add More Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
             <div className={`${this.state.showAlert1}`}><h5>Please Add Upholstery</h5> <span className="times" onClick={()=>{this.setState({showAlert1: "show"})}}><FaTimes /></span></div>

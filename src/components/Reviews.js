@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import { FaStar, FaTimes} from 'react-icons/fa'
+import { FaSortDown, FaStar, FaTimes} from 'react-icons/fa'
 import Axios from 'axios'
 import AOS from 'aos';
 
@@ -210,7 +210,8 @@ export class Reviews extends Component {
                             <label htmlFor="">Write upholsteryType: </label>
                         </li>
                         <li>
-                        <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
+                            <div>
+                                <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
                                     <option value="" disabled >Upholstery Type</option>
                                     <option value="Carpet">Carpet</option>
                                     <option value="Rug">Rug</option>
@@ -224,6 +225,9 @@ export class Reviews extends Component {
                                     <option value="Accent Chairs">Accent Chairs</option>
                                     <option value="Other">Other</option>
                                 </select>
+                                                            <FaSortDown className="sort-down"/>
+
+                            </div>
                         </li>
 
                         <li>

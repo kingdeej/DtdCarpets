@@ -1,0 +1,161 @@
+.go{
+    height: 89.5vh !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../../images/Background-photo/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    .set-appointment{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        h1{
+            color: white;
+            margin-bottom: 20px;
+        }
+        button{
+            color: black;
+            background-color: white;
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            .arrow-right{
+                margin-bottom: -3px;
+                margin-left: 10px;
+            }        
+        }
+        .button-go{
+            transform: translateX(-20);
+            animation: float 2.5s infinite;
+            animation-name: go;
+            @keyframes go{
+                0%{
+                    transform: translateX(-20%);
+                }
+                50%{
+                    transform: translateX(10%);
+                }
+                100%{
+                    transform: translateX(-20%);
+                }
+            }
+            :hover{
+                border-radius: 5px;
+                color: black;
+                background-color: #AACDE0;
+                transition: color .5s, background-color .5s, border-radius .5s;
+            }
+        }
+    
+    }
+    
+}
+.app{
+    height: 89.5vh !important;
+}
+
+.form-cont{
+    height: 90vh;
+    margin: 0em 10vw;
+    margin-top: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    .head-info{
+        text-align: center;
+    }
+    .ul{
+        padding:20px;
+    }    
+    .form{
+        background: #cfe3fc;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 2em 10px 6px 10px;
+        max-width: 700px;
+        width: 700px;
+        object-fit: contain;
+
+        li{
+            margin-bottom: 20px;
+        }
+        .org-name{
+            border-bottom: 1px white solid;
+            padding-bottom: 20px;
+
+            .left-side{
+                margin-bottom: 20px;
+            }
+        }        
+        li:last-of-type{
+            margin-bottom: 60px;
+        }
+        label{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        button{
+            display: flex;
+            color: white;
+            background: black;
+            height: 35px;
+            width: 100px;
+            float: right;
+            margin-top: -50px;
+            margin-right: 10px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 7px;
+            
+        }
+        .next-btn:hover{
+            font-weight: bold;
+            width: 101px;
+            height: 36px;
+            transition: width .4s, height .4s;
+        }
+        .prev-btn{
+            margin-right: 120px;
+            background: none;
+            border-radius: 0px;
+            border-bottom:  3px solid white;
+            color: black;
+            font-weight: bold;
+        }
+        .prev-btn:hover{
+            border-radius: 5px;
+            // border: 3px solid white;
+            background-color: white;
+            font-weight: bold;
+            width: 101px;
+            height: 36px;
+            transition: width .4s, height .4s, background-color .5s;    
+
+        }
+
+
+    }
+}
+.upholstery{
+    .uphold{
+        margin-bottom: 20px;
+       div{
+            margin-bottom: 10px;
+        }
+    }
+    .description{
+        textarea{
+            resize: none;
+            height: 170px;
+            width: 200px;
+        }
+    }
+    @media screen and (max-width: 510px) {
+        .uphold{
+            border-bottom: 1px rgb(34, 34, 34) solid !important;
+        }
+    }
+}

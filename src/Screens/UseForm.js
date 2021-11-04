@@ -7,6 +7,7 @@ import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
 import SetAppointmentScreen from './SetAppointmentScreen'
+import "../styles/UseForm/UseForm.css"
 
 
 export class useForm extends Component {
@@ -95,6 +96,9 @@ export class useForm extends Component {
         this.setState({telephoneNumber: event.target.value})
     }
 
+    onSelectChange = id => (e) => {
+        this.setState({[e.name]: e.value})
+    }
     
 
     //proceed to next step
@@ -130,10 +134,11 @@ export class useForm extends Component {
         this.setState({[name]: e.target.value,})
       }
 
+
     render() {
         const { step } = this.state
         const {value, organization, color1, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate } = this.state
-        const values = { value, color1, organization, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
+        const values = {value, color1, organization, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
         switch(step){
             case 1:
                 return(
@@ -144,6 +149,7 @@ export class useForm extends Component {
             case 2:
                 return(
                     <FormPersonalDetails 
+                    prevStep= {this.prevStep}
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
                     adminStep = {this.adminStep}
@@ -155,8 +161,8 @@ export class useForm extends Component {
                 return(
                     <FormUpholsteryDetails 
                     nextStep={this.nextStep}
-                    prevStep= {this.prevStep}
                     handleChange={this.handleChange}
+                    onSelectChange={this.onSelectChange}
                     values={values}
                     />
                 )

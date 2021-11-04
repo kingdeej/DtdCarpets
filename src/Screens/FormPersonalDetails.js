@@ -11,6 +11,10 @@ export default class FormPersonalDetails extends Component {
         admin:[],
         showAlert: "show "
     }
+    back = e => {
+        e.preventDefault()
+        this.props.prevStep()   
+    }
 
     continue = e => {
         e.preventDefault()
@@ -66,7 +70,7 @@ export default class FormPersonalDetails extends Component {
                                 </li>
                                 <li>
                                     <div>
-                                        <label htmlFor="">Telephone Number</label>
+                                        <label htmlFor="">Telephone Number:</label>
                                         <div>
                                         <Cleave placeholder="Enter your Phone Number"
                                             options={{phone: true, phoneRegionCode:"us"}}
@@ -86,6 +90,7 @@ export default class FormPersonalDetails extends Component {
                             </ul>  
                         </div>
                     </div>
+                    <button onClick={this.back} className="prev-btn">Prev</button>
                     <button type="submit" className="next-btn">Next</button>
                     </form>
                     <div className={`${this.state.showAlert}`}><h5>Please fill out form</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>

@@ -31,14 +31,17 @@ export class Navbar extends Component {
     }
 
     componentDidMount(){
-        const changeNav = () => {
-            if (window.scrollY >= 80) {
-                this.setState({navActive: "nav-active"})
-            }else{
-                this.setState({navActive: ""})
+        const url = window.location.href
+        if (url.endsWith("useform") !== true) {
+                const changeNav = () => {
+                if (window.scrollY >= 80) {
+                    this.setState({navActive: "nav-active"})
+                }else{
+                    this.setState({navActive: ""})
+                }
             }
+            window.addEventListener("scroll", changeNav)
         }
-        window.addEventListener("scroll", changeNav)
     }
       
     render() {

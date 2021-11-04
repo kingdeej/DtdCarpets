@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { FaStar } from 'react-icons/fa'
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react'
+import "../styles/ReviewScreen/ReviewScreen.css"
 
 
 export class ReviewScreen extends Component {
