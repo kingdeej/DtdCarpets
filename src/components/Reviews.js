@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import { FaSortDown, FaStar, FaTimes} from 'react-icons/fa'
+import { FaPlus, FaSortDown, FaStar, FaTimes} from 'react-icons/fa'
 import Axios from 'axios'
 import AOS from 'aos';
 
@@ -22,13 +22,15 @@ export class Reviews extends Component {
         upholsteryType: "",
         imageSelected: "",
         imageSelected1: "",
+        imageUrl: "",
+        imageUrl1: "",
         imageId:"",
         imageId1:"",
         id: null,
         showAlert: "show",
         showAlert1: "show",
     }
-    componentDidMount(){
+    componentDidUpdate(){
         Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
             function extractValue(arr, prop) {
 
@@ -164,9 +166,33 @@ export class Reviews extends Component {
             }
         }
     }
+    getImage = (e) => {
+        if (e.target.value === "") {
+            if (e.target.id === "before") {
+                this.setState({imageSelected: undefined})
+                this.setState({imageUrl: ""})
+            }
+            if (e.target.id === "after") {
+                this.setState({imageSelected1: undefined})
+                this.setState({imageUrl1: ""})
+            }
+        }
+        
+        else if (JSON.stringify(e.target.value).length > 0 ) {
+            if (e.target.id === "before") {
+                this.setState({imageSelected: e.target.files[0]})
+                this.setState({imageUrl: URL.createObjectURL(e.target.files[0])})
+            }
+            if (e.target.id === "after") {
+                this.setState({imageSelected1: e.target.files[0]})
+                this.setState({imageUrl1: URL.createObjectURL(e.target.files[0])})
+            }
+        }  
+    }
+    
+    
       
     render(){
-        
         return (
             <div className="rev-container" data-aos="fade-up">
                 <form action="" onSubmit={this.handleSubmit}>
@@ -225,27 +251,37 @@ export class Reviews extends Component {
                                     <option value="Accent Chairs">Accent Chairs</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                                            <FaSortDown className="sort-down"/>
-
+                                <FaSortDown className="sort-down"/>
                             </div>
                         </li>
 
                         <li>
                             <label className="add-images" htmlFor="">Add 2 images: </label>
                         </li>
-                        <li>
-                            <label htmlFor="">Before: </label>
+                        <li className="image-container"> 
+                            <label className="image-list-cont">
+                                <label htmlFor="">Before:</label>
+                                <input type="file" id="before" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                <ul>
+                                    <li>
+                                        <label htmlFor="before"><FaPlus className="plus"/></label>
+                                        <img className="input-img" src={this.state.imageUrl} alt="" />
+                                    </li>
+                                </ul>
+                            </label>
+                            
+                            <label className="image-list-cont">
+                                <label htmlFor="">After:</label>
+                                <input type="file" id="after" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                <ul>
+                                    <li>
+                                        <label htmlFor="after"><FaPlus className="plus"/> </label>
+                                        <img className="input-img" src={this.state.imageUrl1} alt="" />
+                                    </li>
+                                </ul>
+                            </label>
                         </li>
-                        
-                        <li>
-                            <input type="file"  name="image" onChange={(e)=>{this.setState({imageSelected: e.target.files[0]})}} accept="image/png, image/jpeg"/>
-                        </li>
-                        <li>
-                            <label htmlFor="">After: </label>
-                        </li>
-                        <li>
-                            <input type="file" name="image" onChange={(e)=>{this.setState({imageSelected1: e.target.files[0]})}} accept="image/png, image/jpeg"/>
-                        </li>
+
                         <li>
                         <textarea 
                             name="review" 

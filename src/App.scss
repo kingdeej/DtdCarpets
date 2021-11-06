@@ -33,6 +33,34 @@ html {
 .not-nav{
     display: none;
 }
+// inputs
+input[type = "file"]{
+    display: none;
+}
+input{
+    border: white 2px solid;
+    outline: none;
+    overflow: hidden;
+
+    color: black;
+    border: none;
+    height: 25px;
+    width: 200px;
+    object-fit: contain;
+    border-radius: 3px;
+
+}
+input[type ="text"]:hover, input[type ="email"]:hover, textarea:hover, input[type = "date"]:hover, input[type = "number"]:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow .3s;
+}
+input[type ="text"]:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+textarea{
+    outline: none;
+}
+
 .alert{
     display: flex;    
     border-radius: 2px;
@@ -96,13 +124,8 @@ html {
     cursor: pointer;
     color: black;
 }
-.smooth-right{
-    animation-name: smooth-right;
-    @keyframes smooth-right {
-        
-    }
-}
 select{
+    border: none;
     outline: none;
     background: white;
     appearance: none;
@@ -136,23 +159,7 @@ select:focus{
     margin-left: -20px;
     pointer-events: none;
 }
-input{
-    overflow: hidden;
-    color: black;
-    border: none;
-    height: 25px;
-    width: 200px;
-    object-fit: contain;
-    border-radius: 3px;
 
-}
-input[type ="text"]:hover, input[type ="email"]:hover, textarea:hover, input[type = "date"]:hover, input[type = "number"]:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: box-shadow .3s;
-}
-input[type ="text"]:focus{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 a{
     text-decoration: none;
     color: black;
@@ -589,8 +596,19 @@ button{
         height: 100vh;
         background-color: #AACDE0;
         position: fixed !important;
+        transform: translateX(0);
         right: 0;
         z-index: 20;
+        animation-name: slide-left;
+        animation-duration: .5s;
+        @keyframes slide-left {
+            from{
+                transform: translateX(100%);
+            }
+            to{
+                transform: translateX(0);
+            }
+        }
         ul{
             margin-top: 100px;
             padding-left: 0;
@@ -954,8 +972,13 @@ button{
 }
 
 /*Review*/
+@media screen and (min-width: 439px) {
+    .rev-container{
+        height: 120vh !important;
+    }
+}
 .rev-container{
-    height: 120vh;
+    height: 150vh;
     display: flex;
     justify-content: center;
     position: relative;
@@ -964,6 +987,9 @@ button{
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        ul{
+            padding-bottom: 20px;
+        }
     }
 
     .btn-1{
@@ -1016,13 +1042,60 @@ button{
 
 .rev-cont{
     display: flex;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border: 2px rgb(107, 107, 107) solid;
+    box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: rgb(241, 241, 241);
     justify-content: center;
     flex-direction: column;
     border-radius: 10px;
     width: 70vw;
+    
+    .image-container{
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    .image-list-cont{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20px;
+
+        :nth-child(3){
+            display: flex;
+            justify-content: center;
+            li{
+                background-color: white;
+                margin: 0!important;
+                padding: 10px 10px 5px;
+                border-radius: 10px;
+            }
+            li:hover{
+                box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                transition: box-shadow .3s;
+            }
+        }
+        
+        .input-img{
+            object-fit: fill;
+            max-width: 70px;
+            max-height: 70px;
+            background-color: #e9e7e7;
+            margin-left: 15px;
+            border-radius: 5px;
+        }
+    }
+
+
+    .plus{
+        border: 3px solid black;
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
     // padding: 10px 20px;
     input[type = text], [type = email]{
         border: black 1px solid;

@@ -43,6 +43,41 @@ html {
   display: none;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+input {
+  border: white 2px solid;
+  outline: none;
+  overflow: hidden;
+  color: black;
+  border: none;
+  height: 25px;
+  width: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 3px;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, textarea:hover, input[type="date"]:hover, input[type="number"]:hover {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: -webkit-box-shadow .3s;
+  transition: -webkit-box-shadow .3s;
+  transition: box-shadow .3s;
+  transition: box-shadow .3s, -webkit-box-shadow .3s;
+}
+
+input[type="text"]:focus {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+textarea {
+  outline: none;
+}
+
 .alert {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -151,14 +186,8 @@ html {
   color: black;
 }
 
-.smooth-right {
-  -webkit-animation-name: smooth-right;
-          animation-name: smooth-right;
-}
-
-@-webkit-keyframes smooth-right {}
-
-@keyframes smooth-right {}select {
+select {
+  border: none;
   outline: none;
   background: white;
   -webkit-appearance: none;
@@ -204,31 +233,6 @@ select:focus {
   margin-top: 5px;
   margin-left: -20px;
   pointer-events: none;
-}
-
-input {
-  overflow: hidden;
-  color: black;
-  border: none;
-  height: 25px;
-  width: 200px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border-radius: 3px;
-}
-
-input[type="text"]:hover, input[type="email"]:hover, textarea:hover, input[type="date"]:hover, input[type="number"]:hover {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-transition: -webkit-box-shadow .3s;
-  transition: -webkit-box-shadow .3s;
-  transition: box-shadow .3s;
-  transition: box-shadow .3s, -webkit-box-shadow .3s;
-}
-
-input[type="text"]:focus {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 a {
@@ -751,8 +755,34 @@ button {
     height: 100vh;
     background-color: #AACDE0;
     position: fixed !important;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     right: 0;
     z-index: 20;
+    -webkit-animation-name: slide-left;
+            animation-name: slide-left;
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+  }
+  @-webkit-keyframes slide-left {
+    from {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%);
+    }
+    to {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  @keyframes slide-left {
+    from {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%);
+    }
+    to {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
   }
   .show-nav ul {
     margin-top: 100px;
@@ -1172,8 +1202,14 @@ button {
 }
 
 /*Review*/
+@media screen and (min-width: 439px) {
+  .rev-container {
+    height: 120vh !important;
+  }
+}
+
 .rev-container {
-  height: 120vh;
+  height: 150vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1189,6 +1225,10 @@ button {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+.rev-container form ul {
+  padding-bottom: 20px;
 }
 
 .rev-container .btn-1 {
@@ -1247,9 +1287,8 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border: 2px #6b6b6b solid;
+  -webkit-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: #f1f1f1;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -1260,6 +1299,72 @@ button {
           flex-direction: column;
   border-radius: 10px;
   width: 70vw;
+}
+
+.rev-cont .image-container {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 15px;
+}
+
+.rev-cont .image-list-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rev-cont .image-list-cont :nth-child(3) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rev-cont .image-list-cont :nth-child(3) li {
+  background-color: white;
+  margin: 0 !important;
+  padding: 10px 10px 5px;
+  border-radius: 10px;
+}
+
+.rev-cont .image-list-cont :nth-child(3) li:hover {
+  -webkit-box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: -webkit-box-shadow .3s;
+  transition: -webkit-box-shadow .3s;
+  transition: box-shadow .3s;
+  transition: box-shadow .3s, -webkit-box-shadow .3s;
+}
+
+.rev-cont .image-list-cont .input-img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  max-width: 70px;
+  max-height: 70px;
+  background-color: #e9e7e7;
+  margin-left: 15px;
+  border-radius: 5px;
+}
+
+.rev-cont .plus {
+  border: 3px solid black;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .rev-cont input[type=text], .rev-cont [type=email] {

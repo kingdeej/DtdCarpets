@@ -25,8 +25,8 @@ export class ReviewScreen extends Component {
         Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
         })
-       
     }
+
     
     render() {
         const ReviewNon = (params) => {
