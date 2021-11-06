@@ -30,7 +30,7 @@ export class Reviews extends Component {
         showAlert: "show",
         showAlert1: "show",
     }
-    componentDidUpdate(){
+    componentDidMount(){
         Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
             function extractValue(arr, prop) {
 
