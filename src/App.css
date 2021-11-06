@@ -1321,7 +1321,7 @@ button {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: -25px;
 }
 
 .rev-cont .image-list-cont :nth-child(3) {
