@@ -22,16 +22,16 @@ export class AdminPage extends Component {
         this.setState({class1: "admin-page"})
         this.setState({class2: "customer-cont customer"})
     }
-    // getVal = (e) => {
-    //     this.setState({customerListSingle: this.state.customerList[0]})
-    // }
-
     
-
-    componentDidMount(){
-        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
-            this.setState({customerList: response.data})
+    getCustomer = () => {
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
+                this.setState({customerList: response.data})
+            })            
         })
+    }
+    componentDidMount(){
+        this.getCustomer()
     }
     render() {
         const AdminNon = (params) => {

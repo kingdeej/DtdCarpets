@@ -30,32 +30,38 @@ export class Reviews extends Component {
         showAlert: "show",
         showAlert1: "show",
     }
-    componentDidMount(){
-        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
-            function extractValue(arr, prop) {
-
-                let extractedValue = [];
-            
-                for (let i=0; i < arr.length ; ++i) {
-            
-                    // extract value from property
-                    extractedValue.push(arr[i][prop]);
+    getId = () => {
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
+                function extractValue(arr, prop) {
+    
+                    let extractedValue = [];
+                
+                    for (let i=0; i < arr.length ; ++i) {
+                
+                        // extract value from property
+                        extractedValue.push(arr[i][prop]);
+                    }
+                    return extractedValue;
                 }
-                return extractedValue;
-            }
-            this.setState({id: response.data})
-            const result = extractValue(this.state.id, 'MAX(id)');
-            this.setState({id: parseInt(result)})
-            if(isNaN(this.state.id)){
-                this.setState({id: 1})
-            }else{
-                this.setState({id: parseInt(result) + 1})
-            }
-            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
-                this.setState({customerInfo: response.data})
+                this.setState({id: response.data})
+                const result = extractValue(this.state.id, 'MAX(id)');
+                this.setState({id: parseInt(result)})
+                if(isNaN(this.state.id)){
+                    this.setState({id: 1})
+                }else{
+                    this.setState({id: parseInt(result) + 1})
+                }
+                Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
+                    this.setState({customerInfo: response.data})
+                })
             })
-        })
+        },1000)
 
+    }
+    
+    componentDidMount(){
+        this.getId()
     }
 
 

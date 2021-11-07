@@ -31,29 +31,34 @@ export class useForm extends Component {
         upholsteryType1: "",
         color1: "",
     }
-
-    componentDidMount(){
-        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
-            function extractValue(arr, prop) {
-
-                let extractedValue = [];
-            
-                for (let i=0; i < arr.length ; ++i) {
-            
-                    // extract value from property
-                    extractedValue.push(arr[i][prop]);
+    getCustomerId = () => {
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
+                function extractValue(arr, prop) {
+    
+                    let extractedValue = [];
+                
+                    for (let i=0; i < arr.length ; ++i) {
+                
+                        // extract value from property
+                        extractedValue.push(arr[i][prop]);
+                    }
+                    return extractedValue;
                 }
-                return extractedValue;
-            }
-            this.setState({id: response.data})
-            const result = extractValue(this.state.id, 'MAX(id)');
-            this.setState({id: parseInt(result)})
-            if(isNaN(this.state.id)){
-                this.setState({id: 1})
-            }else{
-                this.setState({id: parseInt(result) + 1})
-            }
-        })
+                this.setState({id: response.data})
+                const result = extractValue(this.state.id, 'MAX(id)');
+                this.setState({id: parseInt(result)})
+                if(isNaN(this.state.id)){
+                    this.setState({id: 1})
+                }else{
+                    this.setState({id: parseInt(result) + 1})
+                }
+            })             
+        }, 1000)
+       
+    }
+    componentDidMount(){
+        this.getCustomerId()
     }
 
     sendEmail = () => {
