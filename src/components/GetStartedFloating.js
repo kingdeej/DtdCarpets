@@ -19,7 +19,7 @@ export default class GetStartedFloating extends Component {
                         clearInterval(interval)
                         this.setState({trans: ""})
                     }
-                }, 200); 
+                }, 300); 
             }else{
                 this.setState({show: "show"})
             }                
