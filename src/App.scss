@@ -976,6 +976,13 @@ button{
         justify-content: space-evenly;
         height: 50px;
         gap: 20px;
+        :nth-child(1){
+            button{
+                color: black;
+                background: white;
+                border: 3px black solid;
+            }
+        }
 
         li{
             width: 100%;

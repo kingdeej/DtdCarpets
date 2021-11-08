@@ -24,7 +24,7 @@ export default class FormPersonalDetails extends Component {
             const {values: {telephoneNumber, email}}= this.props
 
             const {values: {organization, firstName, lastName}}= this.props
-            if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization === adminName){
+            if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
                 this.props.adminStep()
             }else if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
                 this.props.nextStep()

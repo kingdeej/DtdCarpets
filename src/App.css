@@ -1216,6 +1216,12 @@ button {
   gap: 20px;
 }
 
+.customer-cont .button :nth-child(1) button {
+  color: black;
+  background: white;
+  border: 3px black solid;
+}
+
 .customer-cont .button li {
   width: 100%;
   display: -webkit-box;
