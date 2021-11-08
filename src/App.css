@@ -51,6 +51,7 @@ html {
           animation-name: popup;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+  padding: auto 5px;
 }
 
 @-webkit-keyframes popup {
