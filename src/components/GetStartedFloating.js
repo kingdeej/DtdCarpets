@@ -19,7 +19,7 @@ export default class GetStartedFloating extends Component {
                         clearInterval(interval)
                         this.setState({trans: ""})
                     }
-                }, 300); 
+                }, 500); 
             }else{
                 this.setState({show: "show"})
             }                
@@ -28,6 +28,9 @@ export default class GetStartedFloating extends Component {
     }
 
     componentDidMount(){
+        this.getScrollFunc()
+    }
+    componentWillUnmount(){
         this.getScrollFunc()
     }
     render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 
@@ -30,7 +30,7 @@ export class Navbar extends Component {
         }
     }
 
-    componentDidMount(){
+    checkUrl = () => {
         const url = window.location.href
         if (url.endsWith("useform") !== true) {
                 const changeNav = () => {
@@ -41,14 +41,27 @@ export class Navbar extends Component {
                 }
             }
             window.addEventListener("scroll", changeNav)
+        }else{
+            const changeNav = () => {
+            this.setState({navActive: ""})
+            }
+            window.addEventListener("scroll", changeNav)
         }
+       
     }
+    componentDidMount(){
+        setInterval(()=>{this.checkUrl()},1000)
+    }
+    componentWillUnmount(){
+        this.checkUrl()
+    }
+
       
     render() {
         return (
             <div className="navbar">
             <div className={`${this.state.navActive} nav margin-container`}>
-                <div className="logo">
+                <div className="logo" >
                     <Link to="/"><img src="./images/icons/dico and tanny's logo.svg" alt=""></img></Link>
                 </div>
                 <div className={`${this.state.navClass} ${this.state.rightNav}`}>

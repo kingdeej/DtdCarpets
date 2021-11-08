@@ -200,7 +200,7 @@ export class Reviews extends Component {
       
     render(){
         return (
-            <div className="rev-container" data-aos="fade-up">
+            <div className="rev-container" id="reviews" data-aos="fade-up">
                 <form action="" onSubmit={this.handleSubmit}>
                     <h1 className="reviews-head">Wanna write a review?</h1>
                     <ul className="rev-cont">
