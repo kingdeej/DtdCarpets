@@ -90,8 +90,12 @@ export default class FormPersonalDetails extends Component {
                             </ul>  
                         </div>
                     </div>
-                    <button onClick={this.back} className="prev-btn">Prev</button>
-                    <button type="submit" className="next-btn">Next</button>
+                    <ul className="button-ul">
+
+                        <li>
+                            <button type="submit" className="next-btn">Next</button>
+                        </li>
+                    </ul>
                     </form>
                     <div className={`${this.state.showAlert}`}><h5>Please fill out form</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
                 </div>

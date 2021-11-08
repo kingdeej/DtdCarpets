@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from "axios"
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 export class AdminPage extends Component {
     state = {
@@ -8,7 +8,8 @@ export class AdminPage extends Component {
         customerListSingle: [],
         name: 0,
         class1: "admin-page",
-        class2: "customer-cont customer"
+        class2: "customer-cont customer",
+        redirect: false
     }
     customerPage = (e) => {
         e.preventDefault()
@@ -30,18 +31,24 @@ export class AdminPage extends Component {
             })            
         })
     }
+    home = () => {
+         this.setState({redirect: true})
+    }
     componentDidMount(){
         this.getCustomer()
     }
     render() {
-        const AdminNon = (params) => {
+        const AdminNon = () => {
             if (this.state.customerList.length === 0) {
                 return <h1 className="admin-head">No Customers Yet</h1>
             }else{
                 return <h1 className="admin-head">Admin Page</h1>
             }
-        } 
+        }      
         const {organization,firstName,lastName,telephoneNumber,email,upholsteryType,color,description,streetAddress,streetAddress2, city,state,postal,scheduleDate,upholsteryType1, color1} = this.state.customerListSingle
+        if (this.state.redirect) {
+            return <Redirect push to="/" />;
+          }   
         return (
             <div>
                 <div className={this.state.class1} >
@@ -97,10 +104,12 @@ export class AdminPage extends Component {
                         <li><h1>Description</h1></li>
                         <li><p>{description}</p></li>
                     </ul>
-                    <ul>
+                    <ul className="button">
                         <li>                    
                             <button onClick={this.delete}>Back</button>
-                            <Link to="/"><button>Home</button></Link>
+                        </li>
+                        <li>     
+                            <button onClick={this.home}>Home</button>               
                         </li>
                     </ul>
                 </div>

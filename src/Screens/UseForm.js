@@ -153,7 +153,6 @@ export class useForm extends Component {
             case 2:
                 return(
                     <FormPersonalDetails 
-                    prevStep= {this.prevStep}
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
                     adminStep = {this.adminStep}
@@ -164,6 +163,7 @@ export class useForm extends Component {
             case 3:
                 return(
                     <FormUpholsteryDetails 
+                    prevStep= {this.prevStep}
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
                     onSelectChange={this.onSelectChange}

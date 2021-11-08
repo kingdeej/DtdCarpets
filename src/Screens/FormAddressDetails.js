@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import moment from "moment";
+import { FaTimes } from 'react-icons/fa';
 
 export default class AddressScreen extends Component {
     state ={
         dat1: moment().format("D"),
         dat2: "",
         date_create: moment().format("YYYY-MM-"),
-        alert: "fabric-alert"
+        alert: "emerald-alert"
     }
 
     componentDidMount() {
@@ -36,6 +37,10 @@ export default class AddressScreen extends Component {
             <div>
                 <div className="form-cont">
                     <form className="form" onSubmit={this.continue}>
+                        <div className={`${this.state.alert}`}>
+                            <FaTimes className="fa-times" onClick={() => {this.setState({alert: "show"})}}/>
+                            We Only Provide Services in The Emerald Coast Area
+                        </div>
                     <div className="pi-spacing">
                     <div className="head-info"><h1>Enter Address Info</h1></div>
                         <ul className="address">
@@ -79,10 +84,15 @@ export default class AddressScreen extends Component {
                             </li>
                         </ul>           
                     </div>
-                    <button type="submit" className="next-btn">Confirm</button>
-                    <button onClick={this.back} className="prev-btn">Prev</button>                
+                    <ul className="button-ul">
+                        <li>
+                            <button onClick={this.back} className="prev-btn">Prev</button>
+                        </li>
+                        <li>
+                            <button type="submit" className="next-btn">Confirm</button>
+                        </li>
+                    </ul>
                 </form>
-                <div className={`${this.state.alert}`}>Only in The Emerald Coast</div>
             </div>
             </div>
         )
