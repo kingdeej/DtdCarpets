@@ -1796,12 +1796,12 @@ span {
   background: black;
   color: white;
   font-size: 20PX;
-  opacity: 100%;
+  opacity: 0%;
 }
 
 .form-cont .form .button-ul li button:hover {
   font-weight: bold;
-  opacity: 80%;
+  opacity: 50%;
   border: 3px solid black;
   -webkit-transition: font-weight .2s, opacity .2s, border .2s;
   transition: font-weight .2s, opacity .2s, border .2s;
