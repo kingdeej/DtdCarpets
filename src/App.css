@@ -80,24 +80,24 @@ html {
 }
 
 .get-started-float-tran {
-  opacity: 50% !important;
+  opacity: .5 !important;
 }
 
 .get-started-float {
   position: fixed;
-  bottom: 10px;
+  bottom: 5px;
   width: 60vw;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  opacity: 100%;
+  opacity: 1;
 }
 
 .get-started-float button {
-  background: #ffa8e1;
+  background: #cfe3fc;
   width: 100%;
-  height: 30px;
-  border-radius: 7px;
+  height: 40px;
+  border-radius: 50px;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-weight: bold;
