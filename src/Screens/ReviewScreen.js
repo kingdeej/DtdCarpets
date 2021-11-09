@@ -21,10 +21,15 @@ export class ReviewScreen extends Component {
         this.setState({revImageCont: ""});
     }
     
-    componentDidMount(){
+    getReviews = () => {
+      setTimeout(() => {
         Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
-        })
+        }) 
+      }, 1000)  
+    }
+    componentDidMount(){
+        this.getReviews()
     }
 
     

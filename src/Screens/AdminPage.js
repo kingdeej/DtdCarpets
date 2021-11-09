@@ -29,7 +29,7 @@ export class AdminPage extends Component {
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
                 this.setState({customerList: response.data})
             })            
-        })
+        }, 1000)
     }
     home = () => {
          this.setState({redirect: true})
