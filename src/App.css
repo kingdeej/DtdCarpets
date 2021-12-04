@@ -713,7 +713,7 @@ button {
 
 .info-page .info-cont-ul li .tile-cont ul li:nth-child(2) .based-on-cont ul li .based-on {
   border: dashed 1px black;
-  padding: 0 7%;
+  padding: 0 10px;
   font-size: 14px;
 }
 
