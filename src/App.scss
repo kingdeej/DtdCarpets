@@ -876,7 +876,7 @@ button{
           }
       }
     }
-  }
+}
 @media screen and (min-width: 1024px) {
     .hero {
         .hero-head{
@@ -1063,53 +1063,7 @@ button{
     .cont-spacing{
         padding: 80px 20px;
     }
-    // // Info Page
-    // .info-page{
-    //     padding: 20px;
-    //     .info-page-container{
-    //         ul{
-    //             padding: 30px;
-    //         }
-    //         li{
-    //             height: 100vw;
-    //             .tile-cont{
-    //                 display: flex;
-    //                 flex-direction: column;
-    //                 width: 100%;
-    //                 height: 100%;
-    //                 .tile-img{
-    //                     position: relative;
-    //                     width: 100%;
-    //                     height: 80%;
-    //                     img{
-    //                         height: 100% !important; 
-    //                         width: 100% !important;
-    //                         max-width: 100%;
-    //                         border-top-right-radius: 10px !important;
-    //                         border-bottom-right-radius: 0px;
-    //                         border-top-left-radius: 10px !important;
-    //                         border-bottom-left-radius: 0px !important;    
 
-    //                     }
-    //                     .img-title{
-    //                         font-size: 10vw;
-    //                     }
-    //                 }
-    //                 .tile-info{
-    //                     display: flex;
-    //                     font-size: 4vw !important;
-    //                     align-self: flex-end;
-    //                     width: 100%;
-    //                     height: 140px !important;
-    //                 }
-    //             }
-    //             #tile-2{
-    //                 flex-direction: column-reverse;
-    //             }
-    //         }
-    //     }
-    // }
-    //Footer
     .footer{
         padding: 20px;
         font-size: 15px;
@@ -1151,17 +1105,17 @@ button{
         }
     }
 }
-@media screen and (max-width: 503px){
-    .thanks{
-        margin-top: -20px;
-        font-size: 3.5vh !important;
-    }
+// @media screen and (max-width: 503px){
+//     .thanks{
+//         margin-top: -20px;
+//         font-size: 3.5vh !important;
+//     }
 
-    .dtd-carpets{
-        width: 200px !important;
-        height: 100px !important;
-    }
-}
+//     .dtd-carpets{
+//         width: 200px !important;
+//         height: 100px !important;
+//     }
+// }
 @media screen and (max-width: 369px) {
     .hero-btn-cont{
         display: flex !important;
@@ -1172,38 +1126,48 @@ button{
 
 /*thank you*/
 
+.thank-you-cont{
+    width: 100%;
+    height: 100vh;
+    padding: 0 20px;
+}
 .dtd-carpets{
-    position: absolute;
-    width: 55vw;
-    height: 30vw;
+    position: relative;
+    padding: 0 20px !important;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 700px;
+    min-height: 400px;
+    max-height: 30vw;
     text-align: center;
     background-color: white;
-    border: 10px solid #AACDE0;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
     h1{
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        transform: translateY(-50%);
         color: rgb(44, 44, 44);
-        font-size: 2.5vw;
+        font-size: 30px;
+        hr{
+            position: relative;
+            margin: 0 auto;
+            width: 50%;
+        }
     }
     button{
-        position: absolute;
-        bottom: 1vw;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 70px;
-        height: 30px;
-        border: 2px solid black;
+        margin-top: 50px;
+        width: 100px;
+        height: 40px;
+        border: 2px solid #FF67CB;
         background-color: white;
-        border-radius: 5px;
-        color: black;
+        border-radius: 1px;
+        color: #FF67CB;
+    }
+    button:hover{
+        background-color: #FF67CB;
+        color: white;
     }
 }
 /*Confirm*/
