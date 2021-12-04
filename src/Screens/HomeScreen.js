@@ -11,8 +11,8 @@ export default function HomeScreen() {
     <div>
         <Hero />
         <InfoPage />
-        <Reviews />
         <AboutUs />
+        <Reviews />
         <Footer />
         <GetStartedFloating />
     </div>

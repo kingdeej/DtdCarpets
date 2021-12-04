@@ -11,7 +11,7 @@ import SetAppointmentScreen from './SetAppointmentScreen'
 
 export class useForm extends Component {
     state = {
-        step: 1,
+        step: 5,
         value: 0,
         id: null,
         organization:"",
@@ -92,7 +92,7 @@ export class useForm extends Component {
             upholsteryType1: this.state.upholsteryType1,
             color1: this.state.color1,
             }).then(() => {
-                console.log("success")
+                console.log("Success")
             })
     }
      

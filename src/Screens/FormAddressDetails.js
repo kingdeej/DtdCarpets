@@ -34,7 +34,7 @@ export default class AddressScreen extends Component {
         const {handleChange} = this.props
         const { values: {streetAddress, streetAddress2, city, postal, state, scheduleDate} } = this.props
         return (
-            <div>
+            <>
                 <div className="form-cont">
                     <form className="form" onSubmit={this.continue}>
                         <div className={`${this.state.alert}`}>
@@ -94,7 +94,7 @@ export default class AddressScreen extends Component {
                     </ul>
                 </form>
             </div>
-            </div>
+            </>
         )
     }
 }

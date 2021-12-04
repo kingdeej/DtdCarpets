@@ -50,7 +50,7 @@ export class AdminPage extends Component {
             return <Redirect push to="/" />;
           }   
         return (
-            <div>
+            <>
                 <div className={this.state.class1} >
                     <AdminNon />
                     {this.state.customerList.map((val, key)=>{
@@ -113,7 +113,7 @@ export class AdminPage extends Component {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </>
         )
     }
 }

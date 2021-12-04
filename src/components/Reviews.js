@@ -12,6 +12,7 @@ export class Reviews extends Component {
         AOS.refresh();
     }
     state = {
+        step: 1,
         rating: null,
         hover: null,
         review: "",
@@ -29,6 +30,7 @@ export class Reviews extends Component {
         id: null,
         showAlert: "show",
         showAlert1: "show",
+        transform: ''
     }
     getId = () => {
         setTimeout(() => {
@@ -195,110 +197,154 @@ export class Reviews extends Component {
             }
         }  
     }
+    nextStep = () => {
+        if(this.state.rating < 1 ){
+            this.setState({showAlert1: "alert"}) 
+        }else{
+            this.setState({step: 2})
+            this.setState({transform: "transform-right"})
+    
+        }
+    }
+    previousStep = () => {
+        this.setState({step: 1})
+        this.setState({transform: ""})
+
+    }
     
     
+    reviewSwitch= () => {
+        switch (this.state.step) {
+            case 1:
+                return (
+                    <ul className="left-rev">
+                            <div className="review-stars-cont">
+                                <li className="input">
+                                    <h3>Ratings: {this.state.rating} Stars</h3>
+                                    <hr />
+                                </li>
+
+                                <li className="input">    
+                                    {[...Array(5)].map((star, i) => {
+                                    const ratingValue = i + 1
+                                    return (
+                                    <label key={i}  className="stars">
+                                        <FaStar 
+                                        size={30} 
+                                        color={ratingValue <= (this.state.hover || this.state.rating) ? "#ffc107" : "#e4e5e9"} 
+                                        value={ratingValue} 
+                                        onMouseEnter={()=> {this.setState({hover : ratingValue})}}
+                                        onMouseLeave={()=> {this.setState({hover : null})}}
+                                        onClick={()=> {this.setState({rating : ratingValue})}} 
+                                        className="star"/> 
+                                        
+                                    </label> 
+                                    )
+                                })}
+                                </li>  
+                            </div> 
+                            <div className="review-rev-cont">         
+                                <li className="input">
+                                    <label htmlFor="">Write Review: </label>
+                                </li>
+                                <li>
+                                    <textarea 
+                                        placeholder='Write review here...'
+                                        name="review" 
+                                        className="review"
+                                        onChange={this.handleChange}>
+                                    </textarea>
+                                </li>
+                                <li>
+                                    <button onClick={this.nextStep}>Next</button>
+                                </li>
+                            </div>       
+                        </ul>
+                )
+            case 2:
+                return(
+                    <ul className="right-rev">
+                            <li>
+                                <label className="add-images" htmlFor="">Add 2 images: </label>
+                                <hr />
+                            </li>
+                            <li className="image-container">         
+                                <label className="image-list-cont">
+                                    <label htmlFor="">Before:</label>
+                                    <input type="file" id="before" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                    <ul>
+                                        <li>
+                                            <label htmlFor="before"><FaPlus className="plus"/></label>
+                                            <div></div>
+                                            <img className="input-img" src={this.state.imageUrl} alt="" />
+                                        </li>
+                                    </ul>
+                                </label>
+                                
+                                <label className="image-list-cont">
+                                    <label htmlFor="">After:</label>
+                                    <input type="file" id="after" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                    <ul>
+                                        <li>
+                                            <label htmlFor="after"><FaPlus className="plus"/> </label>
+                                            <div></div>
+                                            <img className="input-img" src={this.state.imageUrl1} alt="" />
+                                        </li>
+                                    </ul>
+                                </label>
+                            </li>
+                            <li className="input">                      
+                                <label htmlFor="">Write organization name or full name: </label>
+                                <input type="text" name="name" onChange={this.handleChange} required/>
+                            </li>
+                            <li className="input">                      
+                                <label htmlFor="">Write email address: </label>
+                                <input type="email" name="email" onChange={this.handleChange} required/>
+                            </li>
+
+                            <li className="input">
+                                <label htmlFor="">Write upholsteryType: </label>
+                                <div>
+                                    <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
+                                        <option value="" disabled >Upholstery Type</option>
+                                        <option value="Carpet">Carpet</option>
+                                        <option value="Rug">Rug</option>
+                                        <option value="Large sofa">Large Sofa</option>
+                                        <option value="Medium sofa">Medium Sofa</option>
+                                        <option value="Small sofa">Small Sofa</option>
+                                        <option value="Bar Stools">Bar Stools</option>
+                                        <option value="Ottaman">Ottaman</option>
+                                        <option value="Counter Stools">Counter Stools</option>
+                                        <option value="Swivels and Gliders">Swivels and Gliders</option>
+                                        <option value="Accent Chairs">Accent Chairs</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <FaSortDown className="sort-down"/>
+                                </div>
+                            </li>
+                            <ul>
+                                <li>
+                                    <button className="prev-btn" onClick={this.previousStep}>Previous</button>
+                                </li>
+                                <li className="submit-btn">{
+                                    <button>Submit</button>}
+                                </li>
+                            </ul>
+                        </ul>
+                )
+            default:
+        }
+    }
       
     render(){
         return (
-            <div className="rev-container" id="reviews" data-aos="fade-up">
-                <form action="" onSubmit={this.handleSubmit}>
-                    <h1 className="reviews-head">Wanna write a review?</h1>
-                    <ul className="rev-cont">
-                        <li>
-                            <h3>Ratings: {this.state.rating} Stars</h3>
-                        </li>
-                        <li>
-                            {[...Array(5)].map((star, i) => {
-                            const ratingValue = i + 1
-                            return (
-                            <label key={i}  className="stars">
-                                <FaStar 
-                                size={30} 
-                                color={ratingValue <= (this.state.hover || this.state.rating) ? "#ffc107" : "#e4e5e9"} 
-                                value={ratingValue} 
-                                onMouseEnter={()=> {this.setState({hover : ratingValue})}}
-                                onMouseLeave={()=> {this.setState({hover : null})}}
-                                onClick={()=> {this.setState({rating : ratingValue})}} 
-                                className="star"/> 
-                                
-                            </label> 
-                            )
-                        })}
-                        </li>
-                        <li>                      
-                            <label htmlFor="">Write organization name or full name: </label>
-                        </li>
-                        <li>
-                            <input type="text" name="name" onChange={this.handleChange} required/>
-                        </li>
-                        <li>                      
-                            <label htmlFor="">Write email address: </label>
-                        </li>
-                        <li>
-                            <input type="email" name="email" onChange={this.handleChange} required/>
-                        </li>
-
-                        <li>
-                            <label htmlFor="">Write upholsteryType: </label>
-                        </li>
-                        <li>
-                            <div>
-                                <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
-                                    <option value="" disabled >Upholstery Type</option>
-                                    <option value="Carpet">Carpet</option>
-                                    <option value="Rug">Rug</option>
-                                    <option value="Large sofa">Large Sofa</option>
-                                    <option value="Medium sofa">Medium Sofa</option>
-                                    <option value="Small sofa">Small Sofa</option>
-                                    <option value="Bar Stools">Bar Stools</option>
-                                    <option value="Ottaman">Ottaman</option>
-                                    <option value="Counter Stools">Counter Stools</option>
-                                    <option value="Swivels and Gliders">Swivels and Gliders</option>
-                                    <option value="Accent Chairs">Accent Chairs</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <FaSortDown className="sort-down"/>
-                            </div>
-                        </li>
-
-                        <li>
-                            <label className="add-images" htmlFor="">Add 2 images: </label>
-                        </li>
-                        <li className="image-container"> 
-                            <label className="image-list-cont">
-                                <label htmlFor="">Before:</label>
-                                <input type="file" id="before" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
-                                <ul>
-                                    <li>
-                                        <label htmlFor="before"><FaPlus className="plus"/></label>
-                                        <img className="input-img" src={this.state.imageUrl} alt="" />
-                                    </li>
-                                </ul>
-                            </label>
-                            
-                            <label className="image-list-cont">
-                                <label htmlFor="">After:</label>
-                                <input type="file" id="after" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
-                                <ul>
-                                    <li>
-                                        <label htmlFor="after"><FaPlus className="plus"/> </label>
-                                        <img className="input-img" src={this.state.imageUrl1} alt="" />
-                                    </li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        <li>
-                        <textarea 
-                            name="review" 
-                            className="review"
-                            onChange={this.handleChange}>
-                        </textarea>
-                        </li>
-                        <li>
-                            <button className="btn-1">Submit</button>
-                        </li>
-                    </ul>
+            <div className="rev-container" id="reviews">
+                <form action="" onSubmit={this.handleSubmit} data-aos="fade-up">
+                    <h1 className="reviews-head">Wanna Write a Review?</h1>
+                    <div className="rev-cont"> 
+                        {this.reviewSwitch()}
+                        <hr className={this.state.transform} />
+                    </div> 
                 </form>
                 <div className={`${this.state.showAlert}`}><h5>Email does not match</h5> <span className="times" onClick={()=>{this.setState({showAlert: "show"})}}><FaTimes /></span></div>
                 <div className={`${this.state.showAlert1}`}><h5>Please Enter a Rating</h5> <span className="times" onClick={()=>{this.setState({showAlert1: "show"})}}><FaTimes /></span></div>

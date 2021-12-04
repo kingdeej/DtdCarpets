@@ -7,8 +7,7 @@ export class ThankYou extends Component {
             <div className="pi-container pi-spacing">
                 <div className="dtd-carpets">
                     <h1 className="thanks">Thank You</h1>
-                    <Link to="/" ><button className="thanks-btn">Home</button> </Link>
-                    
+                    <Link to="/" ><button className="thanks-btn">Home</button> </Link>              
                 </div>
             </div>
         )

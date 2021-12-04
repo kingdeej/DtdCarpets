@@ -60,7 +60,7 @@ export class Navbar extends Component {
     render() {
         return (
             <div className="navbar">
-            <div className={`${this.state.navActive} nav margin-container`}>
+            <div className={`${this.state.navActive} nav cont-spacing-width`}>
                 <div className="logo" >
                     <Link to="/"><img src="./images/icons/dico and tanny's logo.svg" alt=""></img></Link>
                 </div>
