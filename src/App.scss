@@ -955,15 +955,19 @@ button{
     }
     .show-nav{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: 45vw;
+        width: 50vw;
         height: 100vh;
-        background-color: #AACDE0;
+        background-color: #f5f5f5;
         position: fixed !important;
         transform: translateX(0);
         right: 0;
         z-index: 20;
         animation-name: slide-left;
         animation-duration: .5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         @keyframes slide-left {
             from{
                 transform: translateX(100%);
@@ -973,7 +977,6 @@ button{
             }
         }
         ul{
-            margin-top: 100px;
             padding-left: 0;
             display: flex;
             flex-direction: column;
@@ -995,7 +998,7 @@ button{
                     width: 120px;
                     height: 50px;
                     background: none;
-                    color: white;
+                    color: #2f2d2d;
                     font-weight: bold;
                 }
                 .get-started-btn{
@@ -1004,8 +1007,11 @@ button{
                     width: 120px;
                     height: 40px;
                     margin-top: 35px;
+                    color: white;
                 }
                 .see-our-work{
+                    border-bottom: #2f2d2d 2px solid;
+                    color: #2f2d2d;
                     margin-left: 0;
                     display: initial !important;
                 }
@@ -1040,11 +1046,10 @@ button{
     // Hero
     .hero{                
         height: 100vh;
-        display: inherit;
+        display: flex;
         .hero-left{
             .hero-head{
                 text-align: center;
-                padding-top: 45%;
             }
             ul{
                 padding: 0;
@@ -1105,17 +1110,7 @@ button{
         }
     }
 }
-// @media screen and (max-width: 503px){
-//     .thanks{
-//         margin-top: -20px;
-//         font-size: 3.5vh !important;
-//     }
 
-//     .dtd-carpets{
-//         width: 200px !important;
-//         height: 100px !important;
-//     }
-// }
 @media screen and (max-width: 369px) {
     .hero-btn-cont{
         display: flex !important;
@@ -1123,7 +1118,6 @@ button{
     }
     
 }
-
 /*thank you*/
 
 .thank-you-cont{
@@ -1191,7 +1185,7 @@ button{
     }
 }
 /*Admin*/
-    .admin-page{
+.admin-page{
     padding: 6em 10vw ;
     .admin-head{
         text-align: center;

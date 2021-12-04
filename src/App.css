@@ -1241,9 +1241,9 @@ button {
   .show-nav {
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 45vw;
+    width: 50vw;
     height: 100vh;
-    background-color: #AACDE0;
+    background-color: #f5f5f5;
     position: fixed !important;
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -1253,6 +1253,19 @@ button {
             animation-name: slide-left;
     -webkit-animation-duration: .5s;
             animation-duration: .5s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   @-webkit-keyframes slide-left {
     from {
@@ -1275,7 +1288,6 @@ button {
     }
   }
   .show-nav ul {
-    margin-top: 100px;
     padding-left: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1307,7 +1319,7 @@ button {
     width: 120px;
     height: 50px;
     background: none;
-    color: white;
+    color: #2f2d2d;
     font-weight: bold;
   }
   .show-nav ul li .get-started-btn {
@@ -1316,8 +1328,11 @@ button {
     width: 120px;
     height: 40px;
     margin-top: 35px;
+    color: white;
   }
   .show-nav ul li .see-our-work {
+    border-bottom: #2f2d2d 2px solid;
+    color: #2f2d2d;
     margin-left: 0;
     display: initial !important;
   }
@@ -1343,11 +1358,12 @@ button {
   }
   .hero {
     height: 100vh;
-    display: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .hero .hero-left .hero-head {
     text-align: center;
-    padding-top: 45%;
   }
   .hero .hero-left ul {
     padding: 0;
