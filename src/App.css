@@ -790,19 +790,6 @@ button {
 }
 
 /*Review*/
-@media screen and (min-width: 470px) {
-  .review-btn {
-    position: absolute;
-    color: white;
-    background: black;
-    height: 35px;
-    width: 80px;
-    bottom: 50px;
-    right: 50px;
-    border-radius: 5px;
-  }
-}
-
 .rev-container {
   background-color: #f5f5f5;
   display: block;
@@ -909,6 +896,12 @@ button {
   background: #f5f5f5;
   padding: 5px 10px;
   margin-bottom: 10px;
+}
+
+.rev-container form .rev-cont .left-rev .review-rev-cont .review {
+  width: 50vw;
+  height: 150px;
+  resize: none;
 }
 
 .rev-container form .rev-cont .left-rev .review-rev-cont button {
@@ -1520,19 +1513,23 @@ button {
 
 .admin-page .admin-head {
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .admin-page ul {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  margin: 50px auto;
+  max-width: 700px;
   cursor: pointer;
   margin-bottom: 20px;
-  background-color: #f1f1f1;
+  background-color: #f8f8f8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   border-radius: 10px;
-  border: 2px solid black;
 }
 
 .admin-page ul li {
@@ -1545,21 +1542,31 @@ button {
           flex-direction: column;
   margin-right: 10px;
   padding: 20px 30px;
+  width: 100%;
+}
+
+.admin-page ul li div:nth-child(1) {
+  text-align: center;
+}
+
+.admin-page ul li hr {
+  border: none;
+  border-top: 2px solid #FF67CB;
 }
 
 .admin-page ul li div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 10px;
 }
 
 .admin-page ul li p {
   text-transform: capitalize;
-  margin-top: 7px;
-  padding-left: 5px;
 }
 
 .admin-page ul li .desc {
@@ -1595,9 +1602,17 @@ button {
 }
 
 .customer-cont .button :nth-child(1) button {
-  color: black;
-  background: white;
-  border: 3px black solid;
+  font-size: 20px;
+  color: #FF67CB;
+  background-color: white;
+  border: 3px #FF67CB solid;
+  -webkit-transition: background-color .2s, color .2s;
+  transition: background-color .2s, color .2s;
+}
+
+.customer-cont .button :nth-child(1) button:hover {
+  background-color: #FF67CB;
+  color: white;
 }
 
 .customer-cont .button li {
@@ -1612,14 +1627,27 @@ button {
 }
 
 .customer-cont .button li button {
+  font-size: 20px;
   width: 100%;
-  background-color: black;
+  background-color: #FF67CB;
   color: white;
   position: relative;
+  opacity: .8;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+}
+
+.customer-cont .button li button:hover {
+  opacity: 1;
 }
 
 .customer-cont ul {
   margin-bottom: 20px;
+}
+
+.customer-cont ul hr {
+  border: none;
+  border-top: #fda9e0 2px solid;
 }
 
 .customer-cont ul li {
@@ -1633,36 +1661,23 @@ button {
   color: black;
 }
 
-.customer-cont ul li p {
-  margin-top: 7px;
-  padding-left: 5px;
-}
-
 .customer-cont ul li div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #3f3f3f;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #1d1d1d;
 }
 
-.customer-cont .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.customer-cont .header h2 {
-  margin: 7px auto auto 10px;
-  color: #3d3d3d;
-  text-decoration: underline;
+.customer-cont ul li div h2 {
+  font-size: 21px;
 }
 
 .customer-cont .date {
+  margin-top: 50px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1719,10 +1734,17 @@ span {
   margin-right: 20px;
 }
 
-.review {
-  width: 50vw;
-  height: 150px;
-  resize: none;
+@media screen and (min-width: 470px) {
+  .review-btn {
+    position: absolute;
+    color: white;
+    background: black;
+    height: 35px;
+    width: 80px;
+    bottom: 50px;
+    right: 50px;
+    border-radius: 5px;
+  }
 }
 
 .review-img-cont {
@@ -1748,7 +1770,20 @@ span {
 
 .review-page-cont h1 {
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.review-page-cont .rev-page {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  background-color: #f4f4f4;
+  margin-bottom: 20px;
+  background-color: #F8F8F8;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 30px auto;
 }
 
 .review-page-cont button {
@@ -1764,23 +1799,6 @@ span {
   position: absolute;
   bottom: 0;
   right: 0;
-}
-
-.review-page-cont .reviews-head {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.review-page-cont ul {
-  margin-bottom: 20px;
-  background-color: #F8F8F8;
-  padding: 20px;
-  border: black 2px solid;
-  border-radius: 10px;
-}
-
-.rev-page {
-  background-color: #F8F2F9;
 }
 
 .image {

@@ -236,8 +236,7 @@ export class Reviews extends Component {
                                         onMouseEnter={()=> {this.setState({hover : ratingValue})}}
                                         onMouseLeave={()=> {this.setState({hover : null})}}
                                         onClick={()=> {this.setState({rating : ratingValue})}} 
-                                        className="star"/> 
-                                        
+                                        className="star"/>                                      
                                     </label> 
                                     )
                                 })}

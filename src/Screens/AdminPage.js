@@ -65,6 +65,7 @@ export class AdminPage extends Component {
                                 <div>
                                     <h2>Name:</h2>
                                     <p>{val.organization}{val.firstName} {val.lastName}</p>
+                                    <hr />
                                 </div>
                                 <div><h2>Date:</h2><p>{val.scheduleDate}</p></div>
                                 <div><h2>Upholstery Type:</h2><p>{val.upholsteryType}</p></div>
@@ -82,12 +83,13 @@ export class AdminPage extends Component {
                     <ul className="date">
                         <li><h1>Date: </h1><h2>{scheduleDate}</h2></li>
                     </ul>
-                    <ul className="header">
-                        <li className="head"><h1>Upholstery Type: </h1> <h2>{upholsteryType} {upholsteryType1}</h2></li>
-                        <li className="head"><h1>Color: </h1><h2>{color}{color1}</h2></li>
+                    <ul className="upholstery-info">
+                        <li><h1>Upholstery Information</h1></li><hr />
+                        <li><div><h2>Upholstery Type: </h2> <p>{upholsteryType} {upholsteryType1}</p></div></li>
+                        <li><div><h2>Color: </h2><p>{color} {color1}</p></div></li>
                     </ul>
                     <ul className="personal-info">
-                    <li><h1>Personal Information</h1></li><hr />
+                        <li><h1>Personal Information</h1></li><hr />
                         <li><div><h2>Name:</h2> <p>{firstName} {lastName}{organization}</p></div></li>
                         <li><div><h2>Email:</h2> <p>{email}</p></div></li>
                         <li><div><h2>Telephone Number:</h2> <p>{telephoneNumber}</p></div></li>
