@@ -96,7 +96,7 @@ export class AdminPage extends Component {
                     </ul>
                     <ul className="address-info">
                         <li><h1>Address Information</h1></li><hr />
-                        <li><div> <h2>Street Address Line 1:</h2> <p>{streetAddress}</p></div></li>
+                        <li><div> <h2>Street Address Line 12:</h2> <p>{streetAddress}</p></div></li>
                         <li><div><h2>Street Address Line 2:</h2> <p>{streetAddress2}</p></div></li>
                         <li><div><h2>City:</h2> <p>{city}</p></div></li>
                         <li><div><h2>State:</h2> <p>{state}</p></div></li>
