@@ -91,6 +91,8 @@ html {
     }
 }
 .nav-active{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
     position: fixed !important;
     z-index: 100;
     transition: ease-out;
@@ -274,10 +276,8 @@ button{
     z-index: 20;
     width: 100%;
     height: 80px;
-    background-color: white;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     .logo{
         margin-left: -10px;
@@ -355,9 +355,9 @@ button{
 
 /*Hero*/
 .hero{
-    height: 100vh !important;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    height: 85vh !important;
+    justify-content: center;
+    display: flex;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -365,8 +365,13 @@ button{
     .hero-left{
         margin: auto 0;
         ul{          
+            .hero-btn-cont{
+                text-align: center;
+            }
             li{
                 .hero-head{
+                    text-align: center;
+                    width: 50vw;
                     h6{
                         color: white;
                         text-shadow: 2px 2px 8px rgb(70, 70, 70);
@@ -382,13 +387,14 @@ button{
                     }
                 }
                 button{
-                    background-color: #AACDE0;
+                    border: #AACDE0 5px solid;
+                    background-color: white;
                     font-size: 20px;
                     width: 170px;
                     height: 50px;
-                    border-radius: 30px;
+                    border-radius: 5px;
                     text-transform: capitalize;
-                    color: white;
+                    color: black;
                     font-weight: bold;
                     margin-top: 20px;
                 }
@@ -397,7 +403,7 @@ button{
     }
     .hero-right{
         margin: auto 0;
-        display: flex;
+        display: none;
         justify-content: flex-end;
         align-items: flex-end;
         img{

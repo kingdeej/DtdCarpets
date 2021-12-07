@@ -4,7 +4,7 @@ import { Link} from "react-router-dom";
 
 const Hero = () => {
     return (
-        <div className="hero cont-spacing-width">
+        <div className="hero">
             <div className="hero-left">
                 <ul>
                     <li>
