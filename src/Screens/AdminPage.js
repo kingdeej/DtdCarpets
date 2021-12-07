@@ -22,6 +22,7 @@ export class AdminPage extends Component {
     delete = (e) => {
         this.setState({class1: "admin-page"})
         this.setState({class2: "customer-cont customer"})
+        this.setState({customerListSingle: []})
     }
     
     getCustomer = () => {
@@ -51,10 +52,12 @@ export class AdminPage extends Component {
             <>
                 <div className={this.state.class1} >
                     <AdminNon />
-                    {this.state.customerList.reverse().map((val, key)=>{
+                    {this.state.customerList.map((val, key)=>{
                         return (
                         <ul id={val.id} key={key} onClick={()=>{const name = document.getElementById(val.id).id ;
                         this.setState({customerListSingle: this.state.customerList[name]})
+                        console.log(this.state.customerList.reverse());
+
                         console.log(this.state.customerList[name]);
                             this.add()
                             }}>
