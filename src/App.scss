@@ -363,8 +363,8 @@ button{
 /*Hero*/
 .hero{
     height: 85vh !important;
-    justify-content: center;
     display: flex;
+    justify-content: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/Background-photo/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;

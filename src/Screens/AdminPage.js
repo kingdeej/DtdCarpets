@@ -25,11 +25,9 @@ export class AdminPage extends Component {
     }
     
     getCustomer = () => {
-        setTimeout(() => {
-            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
-                this.setState({customerList: response.data})
-            })            
-        }, 1000)
+        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
+            this.setState({customerList: response.data})
+        })            
     }
     home = () => {
          this.setState({redirect: true})
@@ -53,13 +51,11 @@ export class AdminPage extends Component {
             <>
                 <div className={this.state.class1} >
                     <AdminNon />
-                    {this.state.customerList.map((val, key)=>{
+                    {this.state.customerList.reverse().map((val, key)=>{
                         return (
-                        <ul id={val.id} key={key} onClick={()=>{const name = document.getElementById(val.id) 
-                            const names = name.id
-                            this.setState({name: names})
+                        <ul id={val.id} key={key} onClick={()=>{const name = document.getElementById(val.id).id ;
+                        this.setState({customerListSingle: this.state.customerList[name]})
                             this.add()
-                            this.setState({customerListSingle: this.state.customerList[names - 1]})
                             }}>
                             <li>
                                 <div>

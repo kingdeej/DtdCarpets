@@ -22,20 +22,21 @@ export class ReviewScreen extends Component {
     }
     
     getReviews = () => {
-      setTimeout(() => {
         Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
         }) 
-      }, 1000)  
     }
     componentDidMount(){
+        if (this.state.reviews === []) {
+            window.location.reload(false)
+        }
         this.getReviews()
     }
 
     
     render() {
         const ReviewNon = (params) => {
-            if (this.state.reviews.length === 0) {
+            if (this.state.reviews === []) {
                 return <h1>No Reviews Yet</h1>
             }else{
                 return <h1>Reviews</h1>

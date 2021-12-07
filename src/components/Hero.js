@@ -18,9 +18,7 @@ const Hero = () => {
                 </ul>
                 <hr />
             </div>
-            <div className="hero-right">
-                <img src="./images/hero-image.jpg" alt="hero-img"></img>
-            </div>
+
             <div className="pointer-icon">
                 <img src="./images/icons/icons8-finger-up-100.png" alt=""></img>
             </div>

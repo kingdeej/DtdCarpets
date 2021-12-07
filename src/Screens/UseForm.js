@@ -34,24 +34,12 @@ export class useForm extends Component {
     getCustomerId = () => {
         setTimeout(() => {
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
-                function extractValue(arr, prop) {
-    
-                    let extractedValue = [];
-                
-                    for (let i=0; i < arr.length ; ++i) {
-                
-                        // extract value from property
-                        extractedValue.push(arr[i][prop]);
-                    }
-                    return extractedValue;
-                }
-                this.setState({id: response.data})
-                const result = extractValue(this.state.id, 'MAX(id)');
-                this.setState({id: parseInt(result)})
+                const data = response.data
+                this.setState({id: (data[0]["MAX(id)"])});
                 if(isNaN(this.state.id)){
-                    this.setState({id: 1})
+                    this.setState({id: 0})
                 }else{
-                    this.setState({id: parseInt(result) + 1})
+                    this.setState({id: this.state.id + 1})
                 }
             })             
         }, 1000)
