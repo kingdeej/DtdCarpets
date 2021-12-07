@@ -55,6 +55,7 @@ export class AdminPage extends Component {
                         return (
                         <ul id={val.id} key={key} onClick={()=>{const name = document.getElementById(val.id).id ;
                         this.setState({customerListSingle: this.state.customerList[name]})
+                        console.log(this.state.customerList[name]);
                             this.add()
                             }}>
                             <li>
