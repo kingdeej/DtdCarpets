@@ -50,7 +50,7 @@ export class Navbar extends Component {
        
     }
     componentDidMount(){
-        setInterval(()=>{this.checkUrl()},5)
+        setInterval(()=>{this.checkUrl()},1)
     }
     componentWillUnmount(){
         this.checkUrl()

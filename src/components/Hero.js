@@ -6,6 +6,7 @@ const Hero = () => {
     return (
         <div className="hero">
             <div className="hero-left">
+            <hr />
                 <ul>
                     <li>
                         <div className="hero-head"><h6>Carpet and Upholstery Cleaning Never Seen Before.</h6></div> 
@@ -14,8 +15,8 @@ const Hero = () => {
                         <Link className="btn-1" to="/useform"><button id="get-started-btn">Get Started</button></Link>
                         <a className="see-our-work" href="https://www.facebook.com/100058473835975">See our work</a>
                     </li>
-
                 </ul>
+                <hr />
             </div>
             <div className="hero-right">
                 <img src="./images/hero-image.jpg" alt="hero-img"></img>

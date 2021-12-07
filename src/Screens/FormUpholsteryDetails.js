@@ -40,7 +40,7 @@ export default class UpholsteryScreen extends Component {
         const {handleChange} = this.props
         const { values: {upholsteryType, upholsteryType1, color, color1, description,} } = this.props
         return (
-            <div className="form-cont bod">
+            <div className="form-cont">
                 <form className="form" onSubmit={this.continue}>
                 <div className="pi-spacing">
                     <div className="head-info"><h1>Enter Upholstery Info</h1></div>
