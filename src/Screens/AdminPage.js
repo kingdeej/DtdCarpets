@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 export class AdminPage extends Component {
     state = {
-        customerList: [],
+        customerList: [].reverse(),
         customerListSingle: [],
         name: 0,
         class1: "admin-page",
@@ -55,7 +55,7 @@ export class AdminPage extends Component {
             <>
                 <div className={this.state.class1} >
                     <AdminNon />
-                    {this.state.customerList.reverse().map((val, key)=>{
+                    {this.state.customerList.map((val, key)=>{
                         return (
                         <ul id={val.id} key={key} onClick={()=>{
                             this.getId(val.id)
