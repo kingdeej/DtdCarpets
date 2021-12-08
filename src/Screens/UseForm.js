@@ -11,7 +11,7 @@ import SetAppointmentScreen from './SetAppointmentScreen'
 
 export class useForm extends Component {
     state = {
-        step: 6,
+        step: 1,
         value: 0,
         id: null,
         organization:"",
@@ -36,9 +36,10 @@ export class useForm extends Component {
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
                 const data = response.data
                 this.setState({id: (data[0]["MAX(id)"])});
-                if(isNaN(this.state.id)){
+                if(this.state.id === null){
                     this.setState({id: 0})
-                }else{
+                }
+                else{
                     this.setState({id: this.state.id + 1})
                 }
             })             
