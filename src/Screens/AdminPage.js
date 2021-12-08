@@ -31,6 +31,7 @@ export class AdminPage extends Component {
     }
     getId = (id) => {
         console.log(id)
+        this.setState({customerListSingle: this.state.customerList[id]})
     }
     home = () => {
          this.setState({redirect: true})
@@ -57,9 +58,7 @@ export class AdminPage extends Component {
                     {this.state.customerList.reverse().map((val, key)=>{
                         return (
                         <ul id={val.id} key={key} onClick={()=>{
-                        this.getId(val.id)
-                        const name = document.getElementById(val.id).id ;
-                        this.setState({customerListSingle: this.state.customerList[name]})
+                            this.getId(val.id)
                             this.add()
                             }}>
                             <li>
