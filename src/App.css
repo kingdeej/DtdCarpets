@@ -31,6 +31,31 @@ html {
   }
 }
 
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.loading .dots {
+  width: 10px;
+  height: 10px;
+  max-width: 10px;
+  max-height: 10px;
+  background: black;
+  opacity: .2;
+}
+
+.active {
+  background: #FF67CB !important;
+  opacity: 1 !important;
+}
+
 .emerald-alert {
   width: 70vw;
   min-width: 230px;

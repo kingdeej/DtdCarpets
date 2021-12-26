@@ -27,6 +27,24 @@ html {
     max-width: 100vw;
 }
 
+.loading{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    .dots{
+        width: 10px;
+        height: 10px;
+        max-width: 10px;
+        max-height: 10px;
+        background: black;
+        opacity: .2;
+    }
+}
+.active{
+    background: #FF67CB !important;
+    opacity: 1 !important;
+}
 .emerald-alert{
     width: 70vw;
     min-width: 230px;

@@ -22,7 +22,6 @@ export default class FormPersonalDetails extends Component {
             this.setState({admin: response.data[0]})
             const {adminEmail, adminTelephoneNumber, adminName} = this.state.admin
             const {values: {telephoneNumber, email}}= this.props
-
             const {values: {organization, firstName, lastName}}= this.props
             if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
                 this.props.adminStep()

@@ -7,6 +7,7 @@ import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
 import SetAppointmentScreen from './SetAppointmentScreen'
+import {Redirect} from 'react-router-dom'
 
 
 export class useForm extends Component {
@@ -48,7 +49,9 @@ export class useForm extends Component {
     }
     componentDidMount(){
         this.getCustomerId()
+
     }
+
 
     sendEmail = () => {
         emailjs.send('asfsquidy', 'template_c0xqflt', this.state,"user_PXn2f8Pt6N57O4XbQ4alf")
@@ -95,6 +98,12 @@ export class useForm extends Component {
     
 
     //proceed to next step
+    prevStep = () => {
+        const { step } = this.state
+        this.setState({
+            step : step - 1
+        })
+    }
 
     nextStep = () => {
         const { step } = this.state
@@ -115,12 +124,7 @@ export class useForm extends Component {
         })
     }
     
-    prevStep = () => {
-        const { step } = this.state
-        this.setState({
-            step : step - 1
-        })
-    }
+
 
     handleChange = name => (e) => {
         const name = e.target.name
@@ -135,8 +139,9 @@ export class useForm extends Component {
         switch(step){
             case 1:
                 return(
-                    <SetAppointmentScreen 
+                    <SetAppointmentScreen
                     nextStep={this.nextStep}
+                    step={this.state.step}
                     />
                 )
             case 2:
@@ -147,6 +152,7 @@ export class useForm extends Component {
                     adminStep = {this.adminStep}
                     values={values}
                     onCreditCardChange ={this.onCreditCardChange}
+                    step={this.state.step}
                     />
                 )
             case 3:
@@ -157,6 +163,7 @@ export class useForm extends Component {
                     handleChange={this.handleChange}
                     onSelectChange={this.onSelectChange}
                     values={values}
+                    step={this.state.step}
                     />
                 )
             case 4:
@@ -168,6 +175,7 @@ export class useForm extends Component {
                     addCustomer = {this.addCustomer}
                     values={values}
                     sendEmail= {this.sendEmail}
+                    step={this.state.step}
                     />
                 )
             case 5:

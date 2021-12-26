@@ -5,19 +5,20 @@ import HomeScreen from './Screens/HomeScreen';
 import useForm from './Screens/UseForm';
 import Navbar from './components/Navbar';
 import ReviewScreen from './Screens/ReviewScreen';
+import FormPersonalDetails from './Screens/FormPersonalDetails';
 
 
 function App() {
-  
   return (
     <BrowserRouter>
       <Navbar />
         <div className="app">
-          <Route path="/useform" component={useForm}></Route>
+          <Route path="/useform/" component={useForm}></Route>
           <Route path="/reviews" component={ReviewScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </div>
-    </BrowserRouter>  );
+    </BrowserRouter>  
+    );
 }
 
 export default App;

@@ -1,7 +1,8 @@
 import Axios from 'axios';
 import { FaStar } from 'react-icons/fa'
 import React, { Component } from 'react';
-import { Image } from 'cloudinary-react'
+import { Image } from 'cloudinary-react';
+import Loading from '../components/Loading';
 
 
 export class ReviewScreen extends Component {
@@ -10,7 +11,8 @@ export class ReviewScreen extends Component {
         revImageCont: "show",
         revList:"",
         revListId: "",
-        showImg: ""
+        showImg: "",
+        loading: <Loading />,
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -24,13 +26,15 @@ export class ReviewScreen extends Component {
     getReviews = () => {
         Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
             this.setState({reviews: response.data})
-        }) 
+
+        })
     }
     componentDidMount(){
         if (this.state.reviews === []) {
             window.location.reload(false)
         }
         this.getReviews()
+        console.log(this.state.reviews);
     }
 
     
@@ -40,12 +44,14 @@ export class ReviewScreen extends Component {
                 return <h1>No Reviews Yet</h1>
             }else{
                 return <h1>Reviews</h1>
+                
             }
         } 
         return (
             <div>
                 <div className="review-page-cont">
                     <ReviewNon />
+                    {!this.state.reviews.length ?  this.state.loading : null }
                     {this.state.reviews.map((val, key)=>{
                         if(val.review === ""){
                             val.review = "No Review"
