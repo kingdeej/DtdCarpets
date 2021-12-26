@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import Loading from '../components/Loading'
 
 export class SetAppointmentScreen extends Component {
     

@@ -7,7 +7,6 @@ import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
 import SetAppointmentScreen from './SetAppointmentScreen'
-import {Redirect} from 'react-router-dom'
 
 
 export class useForm extends Component {

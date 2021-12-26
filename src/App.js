@@ -5,7 +5,6 @@ import HomeScreen from './Screens/HomeScreen';
 import useForm from './Screens/UseForm';
 import Navbar from './components/Navbar';
 import ReviewScreen from './Screens/ReviewScreen';
-import FormPersonalDetails from './Screens/FormPersonalDetails';
 
 
 function App() {
