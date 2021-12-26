@@ -54,7 +54,7 @@ export class ReviewScreen extends Component {
                     {!this.state.reviews.length ?  this.state.loading : null }
                     {this.state.reviews.map((val, key)=>{
                         if(val.review === ""){
-                            val.review = "No Review"
+                            val.review = "No Reviews"
                         }
                         if (val.imageId1 === null) {
                             val.imageId1 = "show"
