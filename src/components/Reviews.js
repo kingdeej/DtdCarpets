@@ -2,8 +2,11 @@ import React, { Component} from 'react'
 import { FaPlus, FaSortDown, FaStar, FaTimes} from 'react-icons/fa'
 import Axios from 'axios'
 import AOS from 'aos';
+import Loading from './Loading';
+import Error from './Error';
 
 export class Reviews extends Component {
+    _isMounted = false;
     useEffect(){
         AOS.init({
             offset: 300,
@@ -30,137 +33,156 @@ export class Reviews extends Component {
         id: null,
         showAlert: "show",
         showAlert1: "show",
-        transform: ''
+        transform: '',
+        loading: false,
     }
     getId = () => {
-        setTimeout(() => {
-            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
-                const data = response.data
-                this.setState({id: (data[0]["MAX(id)"])});
-                if(isNaN(this.state.id)){
-                    this.setState({id: 1})
-                }else{
-                    this.setState({id: this.state.id + 1})
-                }
-                Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
-                    this.setState({customerInfo: response.data})
-                })
-            })
-        },1000)
 
-    }
-    
-    componentDidMount(){
-        this.getId()
     }
 
 
     handleChange = (e) => {
         const name = e.target.name
         this.setState({[name]: e.target.value,})
-        
     }
     handleSubmit = (e) => {
         e.preventDefault() 
-        const result = this.state.customerInfo.find( ({email}) => email === this.state.email )
-        if(this.state.rating < 1 ){
-            this.setState({showAlert1: "alert"}) 
-        }else{
-            if (result === undefined) {
-                this.setState({showAlert: "alert"})
-            }else{
-                if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
-                    Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                            id: this.state.id,
-                            name: this.state.name,
-                            upholsteryType: this.state.upholsteryType,
-                            rating: this.state.rating,
-                            review: this.state.review,
-                        }).then(()=>{
-                            console.log("success")
-                            window.location.reload(false);   
-                    })
+        this.setState({step: 3})
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
+                const data = response.data
+                this.setState({id: data[0]["MAX(id)"]})
+                if(isNaN(this.state.id)){
+                    this.setState({id: 1})
+                }else{
+                    this.setState({id: this.state.id + 1})
+                    console.log(this.state.id);
                 }
-                else if (this.state.imageSelected === undefined || this.state.imageSelected.length === 0) {
-
-                    const formData1 = new FormData()
-                    formData1.append("file", this.state.imageSelected1);
-                    formData1.append("upload_preset", "mxkyqztd");
-
-                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
-                        console.log(response)
-                        this.setState({imageId1: response.data.public_id})
-
-                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                            id: this.state.id,
-                            name: this.state.name,
-                            upholsteryType: this.state.upholsteryType,
-                            rating: this.state.rating,
-                            review: this.state.review,
-                            imageId1: this.state.imageId1
-                        }).then(()=>{
-                            console.log("success")
-                            window.location.reload(false);   
-                        })
-                    })
+                if (response.status !== 200) {
+                    this.setState({step: 4})
                 }
-                else if (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0) {
-                    const formData = new FormData();
-                    formData.append("file", this.state.imageSelected);
-                    formData.append("upload_preset", "mxkyqztd");
-
-                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
-                    console.log(response)
-                    this.setState({imageId: response.data.public_id})
-
-                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                            id: this.state.id,
-                            name: this.state.name,
-                            upholsteryType: this.state.upholsteryType,
-                            rating: this.state.rating,
-                            review: this.state.review,
-                            imageId: this.state.imageId,
-                            }).then(()=>{
-                                console.log("success")
-                                window.location.reload(false);   
-                            })
-                        })
-                }
-                else if(this.state.imageSelected.name.length > 0 && this.state.imageSelected1.name.length) {
+                if (response.status === 200){
+                    Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
+                        this.setState({customerInfo: response.data}) 
+                        if (response.status !== 200) {
+                            this.setState({step: 4})
+                        }else{
+                            this.setState({pleaseWait: ""})
+                            const result = this.state.customerInfo.find( ({email}) => email === this.state.email )
+                            if(this.state.rating < 1 ){
+                                this.setState({showAlert1: "alert"}) 
+                            }else{
+                                if (result === undefined) {
+                                    this.setState({showAlert: "alert"})
+                                }else{
+                                    if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
+                                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                                id: this.state.id,
+                                                name: this.state.name,
+                                                upholsteryType: this.state.upholsteryType,
+                                                rating: this.state.rating,
+                                                review: this.state.review,
+                                            }).then(()=>{
+                                                console.log("success")
+                                                window.location.reload(false);   
+                                        })
+                                    }
+                                    else if (this.state.imageSelected === undefined || this.state.imageSelected.length === 0) {
                     
-                    const formData = new FormData();
-                    formData.append("file", this.state.imageSelected);
-                    formData.append("upload_preset", "mxkyqztd");
-
-                    const formData1 = new FormData()
-                    formData1.append("file", this.state.imageSelected1);
-                    formData1.append("upload_preset", "mxkyqztd");
-            
-                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
-                        console.log(response)
-                        this.setState({imageId: response.data.public_id})
-
-                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
-                            console.log(response)
-                            this.setState({imageId1: response.data.public_id})
-
-                            Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                                id: this.state.id,
-                                name: this.state.name,
-                                upholsteryType: this.state.upholsteryType,
-                                rating: this.state.rating,
-                                review: this.state.review,
-                                imageId: this.state.imageId,
-                                imageId1: this.state.imageId1
-                            }).then(()=>{
-                                console.log("success")
-                                window.location.reload(false);   
-                            })
-                        })
+                                        const formData1 = new FormData()
+                                        formData1.append("file", this.state.imageSelected1);
+                                        formData1.append("upload_preset", "mxkyqztd");
+                    
+                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                                            console.log(response)
+                                            this.setState({imageId1: response.data.public_id})
+                    
+                                            Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                                id: this.state.id,
+                                                name: this.state.name,
+                                                upholsteryType: this.state.upholsteryType,
+                                                rating: this.state.rating,
+                                                review: this.state.review,
+                                                imageId1: this.state.imageId1
+                                            }).then(()=>{
+                                                console.log("success")
+                                                window.location.reload(false);   
+                                            })
+                                        })
+                                    }
+                                    else if (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0) {
+                                        const formData = new FormData();
+                                        formData.append("file", this.state.imageSelected);
+                                        formData.append("upload_preset", "mxkyqztd");
+                    
+                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                                        console.log(response)
+                                        this.setState({imageId: response.data.public_id})
+                    
+                                            Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                                id: this.state.id,
+                                                name: this.state.name,
+                                                upholsteryType: this.state.upholsteryType,
+                                                rating: this.state.rating,
+                                                review: this.state.review,
+                                                imageId: this.state.imageId,
+                                                }).then(()=>{
+                                                    console.log("success")
+                                                    window.location.reload(false);   
+                                                })
+                                            })
+                                    }
+                                    else if(this.state.imageSelected.name.length > 0 && this.state.imageSelected1.name.length) {
+                                        
+                                        const formData = new FormData();
+                                        formData.append("file", this.state.imageSelected);
+                                        formData.append("upload_preset", "mxkyqztd");
+                    
+                                        const formData1 = new FormData()
+                                        formData1.append("file", this.state.imageSelected1);
+                                        formData1.append("upload_preset", "mxkyqztd");
+                                
+                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                                            console.log(response)
+                                            this.setState({imageId: response.data.public_id})
+                    
+                                            Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                                                console.log(response)
+                                                this.setState({imageId1: response.data.public_id})
+                    
+                                                Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                                    id: this.state.id,
+                                                    name: this.state.name,
+                                                    upholsteryType: this.state.upholsteryType,
+                                                    rating: this.state.rating,
+                                                    review: this.state.review,
+                                                    imageId: this.state.imageId,
+                                                    imageId1: this.state.imageId1
+                                                }).then(()=>{
+                                                    console.log("success")
+                                                    window.location.reload(false);   
+                                                })
+                                            })
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                    }).catch((error) =>{
+                        console.log(error.message);
+                        this.setState({step:4})
                     })
                 }
-            }
-        }
+            }).catch((error) =>{
+                this.setState({step:4})
+            })
+            
+
+        },1000)
+
+        // setTimeout(() => {
+        //     
+        // }, 1000);
     }
     getImage = (e) => {
         if (e.target.value === "") {
@@ -236,6 +258,7 @@ export class Reviews extends Component {
                                 </li>
                                 <li>
                                     <textarea 
+                                        value={this.state.review}
                                         placeholder='Write review here...'
                                         name="review" 
                                         className="review"
@@ -282,17 +305,16 @@ export class Reviews extends Component {
                             </li>
                             <li className="input">                      
                                 <label htmlFor="">Write organization name or full name: </label>
-                                <input type="text" name="name" onChange={this.handleChange} required/>
+                                <input type="text" value={this.state.name} name="name" onChange={this.handleChange} required/>
                             </li>
                             <li className="input">                      
                                 <label htmlFor="">Write email address: </label>
-                                <input type="email" name="email" onChange={this.handleChange} required/>
+                                <input type="email" value={this.state.email} name="email" onChange={this.handleChange} required/>
                             </li>
 
                             <li className="input">
                                 <label htmlFor="">Write upholsteryType: </label>
-                                <div>
-                                    <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
+                                    <select name="upholsteryType" defaultValue={this.state.upholsteryType} value={this.state.upholsteryType} required onChange={this.handleChange} >
                                         <option value="" disabled >Upholstery Type</option>
                                         <option value="Carpet">Carpet</option>
                                         <option value="Rug">Rug</option>
@@ -307,7 +329,6 @@ export class Reviews extends Component {
                                         <option value="Other">Other</option>
                                     </select>
                                     <FaSortDown className="sort-down"/>
-                                </div>
                             </li>
                             <ul>
                                 <li>
@@ -319,6 +340,18 @@ export class Reviews extends Component {
                             </ul>
                         </ul>
                 )
+                case 3:
+                    return(
+                        <div className="loading">
+                            <Loading />
+                        </div>
+                    )
+                case 4:
+                    return(
+                        <div className="loading">
+                            <Error refresh = {this.handleSubmit}/>
+                        </div>
+                    )
             default:
         }
     }

@@ -2,6 +2,7 @@ import Axios from 'axios'
 import React, { Component } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Cleave from 'cleave.js/react';
+import { Redirect } from 'react-router';
 require('cleave.js/dist/addons/cleave-phone.ca')
 
 export default class FormPersonalDetails extends Component {
@@ -9,7 +10,8 @@ export default class FormPersonalDetails extends Component {
     state = {
         count: 0,
         admin:[],
-        showAlert: "show "
+        showAlert: "show ",
+        redirect: false
     }
     back = e => {
         e.preventDefault()
@@ -18,31 +20,47 @@ export default class FormPersonalDetails extends Component {
 
     continue = e => {
         e.preventDefault()
-        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/admin").then((response)=>{
-            this.setState({admin: response.data[0]})
-            const {adminEmail, adminTelephoneNumber, adminName} = this.state.admin
-            const {values: {telephoneNumber, email}}= this.props
-            const {values: {organization, firstName, lastName}}= this.props
-            if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
-                this.props.adminStep()
-            }else if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
-                this.props.nextStep()
-            }else{
-                this.setState({showAlert: "alert"})
-            }
-        })
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/admin")
+            .then((response)=>{
+                this.setState({admin: response.data[0]})
+                const {adminEmail, adminTelephoneNumber, adminName} = this.state.admin
+                const {values: {telephoneNumber, email}}= this.props
+                const {values: {organization, firstName, lastName}}= this.props
+                if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
+                    this.setState({redirect: true})
+                }else if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
+                    this.props.nextStep()
+                }else{
+                    this.setState({showAlert: "alert"})
+                }
+            })
+            .catch((error)=>{
+                console.log(error.message);
+            } )
+        }, 1000);
+
     }
 
         render() {
-            const {handleChange, onCreditCardChange } = this.props
+            const {handleChange, onCreditCardChange,button } = this.props
             const { values: {organization, firstName, lastName, email} } = this.props  
+            if (this.state.redirect) {
+                console.log("yes");
+                button()
+                return <Redirect push to="/admin" />;
+            }   
+
   
         return (
                 <div className="form-cont">
                     <form className="form" id="form-sub" onSubmit={this.continue}>
                     <div>
                         <div className="name">
-                            <div className="head-info"><h1>Enter Personal Info</h1></div>
+                            <div className="head-info">
+                                <h1>Enter Personal Info</h1>
+                                <hr className="head-hr" />
+                            </div>
                             <ul className="ul">
                                 <li>
                                     <div>
@@ -53,7 +71,7 @@ export default class FormPersonalDetails extends Component {
                                     </div>
                                 </li> 
                                 <li className="or"><h2>Or</h2></li>
-                                <li className="name-cont org-name">
+                                <li className="name-cont">
                                     <div className="left-side">
                                         <label htmlFor="name">First Name:</label> 
                                         <div className="sub-txt">
@@ -67,6 +85,7 @@ export default class FormPersonalDetails extends Component {
                                         </div>
                                     </div>
                                 </li>
+                                <hr/>
                                 <li>
                                     <div>
                                         <label htmlFor="">Telephone Number:</label>

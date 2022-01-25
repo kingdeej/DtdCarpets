@@ -87,7 +87,7 @@ const InfoPage = () => {
                                     <hr className="tile-cont-hr" />
                                 </li>
                                 <li>
-                                    <p className="tile-text">Prices vary based on the size and the color of the carpets and rugs. You can request for us to clean carpets and rugs around furnitures or the furnitures are already moved or for us to move the furnitures, but the price will increase.</p>
+                                    <p className="tile-text">Prices vary based on the size and the color of the carpets and rugs. You can request for us to clean carpets and rugs around you're furniture, if the furniture is already moved or for us to move the furniture, but the price will increase.</p>
                                 </li>
                                 <li>
                                     <div>

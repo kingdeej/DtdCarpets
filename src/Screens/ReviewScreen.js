@@ -3,9 +3,11 @@ import { FaStar } from 'react-icons/fa'
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 
 export class ReviewScreen extends Component {
+    _isMounted = false
     state = {
         reviews: [],
         revImageCont: "show",
@@ -13,6 +15,7 @@ export class ReviewScreen extends Component {
         revListId: "",
         showImg: "",
         loading: <Loading />,
+        error: null
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -24,17 +27,33 @@ export class ReviewScreen extends Component {
     }
     
     getReviews = () => {
-        Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews').then((response)=>{
-            this.setState({reviews: response.data})
+        this.setState({loading: <Loading />})
+        this.setState({error: null})
+        setTimeout(() => {
+            Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
+            .then((response)=>{
+                this.setState({reviews: response.data})
+                if (response.status !== 200) {
+                    this.setState({loading: null})
+                    this.setState({error: <Error refresh = {this.getReviews}/>})    
+                }
+            })
+            .catch(err =>{
+                this.setState({loading: null})
+                this.setState({error: <Error refresh = {this.getReviews}/>})
+                console.log(err.message);
+            })
+        }, 1000);
 
-        })
     }
     componentDidMount(){
-        if (this.state.reviews === []) {
-            window.location.reload(false)
+        this._isMounted = true;
+        if (this._isMounted) {
+            this.getReviews();
         }
-        this.getReviews()
-        console.log(this.state.reviews);
+    }
+    componentWillUnmount(){
+        this._isMounted = false
     }
 
     
@@ -51,6 +70,7 @@ export class ReviewScreen extends Component {
             <div>
                 <div className="review-page-cont">
                     <ReviewNon />
+                    {this.state.error}
                     {!this.state.reviews.length ?  this.state.loading : null }
                     {this.state.reviews.map((val, key)=>{
                         if(val.review === ""){

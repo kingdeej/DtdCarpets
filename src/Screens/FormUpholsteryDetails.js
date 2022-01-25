@@ -43,14 +43,17 @@ export default class UpholsteryScreen extends Component {
             <div className="form-cont">
                 <form className="form" onSubmit={this.continue}>
                 <div className="pi-spacing">
-                    <div className="head-info"><h1>Enter Upholstery Info</h1></div>
+                    <div className="head-info">
+                        <h1>Enter Upholstery Info</h1>
+                        <hr className="head-hr" />
+                    </div>
                     <ul>
                         <li className="upholstery">
                             <div className="up">
                             <div className="uphold">
-                                <label htmlFor="type">Upholstery Type</label>
+                                <label htmlFor="">Upholstery Type</label>
                                 <div className="upholstery-type">
-                                    <select className="yes" name="upholsteryType" id="upholstery-type" defaultValue={upholsteryType} required onChange={handleChange()} >
+                                    <select name="upholsteryType" id="upholstery-type" defaultValue={upholsteryType} required onChange={handleChange()} >
                                         <option value="" disabled >Upholstery Type</option>
                                         <option value="Carpet">Carpet</option>
                                         <option value="Rug">Rug</option>

@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import AdminPage from './AdminPage'
 import FormAddressDetails from './FormAddressDetails'
 import FormPersonalDetails from './FormPersonalDetails'
 import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
 import SetAppointmentScreen from './SetAppointmentScreen'
-
+import { withRouter } from 'react-router'
+import Loading from '../components/Loading'
 
 export class useForm extends Component {
     state = {
-        step: 1,
+        step: 1
+        ,
         value: 0,
         id: null,
         organization:"",
@@ -30,6 +31,12 @@ export class useForm extends Component {
         scheduleDate: "",
         upholsteryType1: "",
         color1: "",
+        counter: 0,
+        isAuth: false,
+        isAdmin: false,
+        redirect: false,
+        loading: <Loading />,
+        ifLoading: false
     }
     getCustomerId = () => {
         setTimeout(() => {
@@ -44,20 +51,43 @@ export class useForm extends Component {
                 }
             })             
         }, 1000)
-       
-    }
-    componentDidMount(){
+    }      
+
+    componentDidMount() {
         this.getCustomerId()
+    }
+    componentWillUnmount() {
+        this.getCustomerId()
+    }
+    componentDidUpdate(prevProp, prevState){
+        if (prevState.counter === this.state.counter) {
+
+            if (this.state.isAuth === false) {
+                if (parseInt(window.location.pathname.slice(-1)) !== 1) {
+                    this.props.history.push('/useform/1')
+                }
+            }else{
+                this.setState({counter: this.state.counter+1})
+                this.setState({step: parseInt(window.location.pathname.slice(-1)) })                
+            }
+        }
 
     }
+
+
 
 
     sendEmail = () => {
+        this.setState({ifLoading: true})
+        let load = ()=>{
+            this.setState({ifLoading: false})
+        }
         emailjs.send('asfsquidy', 'template_c0xqflt', this.state,"user_PXn2f8Pt6N57O4XbQ4alf")
         .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
+            console.log('SUCCESS!', response.status, response.text);
+            load()
         }, function(error) {
-        console.log('FAILED...', error);
+            console.log('FAILED...', error);
         });        
     }
 
@@ -99,23 +129,26 @@ export class useForm extends Component {
     //proceed to next step
     prevStep = () => {
         const { step } = this.state
+        this.setState({prevStep: step})
+        this.setState({url: window.location.pathname.slice(-1)})
         this.setState({
             step : step - 1
         })
+        this.props.history.push(`/useform/${this.state.step -1}`)
+        this.setState({isAuth: true})
     }
 
-    nextStep = () => {
-        const { step } = this.state
-        this.setState({
-            step : step + 1
-        })
+    nextStep = () => {        
+            const { step } = this.state        
+            this.setState({prevStep: step})
+            this.setState({url: window.location.pathname.slice(-1)})
+            this.setState({
+                step : step + 1
+            })
+            this.props.history.push(`/useform/${step + 1}`)
+            this.setState({isAuth: true})
     }
-    adminStep = () => {
-        const { step } = this.state
-        this.setState({
-            step : step + 4
-        })
-    }
+
     seeCustomerStep = () => {
         const { step } = this.state
         this.setState({
@@ -132,7 +165,8 @@ export class useForm extends Component {
 
 
     render() {
-        const { step } = this.state
+        const { step, ifLoading, loading} = this.state
+        const {button} = this.props
         const {value, organization, color1, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate } = this.state
         const values = {value, color1, organization, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
         switch(step){
@@ -148,10 +182,10 @@ export class useForm extends Component {
                     <FormPersonalDetails 
                     nextStep={this.nextStep}
                     handleChange={this.handleChange}
-                    adminStep = {this.adminStep}
                     values={values}
                     onCreditCardChange ={this.onCreditCardChange}
                     step={this.state.step}
+                    button={button}
                     />
                 )
             case 3:
@@ -179,13 +213,9 @@ export class useForm extends Component {
                 )
             case 5:
                 return(
-                    <ThankYou />
-                )
-            case 6:
-                return(
-                    <AdminPage
-                    seeCustomerStep={this.seeCustomerStep}
-                    getVal={this.getVal}
+                    <ThankYou
+                        ifLoading = {ifLoading}
+                        loading = {loading}
                     />
                 )
             default:
@@ -193,4 +223,4 @@ export class useForm extends Component {
     }
 }
 
-export default useForm
+export default withRouter(useForm) 

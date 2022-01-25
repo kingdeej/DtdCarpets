@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import Axios from "axios"
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter} from 'react-router-dom'
+import Loading from '../components/Loading'
+import Error from '../components/Error';
 
 export class AdminPage extends Component {
+    _isMounted = false;
     state = {
         customerList: [].reverse(),
         customerListSingle: [],
         name: 0,
         class1: "admin-page",
         class2: "customer-cont customer",
-        redirect: false
+        redirect: false,
+        loading: <Loading/>,
+        counter: 0,
+        step: 1,
+        home: false,
+        error: null
     }
     customerPage = (e) => {
         e.preventDefault()
@@ -22,24 +30,68 @@ export class AdminPage extends Component {
     delete = (e) => {
         this.setState({class1: "admin-page"})
         this.setState({class2: "customer-cont customer"})
+        this.setState({redirect: true})
     }
     
     getCustomer = () => {
-        Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
-            this.setState({customerList: response.data})
-        })            
+        this.setState({loading: <Loading />})
+        this.setState({error: null})
+        setTimeout(() => {
+            Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers")
+            .then((response)=>{
+                this.setState({customerList: response.data})
+                if (response.status !== 200) {
+                    this.setState({loading: null})
+                    this.setState({error: <Error refresh = {this.getCustomer}/>})
+                }
+            })              
+            .catch((error)=>{
+                this.setState({loading: null})
+                this.setState({error: <Error refresh = {this.getCustomer}/>})
+                console.log(error.message);
+            } )
+        }, 1000);
+        
     }
     getId = (id) => {
         console.log(id)
         this.setState({customerListSingle: this.state.customerList[id]})
+        this.setState({step: 2})
+        this.setState({id: id})
+        this.setState({redirect: true})
     }
     home = () => {
+         this.setState({home: true})
          this.setState({redirect: true})
     }
     componentDidMount(){
-        this.getCustomer()
+        this._isMounted = true;
+        if (this._isMounted) {
+            this.getCustomer()           
+        }
     }
+    componentWillUnmount(){
+        this._isMounted = true;
+    }
+    componentDidUpdate(prevProp, prevState){
+        if (this.state.counter === prevState.counter) {
+            this.setState({redirect: false})
+            this.setState({counter: this.state.counter+1})
+            if (window.location.pathname.endsWith('customer') || window.location.pathname.endsWith('admin')) {
+                this.setState({step: 1})
+                this.setState({class1: "admin-page"})
+                this.setState({class2: "customer-cont customer"})
+        
+            }else{
+                this.setState({step: 2})
+                this.setState({class1: "admin-page customer"})
+                this.setState({class2: "customer-cont"})
+            }
+        }
+    }
+
     render() {
+        const {step} = this.state
         const AdminNon = () => {
             if (this.state.customerList.length === 0) {
                 return <h1 className="admin-head">No Customers Yet</h1>
@@ -49,12 +101,23 @@ export class AdminPage extends Component {
         }      
         const {organization,firstName,lastName,telephoneNumber,email,upholsteryType,color,description,streetAddress,streetAddress2, city,state,postal,scheduleDate,upholsteryType1, color1} = this.state.customerListSingle
         if (this.state.redirect) {
-            return <Redirect push to="/" />;
-          }   
-        return (
-            <>
-                <div className={this.state.class1} >
+            if (window.location.pathname.endsWith('customer') || window.location.pathname.endsWith('admin')) {
+                return <Redirect push to={`/admin/customer/${this.state.id}`} />;               
+            }
+            if (this.state.home) {
+                return <Redirect push to="/" />;
+            }
+            if (!window.location.pathname.endsWith('customer')) {
+                return <Redirect push to={`/admin/customer`} />;               
+            }
+        }   
+        switch (step) {
+            case 1:
+                return(
+                    <div className={this.state.class1} >
                     <AdminNon />
+                    {this.state.error}
+                    {!this.state.customerList.length ? this.state.loading : null} 
                     {this.state.customerList.map((val, key)=>{
                         return (
                         <ul id={val.id} key={key} onClick={()=>{
@@ -63,8 +126,7 @@ export class AdminPage extends Component {
                             }}>
                             <li>
                                 <div>
-                                    <h2>Name:</h2>
-                                    <p>{val.organization}{val.firstName} {val.lastName}</p>
+                                    <h2>{val.organization}{val.firstName} {val.lastName}</h2>
                                     <hr />
                                 </div>
                                 <div><h2>Date:</h2><p>{val.scheduleDate}</p></div>
@@ -79,7 +141,10 @@ export class AdminPage extends Component {
                     })}
 
                 </div>
-                <div className={this.state.class2}>
+                )   
+            case 2:
+                return(
+                    <div className={this.state.class2}>
                     <ul className="date">
                         <li><h1>Date: </h1><h2>{scheduleDate}</h2></li>
                     </ul>
@@ -115,9 +180,10 @@ export class AdminPage extends Component {
                         </li>
                     </ul>
                 </div>
-            </>
-        )
+                )
+            default:
+        } 
     }
 }
 
-export default AdminPage
+export default withRouter(AdminPage);

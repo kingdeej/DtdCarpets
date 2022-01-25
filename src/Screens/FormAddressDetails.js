@@ -42,7 +42,10 @@ export default class AddressScreen extends Component {
                             We Only Provide Services in The Emerald Coast Area
                         </div>
                     <div className="pi-spacing">
-                    <div className="head-info"><h1>Enter Address Info</h1></div>
+                    <div className="head-info">
+                        <h1>Enter Address Info</h1>
+                        <hr className="head-hr" />
+                    </div>
                         <ul className="address">
                             <li className="street-address" >
                                 <label htmlFor="text">Street Address</label>

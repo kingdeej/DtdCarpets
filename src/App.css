@@ -31,6 +31,17 @@ html {
   }
 }
 
+.loading-cont {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .loading {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,6 +51,9 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .loading .dots {
@@ -49,6 +63,7 @@ html {
   max-height: 10px;
   background: black;
   opacity: .2;
+  border-radius: 5px;
 }
 
 .active {
@@ -172,30 +187,29 @@ input[type="file"] {
 }
 
 input {
-  border: white 2px solid;
+  border: none;
   outline: none;
   overflow: hidden;
   color: black;
-  border: none;
   height: 25px;
-  width: 200px;
+  width: 50%;
+  min-width: 210px;
   -o-object-fit: contain;
      object-fit: contain;
-  border-radius: 3px;
+  background: #f8f8f8;
+  border-bottom: 2px solid #8d8d8d;
 }
 
-input[type="text"]:hover, input[type="email"]:hover, textarea:hover, input[type="date"]:hover, input[type="number"]:hover {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-transition: -webkit-box-shadow .3s;
-  transition: -webkit-box-shadow .3s;
-  transition: box-shadow .3s;
-  transition: box-shadow .3s, -webkit-box-shadow .3s;
+input[type="text"]:hover, input[type="email"]:hover, input[type="date"]:hover, input[type="number"]:hover {
+  border-bottom: 2px solid #FF67CB;
+  -webkit-transition: border-bottom .6s;
+  transition: border-bottom .6s;
 }
 
 input[type="text"]:focus {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-bottom: 2px solid #FF67CB;
+  -webkit-transition: border-bottom .6s;
+  transition: border-bottom .6s;
 }
 
 textarea {
@@ -309,6 +323,48 @@ textarea {
   100% {
     top: -50px;
   }
+}
+
+.error {
+  width: 200px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 30px;
+}
+
+.error h1 {
+  margin: 0 !important;
+  text-align: center;
+}
+
+.error .error-btn {
+  position: static;
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: #FF67CB;
+  border: 3px solid #FF67CB;
+}
+
+.error .error-btn:hover {
+  border-radius: 5px;
+  color: white;
+  background-color: #FF67CB;
+  -webkit-transition: background-color .3s, color .3s, border-radius .3s;
+  transition: background-color .3s, color .3s, border-radius .3s;
 }
 
 .times {
@@ -451,7 +507,7 @@ button {
 
 .nav .right-nav ul :nth-child(3) button {
   margin-left: 5px;
-  width: 90px !important;
+  width: 100px !important;
   margin-right: 10px;
 }
 
@@ -467,9 +523,9 @@ button {
 .nav .right-nav ul li .btn-1 :hover {
   color: black;
   background: #AACDE0;
-  border: white solid 4px;
-  -webkit-transition: color 0.2s, background-color 0.5s;
-  transition: color 0.2s, background-color 0.5s;
+  border-radius: 5px;
+  -webkit-transition: color 0.2s, background-color .5s, border-radius .5s;
+  transition: color 0.2s, background-color .5s, border-radius .5s;
 }
 
 .nav .right-nav ul li .btn-2 {
@@ -485,7 +541,7 @@ button {
 }
 
 .nav .right-nav ul li .get-started-btn {
-  border-radius: 10px;
+  border-radius: 7px;
   background-color: black;
   font-weight: bold;
   color: white;
@@ -503,6 +559,7 @@ button {
   height: 50px;
   background: none;
   margin-top: -15px;
+  text-transform: uppercase;
 }
 
 .nav .menu {
@@ -515,7 +572,8 @@ button {
 
 /*Hero*/
 .hero {
-  height: 85vh !important;
+  margin-top: 80px;
+  height: 75vh !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -534,7 +592,7 @@ button {
 }
 
 .hero .hero-left hr {
-  margin: 80px 20%;
+  margin: 40px 20%;
   border: none;
   border-top: 2px solid white;
   border-radius: 10px;
@@ -555,10 +613,11 @@ button {
 
 .hero .hero-left ul li .hero-head {
   text-align: center;
-  width: 50vw;
+  width: 40vw;
 }
 
 .hero .hero-left ul li .hero-head h6 {
+  font-size: 30px;
   text-transform: uppercase;
   color: white;
   text-shadow: 2px 2px 8px #464646;
@@ -575,9 +634,9 @@ button {
 .hero .hero-left ul li button {
   border: #AACDE0 5px solid;
   background-color: white;
-  font-size: 20px;
-  width: 170px;
-  height: 50px;
+  font-size: 16px;
+  width: 130px;
+  height: 35px;
   border-radius: 5px;
   text-transform: uppercase;
   color: black;
@@ -890,6 +949,10 @@ button {
   height: 500px;
 }
 
+.rev-container form .rev-cont .loading {
+  height: 100%;
+}
+
 .rev-container form .rev-cont hr {
   position: relative;
   width: 50%;
@@ -970,7 +1033,7 @@ button {
 }
 
 .rev-container form .rev-cont .left-rev .review-rev-cont .review {
-  width: 50vw;
+  width: 100%;
   height: 150px;
   resize: none;
 }
@@ -1469,22 +1532,27 @@ button {
 .dtd-carpets h1 hr {
   position: relative;
   margin: 0 auto;
-  width: 50%;
+  width: 70%;
+  border: none;
+  border-top: #FF67CB 2.5px solid;
+  border-radius: 10px;
 }
 
 .dtd-carpets button {
-  margin-top: 50px;
   width: 100px;
   height: 40px;
-  border: 2px solid #FF67CB;
+  border: 3px solid #FF67CB;
   background-color: white;
-  border-radius: 1px;
+  border-radius: 7px;
   color: #FF67CB;
 }
 
 .dtd-carpets button:hover {
   background-color: #FF67CB;
   color: white;
+  border-radius: 3px;
+  -webkit-transition: background-color .5s, color .5s, border-radius .5s;
+  transition: background-color .5s, color .5s, border-radius .5s;
 }
 
 /*Confirm*/
@@ -1768,6 +1836,7 @@ span {
 }
 
 .review-page-cont {
+  min-height: 100vh;
   padding: 4em 10vw;
 }
 
@@ -1913,15 +1982,17 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .form-cont .head-info {
   text-align: center;
-  background: white;
-  margin-right: -10.5px;
-  margin-left: -10.5px;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(116, 116, 116, 0.2), 0 6px 20px 0 rgba(116, 116, 116, 0.2);
-          box-shadow: 0 4px 8px 0 rgba(116, 116, 116, 0.2), 0 6px 20px 0 rgba(116, 116, 116, 0.2);
+  background: #f8f8f8;
   font-size: smaller;
   margin-bottom: 10px;
 }
@@ -1931,8 +2002,7 @@ span {
 }
 
 .form-cont .form {
-  margin-top: 80px;
-  background: #cfe3fc;
+  background: #f8f8f8;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 0 10px 0 10px;
@@ -1954,16 +2024,25 @@ span {
   position: relative;
 }
 
+.form-cont .form .head-hr {
+  width: 50%;
+  margin: 0 auto;
+  min-width: 250px;
+  border-bottom: 2px solid #FF67CB;
+}
+
 .form-cont .form li {
   margin-bottom: 20px;
 }
 
-.form-cont .form .org-name {
-  border-bottom: 1px white solid;
-  padding-bottom: 20px;
+.form-cont .form hr {
+  border: none;
+  border-bottom: 2px #FF67CB solid;
+  margin-bottom: 10px;
+  border-radius: 200px;
 }
 
-.form-cont .form .org-name .left-side {
+.form-cont .form .left-side {
   margin-bottom: 20px;
 }
 
@@ -2002,7 +2081,7 @@ span {
 
 .form-cont .form .button-ul li button {
   height: 100%;
-  background: black;
+  background: #FF67CB;
   color: white;
   font-size: 20PX;
   opacity: .8;
@@ -2010,7 +2089,7 @@ span {
 
 .form-cont .form .button-ul li button:hover {
   font-weight: bold;
-  border: 3px solid black;
+  border: 3px solid #FF67CB;
   -webkit-transition: font-weight .2s, opacity .2s, border .2s;
   transition: font-weight .2s, opacity .2s, border .2s;
   opacity: 1;
@@ -2056,20 +2135,6 @@ span {
 .address .address-sep .city {
   margin-right: 100px;
   margin-bottom: 20px;
-}
-
-.address label {
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: white;
-}
-
-.address input {
-  height: 25px;
-  width: 200px;
-  margin-top: 3px;
-  border-radius: 3px;
-  border: #585858 1px solid;
 }
 
 .address input::-webkit-outer-spin-button,
