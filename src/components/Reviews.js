@@ -36,10 +36,6 @@ export class Reviews extends Component {
         transform: '',
         loading: false,
     }
-    getId = () => {
-
-    }
-
 
     handleChange = (e) => {
         const name = e.target.name
@@ -47,7 +43,6 @@ export class Reviews extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault() 
-        this.setState({step: 3})
         setTimeout(() => {
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
                 const data = response.data
@@ -75,6 +70,7 @@ export class Reviews extends Component {
                                 if (result === undefined) {
                                     this.setState({showAlert: "alert"})
                                 }else{
+                                    this.setState({step: 3})
                                     if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
                                         Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
                                                 id: this.state.id,
@@ -176,13 +172,8 @@ export class Reviews extends Component {
             }).catch((error) =>{
                 this.setState({step:4})
             })
-            
-
         },1000)
-
-        // setTimeout(() => {
-        //     
-        // }, 1000);
+        clearTimeout(this.handleSubmit)
     }
     getImage = (e) => {
         if (e.target.value === "") {
@@ -208,18 +199,16 @@ export class Reviews extends Component {
         }  
     }
     nextStep = () => {
-        if(this.state.rating < 1 ){
+        if(this.state.rating === null ){
             this.setState({showAlert1: "alert"}) 
         }else{
             this.setState({step: 2})
             this.setState({transform: "transform-right"})
-    
         }
     }
     previousStep = () => {
         this.setState({step: 1})
         this.setState({transform: ""})
-
     }
     
     
@@ -334,8 +323,8 @@ export class Reviews extends Component {
                                 <li>
                                     <button className="prev-btn" onClick={this.previousStep}>Previous</button>
                                 </li>
-                                <li className="submit-btn">{
-                                    <button>Submit</button>}
+                                <li className="submit-btn">
+                                    <button onClick={this.handleSubmit}>Submit</button>
                                 </li>
                             </ul>
                         </ul>

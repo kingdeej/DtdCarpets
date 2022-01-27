@@ -51,7 +51,7 @@ export class AdminPage extends Component {
                 console.log(error.message);
             } )
         }, 1000);
-        
+        clearTimeout(this.getCustomer)
     }
     getId = (id) => {
         console.log(id)

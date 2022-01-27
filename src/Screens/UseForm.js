@@ -51,6 +51,7 @@ export class useForm extends Component {
                 }
             })             
         }, 1000)
+        clearTimeout(this.getCustomerId)
     }      
 
     componentDidMount() {

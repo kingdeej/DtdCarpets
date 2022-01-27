@@ -30,6 +30,7 @@ export class ReviewScreen extends Component {
         this.setState({loading: <Loading />})
         this.setState({error: null})
         setTimeout(() => {
+            console.log("hello");
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
                 this.setState({reviews: response.data})
@@ -43,8 +44,9 @@ export class ReviewScreen extends Component {
                 this.setState({error: <Error refresh = {this.getReviews}/>})
                 console.log(err.message);
             })
+            
         }, 1000);
-
+        clearTimeout(this.getReviews)
     }
     componentDidMount(){
         this._isMounted = true;
