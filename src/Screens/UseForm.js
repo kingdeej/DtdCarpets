@@ -11,8 +11,7 @@ import Loading from '../components/Loading'
 
 export class useForm extends Component {
     state = {
-        step: 1
-        ,
+        step: 1,
         value: 0,
         id: null,
         organization:"",

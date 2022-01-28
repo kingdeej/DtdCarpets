@@ -294,15 +294,16 @@ export class Reviews extends Component {
                             </li>
                             <li className="input">                      
                                 <label htmlFor="">Write organization name or full name: </label>
-                                <input type="text" value={this.state.name} name="name" onChange={this.handleChange} required/>
+                                <input type="text" value={this.state.name} placeholder="Write organization name or full name" name="name" onChange={this.handleChange} required/>
                             </li>
                             <li className="input">                      
                                 <label htmlFor="">Write email address: </label>
-                                <input type="email" value={this.state.email} name="email" onChange={this.handleChange} required/>
+                                <input type="email" value={this.state.email} placeholder="Write email address" name="email" onChange={this.handleChange} required/>
                             </li>
 
                             <li className="input">
                                 <label htmlFor="">Write upholsteryType: </label>
+                                <div className="upholstery-type">
                                     <select name="upholsteryType" defaultValue={this.state.upholsteryType} value={this.state.upholsteryType} required onChange={this.handleChange} >
                                         <option value="" disabled >Upholstery Type</option>
                                         <option value="Carpet">Carpet</option>
@@ -318,6 +319,7 @@ export class Reviews extends Component {
                                         <option value="Other">Other</option>
                                     </select>
                                     <FaSortDown className="sort-down"/>
+                                </div>
                             </li>
                             <ul>
                                 <li>

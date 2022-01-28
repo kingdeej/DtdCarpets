@@ -115,8 +115,8 @@ export default class UpholsteryScreen extends Component {
                                 )
                             })}
                             </div>
-                                <span onClick={this.add}>Add</span><FaPlus onClick={this.add} color="white" className="fa-plus" />
-                                <span onClick={this.delete}>Delete</span><FaMinus onClick={this.delete} color="white"/>
+                                <span onClick={this.add}>Add</span><FaPlus onClick={this.add} className="fa-plus" />
+                                <span onClick={this.delete}>Delete</span><FaMinus onClick={this.delete} className="fa-minus"/>
 
                             <div className="description">
                                 <label htmlFor="description">Description <span>*Optional</span></label> <br />

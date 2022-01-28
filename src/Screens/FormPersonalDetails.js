@@ -11,7 +11,7 @@ export default class FormPersonalDetails extends Component {
         count: 0,
         admin:[],
         showAlert: "show ",
-        redirect: false
+        redirect: false,
     }
     back = e => {
         e.preventDefault()
@@ -44,7 +44,7 @@ export default class FormPersonalDetails extends Component {
 
         render() {
             const {handleChange, onCreditCardChange,button } = this.props
-            const { values: {organization, firstName, lastName, email} } = this.props  
+            const { values: {telephoneNumber, organization, firstName, lastName, email} } = this.props  
             if (this.state.redirect) {
                 console.log("yes");
                 button()
@@ -90,7 +90,7 @@ export default class FormPersonalDetails extends Component {
                                     <div>
                                         <label htmlFor="">Telephone Number:</label>
                                         <div>
-                                        <Cleave placeholder="Enter your Phone Number"
+                                        <Cleave value={telephoneNumber} placeholder="Enter your Phone Number"
                                             options={{phone: true, phoneRegionCode:"us"}}
                                             onChange={onCreditCardChange()}  required/>
                                         </div>
