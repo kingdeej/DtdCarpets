@@ -1559,13 +1559,148 @@ button {
 }
 
 /*Admin*/
+.admin-main {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.admin-main ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 700px;
+  height: 60vh;
+  margin: 20px;
+  gap: 20px;
+}
+
+.admin-main ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+  height: 150px;
+  background-color: #F8F8F8;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.admin-main ul div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.admin-main ul div img {
+  width: 80px;
+}
+
+.admin-main ul div h2 {
+  color: #FF67CB;
+}
+
+.admin-page-cont {
+  position: relative;
+}
+
+.admintoolbar {
+  position: fixed;
+  width: 20vw;
+  padding: 20px 5px;
+  margin-top: 80px;
+  background: #fcdef1;
+  height: 100vh;
+}
+
+.addEmail {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
+}
+
+.addEmail div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+
+.addEmail input {
+  padding: 0 5px;
+}
+
+.addEmail button {
+  font-size: 20px;
+  width: 100px;
+  color: #FF67CB;
+  background-color: white;
+  border: 3px #FF67CB solid;
+  -webkit-transition: background-color .2s, color .2s;
+  transition: background-color .2s, color .2s;
+}
+
+.addEmail button:hover {
+  background-color: #FF67CB;
+  color: white;
+}
+
 .admin-page {
   padding: 6em 10vw;
 }
 
 .admin-page .admin-head {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .admin-page ul {
@@ -1638,7 +1773,7 @@ button {
 
 .customer-cont {
   height: 100%;
-  padding: 6em 10vw;
+  padding: 35px 10vw;
 }
 
 .customer-cont .button {
