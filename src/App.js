@@ -13,7 +13,7 @@ import Customers from './Screens/Customers';
 
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
   const button = () => {
     setIsAdmin(true);
   }
