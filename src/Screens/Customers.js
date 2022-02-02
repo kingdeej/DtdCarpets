@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from "axios"
-import { Redirect, withRouter} from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 import Loading from '../components/Loading'
 import Error from '../components/Error';
 import { FaArrowLeft } from 'react-icons/fa'
@@ -91,7 +91,6 @@ export class Customers extends Component {
     }
 
     render() {
-        const {step} = this.state
         const AdminNon = () => {
             if (this.state.customerList.length === 0) {
                 return <h1 className="admin-head">No Customers Yet</h1>
@@ -99,7 +98,6 @@ export class Customers extends Component {
                 return <h1 className="admin-head">Customers Page</h1>
             }
         }      
-        const {organization,firstName,lastName,telephoneNumber,email,upholsteryType,color,description,streetAddress,streetAddress2, city,state,postal,scheduleDate,upholsteryType1, color1} = this.state.customerListSingle
         if (this.state.redirect) {
             if (this.state.dash) {
                 return <Redirect push to="/admin" />;

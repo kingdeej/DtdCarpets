@@ -1,8 +1,5 @@
-import axios from 'axios'
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import AdminToolBar from '../components/AdminToolBar'
-import Error from '../components/Error'
 import Loading from '../components/Loading'
 
 export class Customer extends Component {

@@ -40,7 +40,7 @@ export class AdminPage extends Component {
                         </div>
                     </li>
                     <li id='reviews' htmlFor=""  onClick={this.dashNav}>
-                        <div id='reviews' onClick={this.dashNav} id='reviews'>
+                        <div id='reviews' onClick={this.dashNav}>
                             <img src={feedback} alt="" />
                             <h2 id='reviews'>REVIEWS</h2> 
                         </div>
