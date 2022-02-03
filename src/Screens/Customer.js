@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import Loading from '../components/Loading'
+import deletes from '../images/delete.png';
+;
+
 
 export class Customer extends Component {
     state = {
@@ -8,8 +12,9 @@ export class Customer extends Component {
         error: null,
         customerList: [],
         show: "show",
+        showQuestion: "show",
         redirect: false,
-        home: false
+        home: false,
     }
     back = () => {
         this.setState({redirect: true})
@@ -18,20 +23,44 @@ export class Customer extends Component {
         this.setState({home: true})
         this.setState({redirect: true})
     }
+    deleteCustomer = (e) => {
+        const pathname = window.location.pathname.slice(-1)
+        const deleteQuestion = e.target.name
+        console.log(deleteQuestion);
+        if (!deleteQuestion) {
+            this.setState({showQuestion: ""})
+        }else{
+            this.setState({showQuestion: "show"})
+
+            setTimeout(() => {
+                axios.delete(`http://localhost:5001/dtdcarpets/us-central1/dtdCarpets/delete/${pathname}`, {
+                    id: pathname
+                }).then(()=>{
+                    const customerList = JSON.parse(localStorage.getItem('customerList'))
+                    const results = customerList.filter(id => id.id !== parseInt(pathname))
+                    localStorage.setItem('customerList', JSON.stringify(results))
+                    this.setState({redirect: true})
+                }).catch((error)=>{
+                    console.log(error.message);
+                })
+            }, 1000);
+        }
+
+    };
 
     getCustomer = () => {
         this.setState({loading: <div className="loading-cont"><Loading /></div>})
         this.setState({error: null}) 
         const pathname = parseInt(window.location.pathname.slice(-1)) 
         const customerList = JSON.parse(localStorage.getItem('customerList'))
-        this.setState({customerList: customerList.reverse()[pathname] })
+        if (localStorage.getItem('customerList') !== null) {
+            this.setState({customerList: customerList.find(({id}) => id === pathname )})
+        }
         this.setState({loading: null})
         this.setState({show: ""})
-        console.log(customerList[pathname]);
     }
     componentDidMount(){
         this.getCustomer()
-
     }
     render() {
         if (this.state.redirect) {
@@ -78,7 +107,19 @@ export class Customer extends Component {
                             <li>     
                                 <button onClick={this.home}>Home</button>               
                             </li>
+                            <li className='delete-cont' onClick={this.deleteCustomer}>
+                                <img src={deletes} alt="delete" />
+                            </li>
                         </ul>
+                    </div>
+                    <div className={`${this.state.showQuestion} delete-question-cont`}>
+                        <div className='delete-question'>
+                            <h3>Are You sure you want to delete {customerList.firstName} {customerList.lastName}{customerList.organization}</h3>
+                            <ul>
+                                <li><button name="false" onClick={this.deleteCustomer}>No</button></li>
+                                <li><button name="true" onClick={this.deleteCustomer}>Yes</button></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             )

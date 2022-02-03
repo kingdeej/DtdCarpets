@@ -198,7 +198,8 @@ export class Reviews extends Component {
             }
         }  
     }
-    nextStep = () => {
+    nextStep = (e) => {
+        e.preventDefault()
         if(this.state.rating === null ){
             this.setState({showAlert1: "alert"}) 
         }else{

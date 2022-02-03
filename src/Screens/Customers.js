@@ -18,7 +18,8 @@ export class Customers extends Component {
         counter: 0,
         home: false,
         error: null,
-        dash: false
+        dash: false,
+        noCustomers: null
     }
     customerPage = (e) => {
         e.preventDefault()
@@ -32,15 +33,35 @@ export class Customers extends Component {
         this.setState({class1: "admin-page customer"})
     }
     getCustomer = () => {
+        //Loading\\
         this.setState({loading: <Loading />})
         this.setState({error: null})
-        if (!localStorage.length) {
+        //Set customer List
+        const customerList = localStorage.getItem('customerList')
+        if (customerList === null || customerList === "[]") {
+            let axiosCustomerList = []
+            //Set local storage
+            const setLocal = (response) => {
+                localStorage.setItem('customerList', JSON.stringify(response.data.reverse()))
+                this.setState({customerList: JSON.parse(axiosCustomerList).reverse() })
+            };
             setTimeout(() => {
                 Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers")
                 .then((response)=>{
-                    localStorage.setItem('customerList', JSON.stringify(response.data.reverse()))
-                    const customerList = localStorage.getItem('customerList')
-                    this.setState({customerList: JSON.parse(customerList) })
+                    axiosCustomerList = JSON.stringify(response.data)
+                    if (response.status === 200) {
+                        this.setState({loading: null})
+                        // if axioscustomerList is 0
+                        if (axiosCustomerList === "[]") {
+                            console.log(axiosCustomerList);
+                            this.setState({noCustomers: <h3 className="admin-head">No Customers Yet</h3>  })
+                        }
+                        //if axiosCustomerList is not the same as local storage
+                        if (axiosCustomerList !== localStorage.getItem('customerList')) {
+                            setLocal(response)
+                        }
+                    }
+    
                     if (response.status !== 200) {
                         this.setState({loading: null})
                         this.setState({error: <Error refresh = {this.getCustomer}/>})
@@ -52,16 +73,13 @@ export class Customers extends Component {
                     console.log(error.message);
                 } )
             }, 1000);
-            clearTimeout(this.getCustomer)
-        }
-        else{
-            const customerList = localStorage.getItem('customerList')
+            clearTimeout(this.getCustomer) 
+        }else{
             this.setState({customerList: JSON.parse(customerList) })
         }
         
     }
     getId = (id) => {
-        console.log(id)
         this.setState({customerListSingle: this.state.customerList[id]})
         this.setState({id: id})
         this.setState({redirect: true})
@@ -75,29 +93,26 @@ export class Customers extends Component {
         if (this._isMounted) {
             this.getCustomer()           
         }
-        console.log();
     }
     componentWillUnmount(){
-        this._isMounted = true;
+        this._isMounted = false;
     }
     componentDidUpdate(prevProp, prevState){
-        if (this.state.counter === prevState.counter) {
-            this.setState({redirect: false})
-            this.setState({counter: this.state.counter+1})
-            if (window.location.pathname.endsWith('customers')) {
-                this.setState({class1: "admin-page"})
-            }
+        this._isMounted = true;
+        if (this._isMounted) {
+            if (this.state.counter === prevState.counter) {
+                this.setState({redirect: false})
+                this.setState({counter: this.state.counter+1})
+                if (window.location.pathname.endsWith('customers')) {
+                    this.setState({class1: "admin-page"})
+                }
+            }            
         }
+
     }
 
     render() {
-        const AdminNon = () => {
-            if (this.state.customerList.length === 0) {
-                return <h1 className="admin-head">No Customers Yet</h1>
-            }else{
-                return <h1 className="admin-head">Customers Page</h1>
-            }
-        }      
+
         if (this.state.redirect) {
             if (this.state.dash) {
                 return <Redirect push to="/admin" />;
@@ -112,11 +127,14 @@ export class Customers extends Component {
 
         }  
         return(
-            <div className="admin-page-cont">        
+            <div className="admin-page-cont">
                 <div className={this.state.class1} >
-                <AdminNon />
+                <div>
+                    <FaArrowLeft size={25} onClick={this.dash} cursor={"pointer"}/>
+                    <h1 className="admin-head">Customers Page</h1>
+                </div>
+                {this.state.noCustomers}
                 {this.state.error}
-                <FaArrowLeft size={20} onClick={this.dash} cursor={"pointer"}/>
                 {!this.state.customerList.length ? this.state.loading : null} 
                 {this.state.customerList.map((val, key)=>{
                     return (
@@ -134,8 +152,7 @@ export class Customers extends Component {
                             <div><h2>Color:</h2><p>{val.color}</p></div>
                             <div><h2>Telephone Number:</h2><p>{val.telephoneNumber}</p></div>
                             <div><h2>Email:</h2><p>{val.email}</p></div>     
-                        </li>
-                        
+                        </li>    
                     </ul>
                     )
                 })}

@@ -436,7 +436,7 @@ ul {
 }
 
 .show {
-  display: none;
+  display: none !important;
 }
 
 li {
@@ -1560,7 +1560,7 @@ button {
 
 /*Admin*/
 .admin-main {
-  height: 100vh;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1613,6 +1613,21 @@ button {
   cursor: pointer;
 }
 
+.admin-main ul li#logout {
+  padding: 20px 0 40px 0;
+  cursor: default;
+  width: 150px;
+  height: 50px;
+  background: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.admin-main ul li#logout img {
+  cursor: pointer;
+  width: 50px;
+}
+
 .admin-main ul div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1648,6 +1663,11 @@ button {
   margin-top: 80px;
   background: #fcdef1;
   height: 100vh;
+}
+
+.delete-cont {
+  width: 30px !important;
+  cursor: pointer;
 }
 
 .addEmail {
@@ -1771,9 +1791,80 @@ button {
   display: none;
 }
 
+.delete-question-cont {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+  top: 50%;
+  -webkit-transform: translatey(-50%);
+          transform: translatey(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.delete-question-cont .delete-question {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(114, 114, 114, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(114, 114, 114, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  width: 300px;
+  background: #f8f8f8;
+  height: 150px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  margin-bottom: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  text-align: center;
+}
+
+.delete-question-cont .delete-question ul {
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.delete-question-cont .delete-question ul li {
+  width: 100%;
+}
+
+.delete-question-cont .delete-question button {
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .customer-cont {
   height: 100%;
   padding: 35px 10vw;
+  position: relative;
 }
 
 .customer-cont .button {
@@ -2118,6 +2209,7 @@ span {
 }
 
 .form-cont .form {
+  margin-top: 90px;
   background: #f8f8f8;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

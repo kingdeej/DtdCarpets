@@ -10,33 +10,40 @@ import { withRouter } from 'react-router'
 import Loading from '../components/Loading'
 
 export class useForm extends Component {
-    state = {
-        step: 1,
-        value: 0,
-        id: null,
-        organization:"",
-        firstName:"",
-        lastName:"",
-        telephoneNumber:"",
-        email:"",
-        upholsteryType:"",
-        color:"",
-        description:"",
-        streetAddress: "",
-        streetAddress2: "",
-        city: "",
-        state: "",
-        postal: 0,
-        scheduleDate: "",
-        upholsteryType1: "",
-        color1: "",
-        counter: 0,
-        isAuth: false,
-        isAdmin: false,
-        redirect: false,
-        loading: <Loading />,
-        ifLoading: false
-    }
+    _isMounted = false;
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            step: 1,
+            value: 0,
+            id: null,
+            organization:"",
+            firstName:"",
+            lastName:"",
+            telephoneNumber:"",
+            email:"",
+            upholsteryType:"",
+            color:"",
+            description:"",
+            streetAddress: "",
+            streetAddress2: "",
+            city: "",
+            state: "",
+            postal: 0,
+            scheduleDate: "",
+            upholsteryType1: "",
+            color1: "",
+            counter: 0,
+            isAuth: false,
+            isAdmin: false,
+            redirect: false,
+            loading: <Loading />,
+            ifLoading: false
+        }
+
+        };
+    
     getCustomerId = () => {
         setTimeout(() => {
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getCustomerid").then((response)=>{
@@ -54,24 +61,32 @@ export class useForm extends Component {
     }      
 
     componentDidMount() {
-        this.getCustomerId()
+        this._isMounted = true;
+        if (this._isMounted) {
+            this.getCustomerId()
+            localStorage.clear()
+        }else{}
     }
     componentWillUnmount() {
-        this.getCustomerId()
+        this.setState = (state,callback)=>{
+            return;
+        };
     }
     componentDidUpdate(prevProp, prevState){
-        if (prevState.counter === this.state.counter) {
+        this._isMounted = true;
+        if (this._isMounted) {
+            if (prevState.counter === this.state.counter) {
 
-            if (this.state.isAuth === false) {
-                if (parseInt(window.location.pathname.slice(-1)) !== 1) {
-                    this.props.history.push('/useform/1')
+                if (this.state.isAuth === false) {
+                    if (parseInt(window.location.pathname.slice(-1)) !== 1) {
+                        this.props.history.push('/useform/1')
+                    }
+                }else{
+                    this.setState({counter: this.state.counter+1})
+                    this.setState({step: parseInt(window.location.pathname.slice(-1)) })                
                 }
-            }else{
-                this.setState({counter: this.state.counter+1})
-                this.setState({step: parseInt(window.location.pathname.slice(-1)) })                
             }
         }
-
     }
 
 

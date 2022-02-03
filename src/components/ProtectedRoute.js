@@ -3,12 +3,14 @@ import { Redirect, Route } from 'react-router'
 
 function ProtectedRoute({ isAdmin: IsAdmin, component: Component, ...rest}) {
     const redirect = true
+    console.log(Component);
     return <Route {...rest} render={(props)=>{
-        if (IsAdmin) {
+        const isAdmin = sessionStorage.getItem('isauth')
+        if (isAdmin === 'true') {
             return <Component/>
         }else{
             if (redirect) {
-                return <Redirect push to ="/"/>             
+                return <Redirect push to ='/' />
             }
         }
     }}

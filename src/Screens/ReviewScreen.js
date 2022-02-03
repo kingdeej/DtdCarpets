@@ -53,6 +53,7 @@ export class ReviewScreen extends Component {
         if (this._isMounted) {
             this.getReviews();
         }
+        localStorage.clear()
     }
     componentWillUnmount(){
         this._isMounted = false

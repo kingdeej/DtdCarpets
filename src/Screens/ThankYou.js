@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 export class ThankYou extends Component {
     render() {
         const {loading, ifLoading} = this.props
-        console.log(ifLoading);
         if (ifLoading) {
             return(
                 <div className= "loading-cont">

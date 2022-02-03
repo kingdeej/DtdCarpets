@@ -20,7 +20,9 @@ componentDidMount(){
     }
 }
 componentWillUnmount(){
-    this._ismounted = false
+    this.setState = (state,callback)=>{
+        return;
+    };
 }
 
     render() {

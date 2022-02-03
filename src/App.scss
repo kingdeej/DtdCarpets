@@ -309,7 +309,7 @@ ul{
 }
 
 .show{
-    display: none;
+    display: none !important;
 }
 li{
     list-style-type: none;
@@ -1214,7 +1214,7 @@ button{
 }
 /*Admin*/
 .admin-main{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1241,6 +1241,18 @@ button{
             cursor: pointer;
 
         }
+        li#logout{
+            padding: 20px 0 40px 0;
+            cursor: default;
+            width: 150px;
+            height: 50px;
+            background: none !important;
+            box-shadow: none;
+            img{
+                cursor: pointer;
+                width: 50px;
+            }
+        }
         div{
             display: flex;
             flex-direction: column;
@@ -1266,6 +1278,10 @@ button{
     margin-top: 80px;
     background: #fcdef1;
     height: 100vh;
+}
+.delete-cont{
+    width: 30px !important;
+    cursor: pointer;
 }
 .addEmail{
     height: 100vh;
@@ -1345,9 +1361,54 @@ button{
 .customer{
     display: none;
 }
+.delete-question-cont{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin-top: 60px;
+    top: 50%;  
+    transform: translatey(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+
+    .delete-question{
+        box-shadow: 0 4px 8px 0 rgba(114, 114, 114, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+        width: 300px;
+        background: #f8f8f8;
+        height: 150px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: 80px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+        ul{
+            height: 30px;
+            display: flex;
+
+            width: 100%;
+            gap: 10px;
+            li{
+                width: 100%;
+            }
+        }
+        button{
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+        }
+    }
+}
 .customer-cont{
     height: 100%;
     padding: 35px 10vw ;
+    position: relative;
+
 
     .button{
         width: 100%;
@@ -1607,6 +1668,7 @@ span{
         padding:20px;
     }    
     .form{
+        margin-top: 90px;
         background: #f8f8f8;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 0 10px 0 10px;
