@@ -114,7 +114,9 @@ export class Reviews extends Component {
                                             upholsteryType: this.state.upholsteryType,
                                             rating: this.state.rating,
                                             review: this.state.review,
-                                            imageId1: this.state.imageId1
+                                            imageId1: this.state.imageId1,
+                                            verified: this.state.verified
+
                                         }).then(()=>{
                                             console.log("success")
                                             window.location.reload(false);   
@@ -137,6 +139,8 @@ export class Reviews extends Component {
                                             rating: this.state.rating,
                                             review: this.state.review,
                                             imageId: this.state.imageId,
+                                            verified: this.state.verified
+
                                             }).then(()=>{
                                                 console.log("success")
                                                 window.location.reload(false);   
@@ -168,7 +172,9 @@ export class Reviews extends Component {
                                                 rating: this.state.rating,
                                                 review: this.state.review,
                                                 imageId: this.state.imageId,
-                                                imageId1: this.state.imageId1
+                                                imageId1: this.state.imageId1,
+                                                verified: this.state.verified
+
                                             }).then(()=>{
                                                 console.log("success")
                                                 window.location.reload(false);   
