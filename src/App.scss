@@ -1219,6 +1219,20 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+    .delete-question{
+        ul{
+            flex-direction: column;
+            width: 100%;
+            li{
+                width: 45% !important;
+                height: 20px;
+                box-shadow: none !important;
+                button{
+                    width: 100% !important;
+                }
+            }
+        }
+    }
     ul{
         display: flex;
         flex-direction: row;
@@ -1242,7 +1256,7 @@ button{
             cursor: pointer;
 
         }
-        li#logout{
+        li#logoutButton{
             padding: 20px 0 40px 0;
             cursor: default;
             width: 150px;

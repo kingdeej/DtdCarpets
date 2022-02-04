@@ -13,20 +13,35 @@ export class AdminPage extends Component {
         email: false,
         home: false,
         logout: false,
+        showQuestion: 'show'
     }
     dashNav = (e) => {
         const id = e.target.id
         this.setState({redirect: true})
         this.setState({[id]: true})
-        if (id === "logout") {
-            sessionStorage.clear()
+        if (id === "logoutButton") {
+            this.setState({showQuestion: ''})  
         }
     }
+    logout = (e) => {
+        const id = e.target.id
+        if (id === 'logout') {
+            sessionStorage.clear()
+            this.setState({logout: true})            
+        }else{
+            this.setState({redirect: false})
+            this.setState({showQuestion: 'show'})  
+        }
+    };
+    
     
     componentWillUnmount(){
         if (!this.state.redirect || this.state.home || this.state.logout) {
             localStorage.clear()
         }
+        this.setState = (state,callback)=>{
+            return;
+        };
     }
 
     render() {
@@ -72,8 +87,17 @@ export class AdminPage extends Component {
                             <h2 id='home'>HOME</h2> 
                         </div>
                     </li>
-                    <li id='logout'><img onClick={this.dashNav} id='logout' src={logout} alt="" />              </li>
+                    <li id='logoutButton'><img onClick={this.dashNav} id='logoutButton' src={logout} alt="" /></li>
                 </ul>
+                <div className={`${this.state.showQuestion} delete-question-cont`}>
+                        <div className='delete-question'>
+                            <h3>Are You sure you want to Log out?</h3>
+                            <ul>
+                                <li><button id="false" onClick={this.logout}>No</button></li>
+                                <li><button id="logout" onClick={this.logout}>Yes</button></li>
+                            </ul>
+                        </div>
+                    </div>
             </div>
         )
     }

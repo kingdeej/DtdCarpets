@@ -30,7 +30,6 @@ export class ReviewAdmin extends Component {
         this.setState({loading: <Loading />})
         this.setState({error: null})
         setTimeout(() => {
-            console.log("hello");
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
                 this.setState({reviews: response.data})
@@ -56,7 +55,10 @@ export class ReviewAdmin extends Component {
         localStorage.clear()
     }
     componentWillUnmount(){
-        this._isMounted = false
+        this.setState = (state , callback) =>{
+            return;
+        }
+
     }
 
     
