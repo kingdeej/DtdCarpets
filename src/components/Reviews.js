@@ -35,15 +35,21 @@ export class Reviews extends Component {
         showAlert1: "show",
         transform: '',
         loading: false,
+        verified: 0,
     }
 
     handleChange = (e) => {
         const name = e.target.name
         this.setState({[name]: e.target.value,})
     }
+    sub = () => {
+      console.log("hello");
+    };
+    
     handleSubmit = (e) => {
         e.preventDefault() 
         setTimeout(() => {
+            //Get Reviewid
             Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/getReviewid").then((response)=>{
                 const data = response.data
                 this.setState({id: data[0]["MAX(id)"]})
@@ -51,70 +57,110 @@ export class Reviews extends Component {
                     this.setState({id: 1})
                 }else{
                     this.setState({id: this.state.id + 1})
-                    console.log(this.state.id);
                 }
                 if (response.status !== 200) {
                     this.setState({step: 4})
                 }
                 if (response.status === 200){
+                    //get customers' email
                     Axios.get("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/customers").then((response)=>{
                         this.setState({customerInfo: response.data}) 
                         if (response.status !== 200) {
                             this.setState({step: 4})
                         }else{
                             this.setState({pleaseWait: ""})
-                            const result = this.state.customerInfo.find( ({email}) => email === this.state.email )
+                            let result = null
+                            if (this.state.customerInfo.length) {
+                                const email = this.state.customerInfo.find( ({email}) => email === this.state.email)
+                                if (email !== undefined) {
+                                    result = email.email
+                                }
+                            }
                             if(this.state.rating < 1 ){
                                 this.setState({showAlert1: "alert"}) 
-                            }else{
-                                if (result === undefined) {
-                                    this.setState({showAlert: "alert"})
-                                }else{
-                                    this.setState({step: 3})
-                                    if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
+                            }
+                            else{
+                                //verify email
+                                if (result === this.state.email) {
+                                    this.setState({verified: 1})
+                                }
+                                this.setState({step: 3})
+                                if ((this.state.imageSelected === undefined || this.state.imageSelected.length === 0) && (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0)) {
+                                    Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                            id: this.state.id,
+                                            name: this.state.name,
+                                            upholsteryType: this.state.upholsteryType,
+                                            rating: this.state.rating,
+                                            review: this.state.review,
+                                            verified: this.state.verified
+                                        }).then(()=>{
+                                            console.log("success")
+                                            window.location.reload(false);   
+                                    })
+                                }
+                                else if (this.state.imageSelected === undefined || this.state.imageSelected.length === 0) {
+                
+                                    const formData1 = new FormData()
+                                    formData1.append("file", this.state.imageSelected1);
+                                    formData1.append("upload_preset", "mxkyqztd");
+                
+                                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                                        console.log(response)
+                                        this.setState({imageId1: response.data.public_id})
+                
                                         Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                                                id: this.state.id,
-                                                name: this.state.name,
-                                                upholsteryType: this.state.upholsteryType,
-                                                rating: this.state.rating,
-                                                review: this.state.review,
-                                            }).then(()=>{
-                                                console.log("success")
-                                                window.location.reload(false);   
+                                            id: this.state.id,
+                                            name: this.state.name,
+                                            upholsteryType: this.state.upholsteryType,
+                                            rating: this.state.rating,
+                                            review: this.state.review,
+                                            imageId1: this.state.imageId1
+                                        }).then(()=>{
+                                            console.log("success")
+                                            window.location.reload(false);   
                                         })
-                                    }
-                                    else if (this.state.imageSelected === undefined || this.state.imageSelected.length === 0) {
-                    
-                                        const formData1 = new FormData()
-                                        formData1.append("file", this.state.imageSelected1);
-                                        formData1.append("upload_preset", "mxkyqztd");
-                    
-                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
-                                            console.log(response)
-                                            this.setState({imageId1: response.data.public_id})
-                    
-                                            Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                                                id: this.state.id,
-                                                name: this.state.name,
-                                                upholsteryType: this.state.upholsteryType,
-                                                rating: this.state.rating,
-                                                review: this.state.review,
-                                                imageId1: this.state.imageId1
+                                    })
+                                }
+                                else if (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0) {
+                                    const formData = new FormData();
+                                    formData.append("file", this.state.imageSelected);
+                                    formData.append("upload_preset", "mxkyqztd");
+                
+                                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                                    console.log(response)
+                                    this.setState({imageId: response.data.public_id})
+                
+                                        Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
+                                            id: this.state.id,
+                                            name: this.state.name,
+                                            upholsteryType: this.state.upholsteryType,
+                                            rating: this.state.rating,
+                                            review: this.state.review,
+                                            imageId: this.state.imageId,
                                             }).then(()=>{
                                                 console.log("success")
                                                 window.location.reload(false);   
                                             })
                                         })
-                                    }
-                                    else if (this.state.imageSelected1 === undefined || this.state.imageSelected1.length === 0) {
-                                        const formData = new FormData();
-                                        formData.append("file", this.state.imageSelected);
-                                        formData.append("upload_preset", "mxkyqztd");
-                    
-                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
+                                }
+                                else if(this.state.imageSelected.name.length > 0 && this.state.imageSelected1.name.length) {
+                                    
+                                    const formData = new FormData();
+                                    formData.append("file", this.state.imageSelected);
+                                    formData.append("upload_preset", "mxkyqztd");
+                
+                                    const formData1 = new FormData()
+                                    formData1.append("file", this.state.imageSelected1);
+                                    formData1.append("upload_preset", "mxkyqztd");
+                            
+                                    Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
                                         console.log(response)
                                         this.setState({imageId: response.data.public_id})
-                    
+                
+                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
+                                            console.log(response)
+                                            this.setState({imageId1: response.data.public_id})
+                
                                             Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
                                                 id: this.state.id,
                                                 name: this.state.name,
@@ -122,45 +168,13 @@ export class Reviews extends Component {
                                                 rating: this.state.rating,
                                                 review: this.state.review,
                                                 imageId: this.state.imageId,
-                                                }).then(()=>{
-                                                    console.log("success")
-                                                    window.location.reload(false);   
-                                                })
-                                            })
-                                    }
-                                    else if(this.state.imageSelected.name.length > 0 && this.state.imageSelected1.name.length) {
-                                        
-                                        const formData = new FormData();
-                                        formData.append("file", this.state.imageSelected);
-                                        formData.append("upload_preset", "mxkyqztd");
-                    
-                                        const formData1 = new FormData()
-                                        formData1.append("file", this.state.imageSelected1);
-                                        formData1.append("upload_preset", "mxkyqztd");
-                                
-                                        Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData).then((response)=>{
-                                            console.log(response)
-                                            this.setState({imageId: response.data.public_id})
-                    
-                                            Axios.post("https://api.cloudinary.com/v1_1/asfsquidy/image/upload", formData1).then((response)=>{
-                                                console.log(response)
-                                                this.setState({imageId1: response.data.public_id})
-                    
-                                                Axios.post("https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/review", {
-                                                    id: this.state.id,
-                                                    name: this.state.name,
-                                                    upholsteryType: this.state.upholsteryType,
-                                                    rating: this.state.rating,
-                                                    review: this.state.review,
-                                                    imageId: this.state.imageId,
-                                                    imageId1: this.state.imageId1
-                                                }).then(()=>{
-                                                    console.log("success")
-                                                    window.location.reload(false);   
-                                                })
+                                                imageId1: this.state.imageId1
+                                            }).then(()=>{
+                                                console.log("success")
+                                                window.location.reload(false);   
                                             })
                                         })
-                                    }
+                                    })
                                 }
                             }
                         }
@@ -170,6 +184,7 @@ export class Reviews extends Component {
                     })
                 }
             }).catch((error) =>{
+                console.log(error.message);
                 this.setState({step:4})
             })
         },1000)
@@ -263,74 +278,74 @@ export class Reviews extends Component {
                 )
             case 2:
                 return(
-                    <ul className="right-rev">
-                            <li>
-                                <label className="add-images" htmlFor="">Add 2 images: </label>
-                                <hr />
-                            </li>
-                            <li className="image-container">         
-                                <label className="image-list-cont">
-                                    <label htmlFor="">Before:</label>
-                                    <input type="file" id="before" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
-                                    <ul>
-                                        <li>
-                                            <label htmlFor="before"><FaPlus className="plus"/></label>
-                                            <div></div>
-                                            <img className="input-img" src={this.state.imageUrl} alt="" />
-                                        </li>
-                                    </ul>
-                                </label>
-                                
-                                <label className="image-list-cont">
-                                    <label htmlFor="">After:</label>
-                                    <input type="file" id="after" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
-                                    <ul>
-                                        <li>
-                                            <label htmlFor="after"><FaPlus className="plus"/> </label>
-                                            <div></div>
-                                            <img className="input-img" src={this.state.imageUrl1} alt="" />
-                                        </li>
-                                    </ul>
-                                </label>
-                            </li>
-                            <li className="input">                      
-                                <label htmlFor="">Write organization name or full name: </label>
-                                <input type="text" value={this.state.name} placeholder="Write organization name or full name" name="name" onChange={this.handleChange} required/>
-                            </li>
-                            <li className="input">                      
-                                <label htmlFor="">Write email address: </label>
-                                <input type="email" value={this.state.email} placeholder="Write email address" name="email" onChange={this.handleChange} required/>
-                            </li>
-
-                            <li className="input">
-                                <label htmlFor="">Write upholsteryType: </label>
-                                <div className="upholstery-type">
-                                    <select name="upholsteryType" defaultValue={this.state.upholsteryType} value={this.state.upholsteryType} required onChange={this.handleChange} >
-                                        <option value="" disabled >Upholstery Type</option>
-                                        <option value="Carpet">Carpet</option>
-                                        <option value="Rug">Rug</option>
-                                        <option value="Large sofa">Large Sofa</option>
-                                        <option value="Medium sofa">Medium Sofa</option>
-                                        <option value="Small sofa">Small Sofa</option>
-                                        <option value="Bar Stools">Bar Stools</option>
-                                        <option value="Ottaman">Ottaman</option>
-                                        <option value="Counter Stools">Counter Stools</option>
-                                        <option value="Swivels and Gliders">Swivels and Gliders</option>
-                                        <option value="Accent Chairs">Accent Chairs</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <FaSortDown className="sort-down"/>
-                                </div>
-                            </li>
-                            <ul>
+                        <ul className="right-rev">
                                 <li>
-                                    <button className="prev-btn" onClick={this.previousStep}>Previous</button>
+                                    <label className="add-images" htmlFor="">Add 2 images: </label>
+                                    <hr />
                                 </li>
-                                <li className="submit-btn">
-                                    <button onClick={this.handleSubmit}>Submit</button>
+                                <li className="image-container">         
+                                    <label className="image-list-cont">
+                                        <label htmlFor="">Before:</label>
+                                        <input type="file" id="before" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                        <ul>
+                                            <li>
+                                                <label htmlFor="before"><FaPlus className="plus"/></label>
+                                                <div></div>
+                                                <img className="input-img" src={this.state.imageUrl} alt="" />
+                                            </li>
+                                        </ul>
+                                    </label>
+                                    
+                                    <label className="image-list-cont">
+                                        <label htmlFor="">After:</label>
+                                        <input type="file" id="after" name="image" onChange={this.getImage} accept="image/png, image/jpeg"/>
+                                        <ul>
+                                            <li>
+                                                <label htmlFor="after"><FaPlus className="plus"/> </label>
+                                                <div></div>
+                                                <img className="input-img" src={this.state.imageUrl1} alt="" />
+                                            </li>
+                                        </ul>
+                                    </label>
                                 </li>
+                                <li className="input">                      
+                                    <label htmlFor="">Write organization name or full name: </label>
+                                    <input type="text" value={this.state.name} placeholder="Write organization name or full name" name="name" onChange={this.handleChange} required/>
+                                </li>
+                                <li className="input">                      
+                                    <label htmlFor="">Write email address: </label>
+                                    <input type="email" value={this.state.email} placeholder="Write email address" name="email" onChange={this.handleChange} required/>
+                                </li>
+
+                                <li className="input">
+                                    <label htmlFor="">Write upholsteryType: </label>
+                                    <div className="upholstery-type">
+                                        <select name="upholsteryType" defaultValue={this.state.upholsteryType} required onChange={this.handleChange} >
+                                            <option value="" disabled >Upholstery Type</option>
+                                            <option value="Carpet">Carpet</option>
+                                            <option value="Rug">Rug</option>
+                                            <option value="Large sofa">Large Sofa</option>
+                                            <option value="Medium sofa">Medium Sofa</option>
+                                            <option value="Small sofa">Small Sofa</option>
+                                            <option value="Bar Stools">Bar Stools</option>
+                                            <option value="Ottaman">Ottaman</option>
+                                            <option value="Counter Stools">Counter Stools</option>
+                                            <option value="Swivels and Gliders">Swivels and Gliders</option>
+                                            <option value="Accent Chairs">Accent Chairs</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <FaSortDown className="sort-down"/>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <li>
+                                        <button className="prev-btn" onClick={this.previousStep}>Previous</button>
+                                    </li>
+                                    <li className="submit-btn">
+                                        <button type='submit' >Submit</button>
+                                    </li>
+                                </ul>
                             </ul>
-                        </ul>
                 )
                 case 3:
                     return(

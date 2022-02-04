@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { FaStar } from 'react-icons/fa'
+import { FaCheck, FaStar } from 'react-icons/fa'
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import Loading from '../components/Loading';
@@ -97,7 +97,7 @@ export class ReviewScreen extends Component {
                                         <p>{val.upholsteryType}</p>
                                     </li>
                                     <li>
-                                        <h2>Rating: </h2>
+                                        <h2>Rating: {val.verified === 1 ? <FaCheck size={10} /> : null} </h2>
                                         <p>{[...Array(5)].map((star, i)=>{
                                             const value = val.rating
                                             const ratingValue = i + 1

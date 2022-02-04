@@ -10,6 +10,7 @@ import { AdminPage } from './Screens/AdminPage';
 import AddEmail from './Screens/AddEmail';
 import Customer from './Screens/Customer';
 import Customers from './Screens/Customers';
+import ReviewAdmin from './Screens/ReviewAdmin';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <ProtectedRoute path="/admin/customers" component={Customers}/>
           <ProtectedRoute path="/admin/customer/:id" component={Customer}/>
           <ProtectedRoute path="/admin/addEmail" exact component={AddEmail}/>
+          <ProtectedRoute path="/admin/reviews" exact component={ReviewAdmin}/>
        </div>
     </BrowserRouter>  
     );

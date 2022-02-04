@@ -3,7 +3,6 @@ import { Redirect, Route } from 'react-router'
 
 function ProtectedRoute({ isAdmin: IsAdmin, component: Component, ...rest}) {
     const redirect = true
-    console.log(Component);
     return <Route {...rest} render={(props)=>{
         const isAdmin = sessionStorage.getItem('isauth')
         if (isAdmin === 'true') {

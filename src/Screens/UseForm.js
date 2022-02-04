@@ -8,6 +8,7 @@ import emailjs from 'emailjs-com'
 import SetAppointmentScreen from './SetAppointmentScreen'
 import { withRouter } from 'react-router'
 import Loading from '../components/Loading'
+import Error from '../components/Error'
 
 export class useForm extends Component {
     _isMounted = false;
@@ -39,7 +40,8 @@ export class useForm extends Component {
             isAdmin: false,
             redirect: false,
             loading: <Loading />,
-            ifLoading: false
+            ifLoading: false,
+            ifError: null,
         }
 
         };
@@ -94,6 +96,7 @@ export class useForm extends Component {
 
     sendEmail = () => {
         this.setState({ifLoading: true})
+        this.setState({ifLoading: false})
         let load = ()=>{
             this.setState({ifLoading: false})
         }
@@ -102,6 +105,8 @@ export class useForm extends Component {
             console.log('SUCCESS!', response.status, response.text);
             load()
         }, function(error) {
+            this.setState({ifLoading: false})
+            this.setState({ifError: <Error />})
             console.log('FAILED...', error);
         });        
     }
