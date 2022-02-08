@@ -50,7 +50,7 @@ export class Navbar extends Component {
                         <li><a className="btn-2" id="btn-2" href="/#about-us"><button>About us</button></a></li>
                         <li><a className="btn-2" id="btn-2" href="/#footer"><button>Contact us</button></a></li>
                         <li className="nav-spacer"></li>
-                        <li><Link className="btn-1" to="/useform/1"><button className="get-started-btn">Get Started</button></Link></li> 
+                        <li><Link className="btn-1" to="/useform/1"><button className="get-started-btn">Get Quote</button></Link></li> 
                         <li><a className="see-our-work" href="https://www.facebook.com/100058473835975">See our work</a></li>
                     </ul>
                 </div>

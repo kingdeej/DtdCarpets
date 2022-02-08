@@ -4,6 +4,7 @@ import { Redirect} from 'react-router-dom'
 import Loading from '../components/Loading'
 import Error from '../components/Error';
 import { FaArrowLeft } from 'react-icons/fa'
+import Cookies from 'universal-cookie';
 
 
 export class Customers extends Component {
@@ -53,7 +54,6 @@ export class Customers extends Component {
                         this.setState({loading: null})
                         // if axioscustomerList is 0
                         if (axiosCustomerList === "[]") {
-                            console.log(axiosCustomerList);
                             this.setState({noCustomers: <h3 className="admin-head">No Customers Yet</h3>  })
                         }
                         //if axiosCustomerList is not the same as local storage
@@ -91,7 +91,10 @@ export class Customers extends Component {
     componentDidMount(){
         this._isMounted = true;
         if (this._isMounted) {
-            this.getCustomer()           
+            this.getCustomer()    
+            const cookies = new Cookies();
+            cookies.set('myCat', 'Pacman', { path: '/' });
+            console.log(cookies.get('myCat')); // Pacman  
         }
     }
     componentWillUnmount(){

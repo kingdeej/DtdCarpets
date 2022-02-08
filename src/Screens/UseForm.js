@@ -5,7 +5,6 @@ import FormPersonalDetails from './FormPersonalDetails'
 import FormUpholsteryDetails from './FormUpholsteryDetails'
 import ThankYou from './ThankYou'
 import emailjs from 'emailjs-com'
-import SetAppointmentScreen from './SetAppointmentScreen'
 import { withRouter } from 'react-router'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
@@ -186,18 +185,11 @@ export class useForm extends Component {
 
     render() {
         const { step, ifLoading, loading} = this.state
-        const {button} = this.props
+        const {login, getPassword} = this.props
         const {value, organization, color1, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate } = this.state
         const values = {value, color1, organization, firstName, lastName, telephoneNumber, email, upholsteryType, upholsteryType1, color, description, streetAddress, streetAddress2, city, state, postal, scheduleDate }        
         switch(step){
             case 1:
-                return(
-                    <SetAppointmentScreen
-                    nextStep={this.nextStep}
-                    step={this.state.step}
-                    />
-                )
-            case 2:
                 return(
                     <FormPersonalDetails 
                     nextStep={this.nextStep}
@@ -205,10 +197,11 @@ export class useForm extends Component {
                     values={values}
                     onCreditCardChange ={this.onCreditCardChange}
                     step={this.state.step}
-                    button={button}
+                    login={login}
+                    getPassword={getPassword}
                     />
                 )
-            case 3:
+            case 2:
                 return(
                     <FormUpholsteryDetails 
                     prevStep= {this.prevStep}
@@ -219,7 +212,7 @@ export class useForm extends Component {
                     step={this.state.step}
                     />
                 )
-            case 4:
+            case 3:
                 return(
                     <FormAddressDetails 
                     nextStep = {this.nextStep}
@@ -231,7 +224,7 @@ export class useForm extends Component {
                     step={this.state.step}
                     />
                 )
-            case 5:
+            case 4:
                 return(
                     <ThankYou
                         ifLoading = {ifLoading}

@@ -11,21 +11,32 @@ import AddEmail from './Screens/AddEmail';
 import Customer from './Screens/Customer';
 import Customers from './Screens/Customers';
 import ReviewAdmin from './Screens/ReviewAdmin';
+import { useState } from 'react';
+import {useCookies} from 'react-cookie';
+;
+
 
 
 function App() {
+  const [isAuth, setIsAuth]= useState(false) 
+  const [password, setPassword]= useState(null) 
+  const [cookies, setCookie] = useCookies(['user']);
+
+
+  
+  
   return (
     <BrowserRouter>
       <Navbar />
         <div className="app">
-          <Route path="/useform/" component={UseForm} ></Route>
+          <Route path="/useform/"component={UseForm}></Route>
           <Route path="/reviews" component={ReviewScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
-          <ProtectedRoute path="/admin" exact component={AdminPage}/>
+          <ProtectedRoute path="/admin" exact isAuth={cookies.isAuth}  component={AdminPage}/>
           <ProtectedRoute path="/admin/customers" component={Customers}/>
           <ProtectedRoute path="/admin/customer/:id" component={Customer}/>
           <ProtectedRoute path="/admin/addEmail" exact component={AddEmail}/>
-          <ProtectedRoute path="/admin/reviews" exact component={ReviewAdmin}/>
+          <ProtectedRoute path="/admin/reviews" component={ReviewAdmin}/>
        </div>
     </BrowserRouter>  
     );

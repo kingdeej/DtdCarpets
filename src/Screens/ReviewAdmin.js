@@ -1,9 +1,11 @@
 import Axios from 'axios';
-import { FaCheck, FaStar } from 'react-icons/fa'
+import { FaCheck, FaStar} from 'react-icons/fa'
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import deletes from '../images/delete.png';
+
 
 
 export class ReviewAdmin extends Component {
@@ -15,7 +17,9 @@ export class ReviewAdmin extends Component {
         revListId: "",
         showImg: "",
         loading: <Loading />,
-        error: null
+        error: null,
+        showQuestion: 'show',
+        id: null
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -29,15 +33,19 @@ export class ReviewAdmin extends Component {
     getReviews = () => {
         this.setState({loading: <Loading />})
         this.setState({error: null})
+        //set reviews to local storage       
         setTimeout(() => {
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
                 this.setState({reviews: response.data})
+                // if data is fetched successfully
                 if (response.status !== 200) {
+                    //error and loading
                     this.setState({loading: null})
-                    this.setState({error: <Error refresh = {this.getReviews}/>})    
+                    this.setState({error: <Error refresh = {this.getReviews}/>})
                 }
             })
+            //if error
             .catch(err =>{
                 this.setState({loading: null})
                 this.setState({error: <Error refresh = {this.getReviews}/>})
@@ -47,6 +55,25 @@ export class ReviewAdmin extends Component {
         }, 1000);
         clearTimeout(this.getReviews)
     }
+    deleteReview = (e) => {
+        Axios.delete(`https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/delete-review/${this.state.id}`, {
+            id: this.state.id
+        }).then((response)=>{
+            this.setState({reviews: this.state.reviews.filter((val)=>{
+                return JSON.stringify(val.id) !== this.state.id;
+            })})
+            this.setState({showQuestion: "show"}) 
+        }).catch((error)=>{
+            console.log(error);
+        })
+      console.log(e.target.id);
+    };
+    //are you sure
+    areYouSure = (e) => {
+      this.setState({id: e.target.id}) 
+      this.setState({showQuestion: ""}) 
+    };
+    
     componentDidMount(){
         this._isMounted = true;
         if (this._isMounted) {
@@ -132,10 +159,12 @@ export class ReviewAdmin extends Component {
                                         <p>{val.review}</p>
                                     </li>
                                 </ul>
-                            </div>                                
+                                <img src={deletes} alt="delete" style={{width: "30px", cursor: 'pointer'}} id={val.id} onClick={this.areYouSure}/>
+                            </div>                               
                         )
                     })}
                 </div>
+
                 <div className={`rev-img-parent ${this.state.revImageCont}`}>
                     <div className="review-img-cont">
                         <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
@@ -147,6 +176,16 @@ export class ReviewAdmin extends Component {
                         <Image cloudName="asfsquidy"  publicId={this.state.revListId} className="rev-img" />
                     </div>
                     <div className={this.state.revImageCont}><button className="review-btn" onClick={this.toggleRevList}>Back</button></div>
+                </div>
+                {/*are you sure*/}
+                <div className={`${this.state.showQuestion} delete-question-cont`}>
+                    <div className='delete-question'>
+                        <h3>Are You sure you want to delete this review</h3>
+                        <ul>
+                            <li><button onClick={()=>{this.setState({showQuestion: "show"})}} >No</button></li>
+                            <li><button onClick={this.deleteReview} >Yes</button></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         )

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import Loading from '../components/Loading'
 import deletes from '../images/delete.png';
-;
 
 
 export class Customer extends Component {
@@ -15,6 +14,7 @@ export class Customer extends Component {
         showQuestion: "show",
         redirect: false,
         home: false,
+        id: null
     }
     back = () => {
         this.setState({redirect: true})
@@ -23,28 +23,27 @@ export class Customer extends Component {
         this.setState({home: true})
         this.setState({redirect: true})
     }
+    getCustomerId = (e) => {
+      this.setState({id: e.target.id})
+      this.setState({showQuestion: ""})
+
+    };
+    
     deleteCustomer = (e) => {
         const pathname = window.location.pathname.slice(-1)
-        const deleteQuestion = e.target.name
-        console.log(deleteQuestion);
-        if (!deleteQuestion) {
-            this.setState({showQuestion: ""})
-        }else{
-            this.setState({showQuestion: "show"})
-
-            setTimeout(() => {
-                axios.delete(`http://localhost:5001/dtdcarpets/us-central1/dtdCarpets/delete/${pathname}`, {
-                    id: pathname
-                }).then(()=>{
-                    const customerList = JSON.parse(localStorage.getItem('customerList'))
-                    const results = customerList.filter(id => id.id !== parseInt(pathname))
-                    localStorage.setItem('customerList', JSON.stringify(results))
-                    this.setState({redirect: true})
-                }).catch((error)=>{
-                    console.log(error.message);
-                })
-            }, 1000);
-        }
+        this.setState({showQuestion: "show"})
+        setTimeout(() => {
+            axios.delete(`https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/delete/${pathname}`, {
+                id: pathname
+            }).then(()=>{
+                const customerList = JSON.parse(localStorage.getItem('customerList'))
+                const results = customerList.filter(id => id.id !== parseInt(pathname))
+                localStorage.setItem('customerList', JSON.stringify(results))
+                this.setState({redirect: true})
+            }).catch((error)=>{
+                console.log(error.message);
+            })
+        }, 1000);
 
     };
 
@@ -107,20 +106,21 @@ export class Customer extends Component {
                             <li>     
                                 <button onClick={this.home}>Home</button>               
                             </li>
-                            <li className='delete-cont' onClick={this.deleteCustomer}>
-                                <img src={deletes} alt="delete" />
+                            <li className='delete-cont' onClick={this.getCustomerId}>
+                                <img src={deletes} id={customerList.id} alt="delete" />
                             </li>
                         </ul>
                     </div>
+                    
                     <div className={`${this.state.showQuestion} delete-question-cont`}>
-                        <div className='delete-question'>
-                            <h3>Are You sure you want to delete {customerList.firstName} {customerList.lastName}{customerList.organization}</h3>
-                            <ul>
-                                <li><button name="false" onClick={this.deleteCustomer}>No</button></li>
-                                <li><button name="true" onClick={this.deleteCustomer}>Yes</button></li>
-                            </ul>
-                        </div>
+                    <div className='delete-question'>
+                        <h3>Are You sure you want to delete this review</h3>
+                        <ul>
+                            <li><button onClick={()=>{this.setState({showQuestion: "show"})}} >No</button></li>
+                            <li><button onClick={this.deleteCustomer} >Yes</button></li>
+                        </ul>
                     </div>
+                </div>
                 </div>
             )
 

@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Cleave from 'cleave.js/react';
 import { Redirect } from 'react-router';
+import Cookies from 'universal-cookie';
+;
+
 require('cleave.js/dist/addons/cleave-phone.ca')
 
 export default class FormPersonalDetails extends Component {
@@ -32,7 +35,8 @@ export default class FormPersonalDetails extends Component {
                 const {values: {telephoneNumber, email}}= this.props
                 const {values: {organization, firstName, lastName}}= this.props
                 if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
-                    sessionStorage.setItem('isauth', 'true')
+                    const cookies = new Cookies()
+                    cookies.set('isAuth', true, { path: '/' });
                     this.redirect()
                 }else if((organization.length > 0 && firstName.length === 0 && lastName.length === 0)|| (firstName.length > 0 && organization.length === 0 && lastName.length > 0) ){
                     this.props.nextStep()
@@ -48,10 +52,10 @@ export default class FormPersonalDetails extends Component {
     }
 
         render() {
+            const cookies = new Cookies()
             const {handleChange, onCreditCardChange} = this.props
             const { values: {telephoneNumber, organization, firstName, lastName, email} } = this.props  
             if (this.state.redirect) {
-                console.log("yes");
                 return <Redirect push to="/admin" />;
             }   
 
@@ -62,7 +66,7 @@ export default class FormPersonalDetails extends Component {
                     <div>
                         <div className="name">
                             <div className="head-info">
-                                {sessionStorage.getItem('isauth') === 'true' ? <h3 onClick={this.redirect}>Go to Admin</h3> : null}
+                                {cookies.get('isAuth') ? <h3 onClick={this.redirect}>Go to Admin</h3> : null}
                                 <h1>Enter Personal Info</h1>
                                 <hr className="head-hr" />
                             </div>
