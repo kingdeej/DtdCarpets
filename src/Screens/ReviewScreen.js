@@ -32,7 +32,7 @@ export class ReviewScreen extends Component {
         setTimeout(() => {
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
-                this.setState({reviews: response.data})
+                this.setState({reviews: response.data.reverse()})
                 if (response.status !== 200) {
                     this.setState({loading: null})
                     this.setState({error: <Error refresh = {this.getReviews}/>})    

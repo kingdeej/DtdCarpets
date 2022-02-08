@@ -39,7 +39,7 @@ export class ReviewAdmin extends Component {
         setTimeout(() => {
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
-                this.setState({reviews: response.data})
+                this.setState({reviews: response.data.reverse()})
                 // if data is fetched successfully
                 if (response.status !== 200) {
                     //error and loading
