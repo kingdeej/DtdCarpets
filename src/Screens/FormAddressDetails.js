@@ -4,19 +4,10 @@ import { FaTimes } from 'react-icons/fa';
 
 export default class AddressScreen extends Component {
     state ={
-        dat1: moment().format("D"),
-        dat2: "",
-        date_create: moment().format("YYYY-MM-"),
         alert: "emerald-alert"
     }
 
-    componentDidMount() {
-        const tostr = parseInt(this.state.dat1) + 1
-        if(this.state.dat1.length === 1){
-           this.setState({dat2: "0" + tostr})
-        }
-        console.log(moment().format('YYYY-MM-DD'));
-    }
+
 
     continue = e => {
         e.preventDefault()
@@ -34,6 +25,8 @@ export default class AddressScreen extends Component {
     render() {
         const {handleChange} = this.props
         const { values: {streetAddress, streetAddress2, city, postal, state, scheduleDate} } = this.props
+        const tomorrow = moment().add(1, 'days')
+
         return (
             <>
                 <div className="form-cont">
@@ -83,7 +76,7 @@ export default class AddressScreen extends Component {
                             <li>
                                 <label htmlFor="scheduleDate">Schedule Appointment</label>
                                 <div>
-                                    <input type="date" name="scheduleDate" min={moment().format('YYYY-MM-DD')} defaultValue={scheduleDate} onChange={handleChange()} required></input>
+                                    <input type="date" name="scheduleDate" min={tomorrow.format('YYYY-MM-DD')} defaultValue={scheduleDate} onChange={handleChange()} required></input>
                                 </div>
                             </li>
                         </ul>           
