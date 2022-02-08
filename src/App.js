@@ -11,16 +11,13 @@ import AddEmail from './Screens/AddEmail';
 import Customer from './Screens/Customer';
 import Customers from './Screens/Customers';
 import ReviewAdmin from './Screens/ReviewAdmin';
-import { useState } from 'react';
 import {useCookies} from 'react-cookie';
 ;
 
 
 
 function App() {
-  const [isAuth, setIsAuth]= useState(false) 
-  const [password, setPassword]= useState(null) 
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies] = useCookies(['user']);
 
 
   

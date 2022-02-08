@@ -1635,7 +1635,7 @@ button {
 .admin-main ul li#logoutButton {
   padding: 20px 0 40px 0;
   cursor: default;
-  width: 150px;
+  width: 350px;
   height: 50px;
   background: none !important;
   -webkit-box-shadow: none;
