@@ -1,13 +1,16 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router'
+import Cookies from 'universal-cookie';
 
 
 
-function ProtectedRoute({isAuth: IsAuth, component: Component, ...rest}) {
+
+
+function ProtectedRoute({component: Component,render:Render, ...rest}) {
     const redirect = true
     return <Route {...rest} render={(props)=>{
-        if (IsAuth) {
-            
+        const cookies = new Cookies()
+        if (cookies.get('isAuth') === 'true') {
             return <Component/>    
         }
         else{

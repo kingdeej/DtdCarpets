@@ -4,7 +4,6 @@ import { Redirect} from 'react-router-dom'
 import Loading from '../components/Loading'
 import Error from '../components/Error';
 import { FaArrowLeft } from 'react-icons/fa'
-import Cookies from 'universal-cookie';
 
 
 export class Customers extends Component {
@@ -92,9 +91,6 @@ export class Customers extends Component {
         this._isMounted = true;
         if (this._isMounted) {
             this.getCustomer()    
-            const cookies = new Cookies();
-            cookies.set('myCat', 'Pacman', { path: '/' });
-            console.log(cookies.get('myCat')); // Pacman  
         }
     }
     componentWillUnmount(){
