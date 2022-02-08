@@ -55,7 +55,9 @@ export class ReviewScreen extends Component {
         localStorage.clear()
     }
     componentWillUnmount(){
-        this._isMounted = false
+        this.setState = (state , callback) =>{
+            return;
+        }
     }
 
     

@@ -114,7 +114,7 @@ export class Customer extends Component {
                     
                     <div className={`${this.state.showQuestion} delete-question-cont`}>
                     <div className='delete-question'>
-                        <h3>Are You sure you want to delete this review</h3>
+                        <h3>Are You sure you want to delete this Customer</h3>
                         <ul>
                             <li><button onClick={()=>{this.setState({showQuestion: "show"})}} >No</button></li>
                             <li><button onClick={this.deleteCustomer} >Yes</button></li>

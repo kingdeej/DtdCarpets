@@ -1,0 +1,27 @@
+.addEmail{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    div{
+        display: flex;
+        gap: 20px;
+    }
+    input{
+        padding: 0 5px;
+    }
+    button{
+        font-size: 20px;
+        width: 100px;
+        color: #FF67CB;
+        background-color: white;
+        border: 3px #FF67CB solid;
+        transition: background-color .2s, color .2s;
+    }
+    button:hover{
+        background-color: #FF67CB;
+        color: white;
+    }
+}

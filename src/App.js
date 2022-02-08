@@ -1,4 +1,17 @@
+//styles
 import './App.css';
+import './styles/AddEmail/AddEmail.css';
+import './styles/AdminPage/AdminPage.css';
+import './styles/Customer/Customer.css';
+import './styles/Customers/Customers.css';
+import './styles/ReviewPage/ReviewPage.css';
+import './styles/ThankYou/ThankYou.css';
+import './styles/HomeScreen/HomeScreen.css';
+import './styles/NavBar/NavBar.css';
+import './styles/UseForm/UseForm.css';
+
+
+//components / screens
 import {React} from 'react'
 import {BrowserRouter, Route,} from "react-router-dom" ;
 import HomeScreen from './Screens/HomeScreen';

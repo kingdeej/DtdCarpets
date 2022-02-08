@@ -1,0 +1,134 @@
+.customer {
+  display: none;
+}
+
+.delete-cont {
+  width: 30px !important;
+  cursor: pointer;
+}
+
+.customer-cont {
+  height: 100%;
+  padding: 35px 10vw;
+  position: relative;
+}
+
+.customer-cont .button {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 50px;
+  gap: 20px;
+}
+
+.customer-cont .button :nth-child(1) button {
+  font-size: 20px;
+  color: #FF67CB;
+  background-color: white;
+  border: 3px #FF67CB solid;
+  -webkit-transition: background-color .2s, color .2s;
+  transition: background-color .2s, color .2s;
+}
+
+.customer-cont .button :nth-child(1) button:hover {
+  background-color: #FF67CB;
+  color: white;
+}
+
+.customer-cont .button li {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+}
+
+.customer-cont .button li button {
+  font-size: 20px;
+  width: 100%;
+  background-color: #FF67CB;
+  color: white;
+  position: relative;
+  opacity: .8;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+}
+
+.customer-cont .button li button:hover {
+  opacity: 1;
+}
+
+.customer-cont ul {
+  margin-bottom: 20px;
+}
+
+.customer-cont ul hr {
+  border: none;
+  border-top: #fda9e0 2px solid;
+}
+
+.customer-cont ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 20px;
+}
+
+.customer-cont ul li h1 {
+  color: black;
+}
+
+.customer-cont ul li div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #1d1d1d;
+}
+
+.customer-cont ul li div h2 {
+  font-size: 21px;
+}
+
+.customer-cont .date {
+  margin-top: 50px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.customer-cont .date h2 {
+  margin: 7px auto auto 10px;
+  color: #3d3d3d;
+  text-decoration: underline;
+}
+
+.customer-cont .address-info {
+  margin-bottom: 30px;
+}
+
+.customer-cont .description {
+  margin-bottom: 50px;
+}
+
+.customer-cont .description p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+/*# sourceMappingURL=Customer.css.map */

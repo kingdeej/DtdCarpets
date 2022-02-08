@@ -1,0 +1,77 @@
+.admin-page-cont {
+  position: relative;
+}
+
+.admin-page {
+  padding: 6em 10vw;
+}
+
+.admin-page .admin-head {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.admin-page ul {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  margin: 50px auto;
+  max-width: 700px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border-radius: 10px;
+}
+
+.admin-page ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 10px;
+  padding: 20px 30px;
+  width: 100%;
+}
+
+.admin-page ul li div:nth-child(1) {
+  text-align: center;
+}
+
+.admin-page ul li hr {
+  border: none;
+  border-top: 2px solid #FF67CB;
+}
+
+.admin-page ul li div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.admin-page ul li p {
+  text-transform: capitalize;
+}
+
+.admin-page ul li .desc {
+  width: 200px;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: lightgreen;
+}
+/*# sourceMappingURL=Customers.css.map */

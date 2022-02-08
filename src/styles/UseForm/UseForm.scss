@@ -1,0 +1,154 @@
+/*UseForm*/
+.form-cont{
+    margin: 0 10vw;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    .head-info{
+        text-align: center;
+        background: #f8f8f8;
+        font-size: smaller;
+        margin-bottom: 10px;
+    }
+    .ul{
+        padding:20px;
+    }    
+    .form{
+        margin: 90px 0 20px 0;
+        background: #f8f8f8;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 0 10px 0 10px;
+        max-width: 700px;
+        width: 700px;
+        object-fit: contain;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        position: relative;
+        .head-hr{
+            width: 50%;
+            margin: 0 auto;
+            min-width: 250px;
+            border-bottom: 2px solid #FF67CB;
+        }
+
+        li{
+            margin-bottom: 20px;
+        }
+        hr{
+            border: none;
+            border-bottom: 2px #FF67CB solid;
+            margin-bottom: 10px;
+            border-radius: 200px;
+        }     
+        .left-side{
+            margin-bottom: 20px;
+        }   
+        label{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        .button-ul{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            gap: 15px;
+            margin-bottom: 5px;
+
+            li{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100%;
+                button{
+                    height: 100%;
+                    background: #FF67CB;
+                    color: white;
+                    font-size: 20PX;
+                    opacity: .8;
+
+                }
+                button:hover{
+                    font-weight: bold;
+                    border: 3px solid #FF67CB;
+                    transition: font-weight .2s, opacity .2s, border .2s;
+                    opacity: 1;
+                }
+                .prev-btn{
+                    background: white;
+                    color: black;
+                }
+
+
+            }
+        }
+
+    }
+}
+.upholstery{
+    span{
+        color: black;
+    }
+    .fa-plus{
+        color: #FF67CB;
+    }
+    .fa-minus{
+        color: #FF67CB;
+    }
+    .uphold{
+        margin-bottom: 20px;
+       div{
+            margin-bottom: 10px;
+        }
+    }
+    .description{
+        textarea{
+            height: 170px;
+            width: 200px;
+            max-height: 170px;
+            min-height: 170px;
+            min-width: 200px;
+            max-width: 100%;
+        }
+    }
+    @media screen and (max-width: 510px) {
+        .uphold{
+            border-bottom: 1px rgb(34, 34, 34) solid !important;
+        }
+    }
+}
+.address{
+    
+    li{
+        margin-bottom: 20px;
+    }
+    .address-sep{
+        display: flex;
+        flex-wrap: wrap;
+        .city{
+            margin-right: 100px;
+            margin-bottom: 20px;
+        }
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+}    
+
+

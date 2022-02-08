@@ -1,0 +1,112 @@
+.admin-main {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.admin-main .delete-question ul {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.admin-main .delete-question ul li {
+  width: 45% !important;
+  height: 20px;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.admin-main .delete-question ul li button {
+  width: 100% !important;
+}
+
+.admin-main ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 700px;
+  height: 60vh;
+  margin: 20px;
+  gap: 20px;
+}
+
+.admin-main ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+  height: 150px;
+  background-color: #F8F8F8;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.2);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.admin-main ul li#logoutButton {
+  padding: 20px 0 40px 0;
+  cursor: default;
+  width: 350px;
+  height: 50px;
+  background: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.admin-main ul li#logoutButton img {
+  cursor: pointer;
+  width: 50px;
+}
+
+.admin-main ul div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.admin-main ul div img {
+  width: 80px;
+}
+
+.admin-main ul div h2 {
+  color: #FF67CB;
+}
+/*# sourceMappingURL=AdminPage.css.map */
