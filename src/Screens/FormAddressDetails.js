@@ -15,6 +15,7 @@ export default class AddressScreen extends Component {
         if(this.state.dat1.length === 1){
            this.setState({dat2: "0" + tostr})
         }
+        console.log(moment().format('YYYY-MM-DD'));
     }
 
     continue = e => {
@@ -82,7 +83,7 @@ export default class AddressScreen extends Component {
                             <li>
                                 <label htmlFor="scheduleDate">Schedule Appointment</label>
                                 <div>
-                                    <input type="date" name="scheduleDate" min={this.state.date_create + this.state.dat2} defaultValue={scheduleDate} onChange={handleChange()} required></input>
+                                    <input type="date" name="scheduleDate" min={moment().format('YYYY-MM-DD')} defaultValue={scheduleDate} onChange={handleChange()} required></input>
                                 </div>
                             </li>
                         </ul>           
