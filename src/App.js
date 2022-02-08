@@ -12,10 +12,6 @@ import Customer from './Screens/Customer';
 import Customers from './Screens/Customers';
 import ReviewAdmin from './Screens/ReviewAdmin';
 
-;
-
-
-
 function App() {
   
   return (
@@ -25,11 +21,11 @@ function App() {
           <Route path="/useform/" component={UseForm}></Route>
           <Route path="/reviews" component={ReviewScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
-          <ProtectedRoute path="/admin" exact  component={AdminPage} />
-          <ProtectedRoute path="/admin/customers"  component={Customers}/>
-          <ProtectedRoute path="/admin/customer/:id"  component={Customer}/>
-          <ProtectedRoute path="/admin/addEmail"  exact component={AddEmail}/>
-          <ProtectedRoute path="/admin/reviews"  component={ReviewAdmin}/>
+          <ProtectedRoute path="/admin" exact component={AdminPage} />
+          <ProtectedRoute path="/admin/customers" component={Customers}/>
+          <ProtectedRoute path="/admin/customer/:id" component={Customer}/>
+          <ProtectedRoute path="/admin/addEmail" exact component={AddEmail}/>
+          <ProtectedRoute path="/admin/reviews" component={ReviewAdmin}/>
        </div>
     </BrowserRouter>  
     );

@@ -35,6 +35,7 @@ export default class FormPersonalDetails extends Component {
                 const {values: {telephoneNumber, email}}= this.props
                 const {values: {organization, firstName, lastName}}= this.props
                 if(email === adminEmail && telephoneNumber === adminTelephoneNumber && organization.toLowerCase() === adminName){
+                    //set cookie
                     const cookies = new Cookies()
                     cookies.set('isAuth', true, { path: '/' });
                     this.redirect()
@@ -66,6 +67,7 @@ export default class FormPersonalDetails extends Component {
                     <div>
                         <div className="name">
                             <div className="head-info">
+                                {/* Check if isAuth */}
                                 {cookies.get('isAuth') === "true" ? <h3 onClick={this.redirect}>Go to Admin</h3> : null}
                                 <h1>Enter Personal Info</h1>
                                 <hr className="head-hr" />

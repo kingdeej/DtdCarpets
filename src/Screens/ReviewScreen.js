@@ -65,7 +65,7 @@ export class ReviewScreen extends Component {
             if (this.state.reviews === []) {
                 return <h1>No Reviews Yet</h1>
             }else{
-                return <h1>Reviews</h1>
+                return <h1>Admin Reviews</h1>
                 
             }
         } 

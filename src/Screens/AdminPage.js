@@ -6,9 +6,6 @@ import feedback from '../images/feedback.png';
 import home from '../images/home.png';
 import logout from '../images/logout.png';
 import Cookies from 'universal-cookie';
-;
-
-;
 
 
 export class AdminPage extends Component {
@@ -33,6 +30,7 @@ export class AdminPage extends Component {
         const id = e.target.id
         const cookies = new Cookies()
         if (id === 'logout') {
+            //remove cookie
             cookies.remove('isAuth')
             this.setState({logout: true})    
         }else{
