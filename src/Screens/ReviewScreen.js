@@ -30,7 +30,6 @@ export class ReviewScreen extends Component {
         this.setState({loading: <Loading />})
         this.setState({error: null})
         setTimeout(() => {
-            console.log("hello");
             Axios.get('https://us-central1-dtdcarpets.cloudfunctions.net/dtdCarpets/reviews')
             .then((response)=>{
                 this.setState({reviews: response.data})
@@ -65,7 +64,7 @@ export class ReviewScreen extends Component {
             if (this.state.reviews === []) {
                 return <h1>No Reviews Yet</h1>
             }else{
-                return <h1>Admin Reviews</h1>
+                return <h1>Reviews</h1>
                 
             }
         } 
