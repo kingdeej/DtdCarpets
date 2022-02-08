@@ -129,8 +129,8 @@ export class Customers extends Component {
             <div className="admin-page-cont">
                 <div className={this.state.class1} >
                 <div>
-                    <FaArrowLeft size={25} onClick={this.dash} cursor={"pointer"}/>
                     <h1 className="admin-head">Customers Page</h1>
+                    <FaArrowLeft size={25} onClick={this.dash} cursor={"pointer"}/>
                 </div>
                 {this.state.noCustomers}
                 {this.state.error}

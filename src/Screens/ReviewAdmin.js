@@ -1,10 +1,11 @@
 import Axios from 'axios';
-import { FaCheck, FaStar} from 'react-icons/fa'
+import { FaArrowLeft, FaCheck, FaStar} from 'react-icons/fa'
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import deletes from '../images/delete.png';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -19,7 +20,8 @@ export class ReviewAdmin extends Component {
         loading: <Loading />,
         error: null,
         showQuestion: 'show',
-        id: null
+        id: null,
+        redirect: false
     }
     toggleRevList = (e) => {
         this.setState({revImageCont: "show"});
@@ -90,6 +92,9 @@ export class ReviewAdmin extends Component {
 
     
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={'/admin'} />
+        }
         const ReviewNon = (params) => {
             if (this.state.reviews === []) {
                 return <h1>No Reviews Yet</h1>
@@ -97,11 +102,15 @@ export class ReviewAdmin extends Component {
                 return <h1>Admin Reviews</h1>
                 
             }
+
         } 
         return (
             <div>
                 <div className="review-page-cont">
-                    <ReviewNon />
+                    <div>
+                        <ReviewNon />
+                        <FaArrowLeft size={25} onClick={()=>{this.setState({redirect: true})}} cursor={"pointer"}/>
+                    </div>
                     {this.state.error}
                     {!this.state.reviews.length ?  this.state.loading : null }
                     {this.state.reviews.map((val, key)=>{
