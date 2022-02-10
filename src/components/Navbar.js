@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link} from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import logo from '../images/loga.svg'
+import logo from '../images/Logo.jpg'
 
 
 export class Navbar extends Component {

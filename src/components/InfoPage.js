@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const InfoPage = () => {
     useEffect(() => {
@@ -11,6 +12,44 @@ const InfoPage = () => {
         });
         AOS.refresh();
       });
+      const [show, setShow] = useState('')
+      const [show1, setShow1] = useState('')
+      const [chair, setChair] = useState('dirty')
+      const [carpet, setCarpet] = useState('dirty')
+      const clean = (e) => {
+        if (e.target.id === '1') {
+            setChair('clean')
+            setShow('img')
+            setTimeout(() => {
+                setShow('')
+            }, 1000);
+        }
+        else{
+            setCarpet('clean')
+            setShow1('img')
+            setTimeout(() => {
+                setShow1('')
+            }, 1000);
+        }
+
+      };
+      const dirty = (e) => {
+        if (e.target.id === '1') {
+            setChair('dirty')
+            setShow('img')
+            setTimeout(() => {
+                setShow('')
+            }, 200);
+        }else{
+            setCarpet('dirty')
+            setShow1('img')
+            setTimeout(() => {
+                setShow1('')    
+            }, 200);
+        }
+
+      };
+      
     return (
     <div className="info-page">
         <div className="info-page-container">
@@ -22,12 +61,12 @@ const InfoPage = () => {
                 </div>
                 <ul className="info-cont-ul">
                     
-                    <li className="what">
+                    <li>
                         <div className="tile-cont" id="tile-1">    
                         <ul className="tile-cont-ul">
                             <li>
                                 <div className="tile-img">
-                                    <img src="./images/info-sofa.jpg" alt=""></img>
+                                    <img onMouseEnter={clean} onMouseLeave={dirty} className={show} src={`./images/info-chair-${chair}.jpg`} id='1' alt=""></img>
                                 </div>
                                 <div className="img-title">SOFAS AND CHAIRS</div>
                             </li>
@@ -65,7 +104,7 @@ const InfoPage = () => {
                             <ul>
                                 <li>
                                     <div className="tile-img">
-                                        <img src="./images/info-carpet.jpg" alt=""></img>
+                                        <img  onMouseEnter={clean} onMouseLeave={dirty} className={show1} id='2' src={`./images/info-carpet-${carpet}.jpg`} alt=""></img>
                                     </div> 
                                     <div className="img-title">CARPETS AND RUGS</div>
                                 </li>

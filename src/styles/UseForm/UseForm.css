@@ -16,10 +16,16 @@
 }
 
 .form-cont .head-info {
+  padding-top: 10px;
   text-align: center;
   background: #f8f8f8;
   font-size: smaller;
   margin-bottom: 10px;
+}
+
+.form-cont .head-info h3 {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .form-cont .ul {

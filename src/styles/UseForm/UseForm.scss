@@ -8,10 +8,15 @@
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     .head-info{
+        padding-top: 10px;
         text-align: center;
         background: #f8f8f8;
         font-size: smaller;
         margin-bottom: 10px;
+        h3{
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
     .ul{
         padding:20px;
