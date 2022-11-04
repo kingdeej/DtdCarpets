@@ -117,6 +117,8 @@
         width: 100%;
         gap: 20px;
         li{
+
+    
             max-width: 350px;
             #tile-1{
                 height: 564px;
@@ -126,8 +128,15 @@
             }
             #tile-3{
                 height: 564px;
+
             }
+            .tile-cont:hover .tile-img> :first-of-type{
+                z-index: 0;
+                opacity: 0;
+            }
+
             .tile-cont{
+                display: block;
                 margin-top: 60px;
                 padding-bottom: 10px;
                 background: white;
@@ -135,35 +144,37 @@
                 flex-direction: column;
                 box-shadow: 0 4px 8px 1px rgba(196, 196, 196, 0.2), 0 6px 20px 0 rgba(196, 196, 196, 0.2);
                 border-radius: 3px;
+
+
                 ul{
                     position: relative;
                     height: 100%;
                     li:not(:nth-child(1)){
                         padding: 5px 10%;
                     }
+
                     li:nth-child(1){
+                        
                         .tile-img{
                             height: 233px;
+                            position: relative;
+
+
+                            :first-of-type{
+                                z-index: 1;
+                                transition: z-index 500ms ease-out,
+                                opacity 500ms ease-out;
+                            }
+
                             img{
+                                position: absolute;
                                 width: 100%;
                                 object-fit: cover;
                                 height: 100%;
                                 border-top-left-radius: 3px;
                                 border-top-right-radius: 3px;
-                                
                             }
-                            .img{
-                                filter: blur(0px);
-                                animation: dirtyclean .5s;
-                                @keyframes dirtyclean {
-                                    from{
-                                        filter: blur(5px);                   
-                                    }
-                                    to{
-                                        filter: blur(0px);
-                                    }
-                                }
-                            }
+
                         }   
                         .img-title{
                             text-align: center;

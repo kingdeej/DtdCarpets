@@ -185,7 +185,13 @@
   height: 564px;
 }
 
+.info-page .info-cont-ul li .tile-cont:hover .tile-img > :first-of-type {
+  z-index: 0;
+  opacity: 0;
+}
+
 .info-page .info-cont-ul li .tile-cont {
+  display: block;
   margin-top: 60px;
   padding-bottom: 10px;
   background: white;
@@ -212,44 +218,23 @@
 
 .info-page .info-cont-ul li .tile-cont ul li:nth-child(1) .tile-img {
   height: 233px;
+  position: relative;
+}
+
+.info-page .info-cont-ul li .tile-cont ul li:nth-child(1) .tile-img :first-of-type {
+  z-index: 1;
+  -webkit-transition: z-index 500ms ease-out, opacity 500ms ease-out;
+  transition: z-index 500ms ease-out, opacity 500ms ease-out;
 }
 
 .info-page .info-cont-ul li .tile-cont ul li:nth-child(1) .tile-img img {
+  position: absolute;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-}
-
-.info-page .info-cont-ul li .tile-cont ul li:nth-child(1) .tile-img .img {
-  -webkit-filter: blur(0px);
-          filter: blur(0px);
-  -webkit-animation: dirtyclean .5s;
-          animation: dirtyclean .5s;
-}
-
-@-webkit-keyframes dirtyclean {
-  from {
-    -webkit-filter: blur(5px);
-            filter: blur(5px);
-  }
-  to {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-  }
-}
-
-@keyframes dirtyclean {
-  from {
-    -webkit-filter: blur(5px);
-            filter: blur(5px);
-  }
-  to {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-  }
 }
 
 .info-page .info-cont-ul li .tile-cont ul li:nth-child(1) .img-title {
